@@ -75,7 +75,7 @@ module.exports={
     })
 },
 //fonctionne
-supprimer:function (req,res) {
+  supprimer:function (req,res) {
   patientModel.deleteOne({_id:req.params.id},function (err) {
       if(err)
       {
