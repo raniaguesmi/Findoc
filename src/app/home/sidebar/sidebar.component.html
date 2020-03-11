@@ -1,8 +1,8 @@
 <div class="iq-sidebar">
     <div class="iq-sidebar-logo d-flex justify-content-between">
        <a href="index.html">
-       <img src="assets/images/logo.png" class="img-fluid" alt="">
-       <span>FINDOCTOR  </span>
+       <img src="assets/images/logo.JPG" class="img-fluid" alt="">
+       <span>FinDoc  </span>
        </a>
        <div class="iq-menu-bt-sidebar">
              <div class="iq-menu-bt align-self-center">
@@ -16,41 +16,88 @@
     <div id="sidebar-scrollbar">
        <nav class="iq-sidebar-menu">
           <ul class="iq-menu">
-             <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Dashboard</span></li>
+             <li class="iq-menu-title"><i class="ri-subtract-line"></i><span></span></li>
              <li class="active">
-                <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Doctor Dashboard</span></a>
-             </li>                     
+                <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Medecin</span></a>
+             </li> 
+             <!-- ********************************gerer secretaire************************************************ !-->                  
+             <li>
+               <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Sécretaire</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul class="iq-submenu">
+                  <li><a href="assets/add-doctor.html"><i class="ri-user-add-fill"></i> Ajouter Secretaire</a></li>
+                  <li><a routerLink="/acceuil/gestionMedecins/profile"><i class="ri-profile-fill"></i> Profile Secretaire</a></li>
+                  <li><a routerLink="/acceuil/gestionMedecins/modifierMedecin"><i class="ri-file-edit-fill"></i> Modifier Details</a></li>
+                  <li><a routerLink="/acceuil/gestionMedecins/modifierMedecin"><i class="ri-file-edit-fill"></i> Supprimer Sécretaire</a></li>
+
+               </ul>
+            </li>
+            <!-- ********************************rdv************************************************ !-->                
             
+            <li>
+               <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul class="iq-submenu">
+                  <li><a routerLink="/acceuil/gestionMedecins/profile"><i class="ri-profile-fill"></i> Consulter Rendez-vous</a></li>
+            
+
+               </ul>
+            </li>
+            <!-- ********************************Dossier Medical************************************************ !-->                  
+
+            <li>
+               <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Dossier Médical</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul class="iq-submenu">
+                  <li><a href="assets/add-doctor.html"><i class="ri-user-add-fill"></i> Ajouter Fichier</a></li>
+                  <li><a routerLink="/acceuil/gestionMedecins/profile"><i class="ri-profile-fill"></i> Consulter Patient</a></li>
+                  <li><a routerLink="/acceuil/gestionMedecins/modifierMedecin"><i class="ri-file-edit-fill"></i> Modifier Details</a></li>
+             
+
+               </ul>
+            </li>
+           <!-- ********************************patient**********************************************            
              <li>
                 <a href="dashboard-3.html" class="iq-waves-effect"><i class="ri-group-fill"></i><span>Patient Dashboard</span></a>
-             </li>
-             <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Apps</span></li>
-             <li>
-                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-mail-open-fill"></i><span>Email</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                <ul class="iq-submenu">
-                   <li><a href="app/index.html"><i class="ri-inbox-fill"></i>Inbox</a></li>
-                   <li><a href="app/email-compose.html"><i class="ri-edit-2-fill"></i>Email Compose</a></li>
-                </ul>
-             </li>
-             
-             <li>
-                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Doctors</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                <ul class="iq-submenu">
-                   <li><a routerLink="/acceuil/gestionMedecins/listeMedecins"><i class="ri-file-list-fill"></i>All Doctors</a></li>
-                   <li><a href="assets/add-doctor.html"><i class="ri-user-add-fill"></i> Add Doctor</a></li>
-                   <li><a routerLink="/acceuil/gestionMedecins/profile"><i class="ri-profile-fill"></i>Doctor Profile</a></li>
-                   <li><a routerLink="/acceuil/gestionMedecins/modifierMedecin"><i class="ri-file-edit-fill"></i> Edit Doctor</a></li>
-                </ul>
-             </li>
-             <li><a href="calendar.html" class="iq-waves-effect"><i class="ri-calendar-event-fill"></i><span>Calendar</span></a></li>
+             </li>** !-->  
+            <!-- ********************************Espace Admin************************************************ !-->                 
+
+            <li class="active">
+               <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Admin</span></a>
+            </li> 
             
+              <!-- ********************************gerer medecins************************************************ !-->  
              <li>
-                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-map-pin-2-fill"></i><span>Maps</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Médecins</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                 <ul class="iq-submenu">
-                   <li><a href="pages-map.html"><i class="ri-google-fill"></i>Google Map</a></li>
-                   <li><a href="#"><i class="ri-map-pin-range-line"></i>Vector Map</a></li>
+                   <li><a routerLink="/gestionMedecins/listeMedecins"><i class="ri-file-list-fill"></i>Liste de Médecins</a></li>
+                   <li><a routerLink="/gestionMedecins/ajouterMedecin"><i class="ri-user-add-fill"></i> Ajouter Médecin</a></li>
+                   <li><a routerLink="/gestionMedecins/profile"><i class="ri-profile-fill"></i>Profile Medecin</a></li>
+                   <li><a routerLink="/gestionMedecins/modifierMedecin"><i class="ri-file-edit-fill"></i>Modifier Informations</a></li>
                 </ul>
              </li>
+               <!-- ********************************gerer Spécialités************************************************ !-->  
+               <li>
+                  <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Spécialités</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                  <ul class="iq-submenu">
+                     <li><a routerLink="/gestionMedecins/ajouterMedecin"><i class="ri-user-add-fill"></i> Ajouter Médecin</a></li>
+                     <li><a routerLink="/gestionMedecins/modifierMedecin"><i class="ri-file-edit-fill"></i>Modifier Spécialités</a></li>
+                  </ul>
+               </li>
+             <li class="active">
+               <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Sécretaire</span></a>
+            </li> 
+           
+            <li>
+               <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul class="iq-submenu">
+                  <li><a routerLink="/gestionRdv/ajouterRdv"><i class="ri-user-add-fill"></i> Ajouter Rendez-vous</a></li>
+                  <li><a routerLink=""><i class="ri-profile-fill"></i> accepter Rendez-vous</a></li>
+                  <li><a routerLink=""><i class="ri-file-edit-fill"></i> refuser Rendez-vous</a></li>
+                  <li><a routerLink=""><i class="ri-file-edit-fill"></i> Annuler Rendez-vous</a></li>
+                  <li><a routerLink=""><i class="ri-file-edit-fill"></i> Reporter Rendez-vous</a></li>
+                  <li><a routerLink=""><i class="ri-file-edit-fill"></i> Consulter Liste Rendez-vous</a></li>
+
+
+               </ul>
+            </li>
            
           </ul>
        </nav>

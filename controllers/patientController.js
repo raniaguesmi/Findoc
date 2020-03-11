@@ -17,17 +17,16 @@ module.exports={
               };
             } else {
                 const patient=new patientModel({
-                    nom:req.body.nom,
-                    prenom:req.body.prenom,
-                    email:req.body.email,
-                    password:req.body.password,
-                    adresse:req.body.adresse,
-                    telephone:req.body.telephone,
-                    dateNaissance:req.body.dateNaissance,
-                    cin:req.body.cin,
-                    tel1:req.body.tel1,
-                    tel2:req.body.tel2,
-                    image:req.file.originalname,
+                  nom: req.body.nom,
+                  prenom: req.body.prenom,
+                  login:req.body.login,
+                  password: req.body.password,
+                  dateNaissance:req.body.dateNaissance,
+                  adresse:req.body.adresse,
+                  telephone:req.body.telephone,
+                  image:req.file.originalname,
+                  cin:req.body.cin,
+                  email: req.body.email,
 
                  })
               patient.save(function (err) {
@@ -54,17 +53,16 @@ module.exports={
     //ne fonctionne pas a cause de original name undefine
     modifier:function(req,res){
         patientModel.updateOne({_id:req.params.id},{$set:req.body},{
-                    nom:req.body.nom,
-                    prenom:req.body.prenom,
-                    email:req.body.email,
-                    password:req.body.password,
-                    adresse:req.body.adresse,
-                    telephone:req.body.telephone,
-                    dateNaissance:req.body.dateNaissance,
-                    cin:req.body.cin,
-                    tel1:req.body.tel1,
-                    tel2:req.body.tel2,
-                    image:req.body.image,
+          nom: req.body.nom,
+          prenom: req.body.prenom,
+          login:req.body.login,
+          password: req.body.password,
+          dateNaissance:req.body.dateNaissance,
+          adresse:req.body.adresse,
+          telephone:req.body.telephone,
+          image:req.file.originalname,
+          cin:req.body.cin,
+          email: req.body.email,
         },function(err)
         {if(err)
           {res.json({state:'no',message:'il ya un erreur : '+err})

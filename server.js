@@ -8,6 +8,7 @@ const bodyParser=require('body-parser')
 const db=require('./db')
 const medecin=require('./routers/medecinRouter')
 const patient=require('./routers/patientRouter')
+const secretaire=require('./routers/secretaireRouter')
 const app=express(); // app est une instance d'express
  app.use(bodyParser.urlencoded({extended:false}))
  app.use(bodyParser.json())
@@ -17,7 +18,7 @@ const app=express(); // app est une instance d'express
 
  app.use('/medecin',medecin)
  app.use('/patient',patient)
-
+app.use('/secretaire',secretaire)
 
  app.listen(3000,function(){
      console.log('******* Hello the server is runnig on port 3000 *******')

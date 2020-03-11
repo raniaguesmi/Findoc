@@ -5,10 +5,8 @@ const multer = require('multer');
 
 const upload = multer({dest: __dirname + '/uploads/images'});
 /*dest is where to store data */
-var cpUpload = upload.fields([
-    { name: 'diplome', maxCount: 1 },
-    { name: 'cv', maxCount: 3 },
-    { name: 'image', maxCount: 1 },])
+var cpUpload = upload.fields([{ name: 'image', maxCount: 1 },{ name: 'diplome', maxCount: 1 },{ name:'cv', maxCount: 1 },
+   ])
 
 /**********************************defininition des routes pour chaque fonctionnalité***************************************************************/
 

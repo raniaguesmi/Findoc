@@ -8,7 +8,8 @@ import { ProfileMedecinComponent } from './profile-medecin/profile-medecin.compo
 const routes: Routes = [
   {path : 'listeMedecins', component : ListeMedecinsComponent},
   {path : 'modifierMedecin', component : ModifierMedecinComponent},
-  {path : 'profile', component : ProfileMedecinComponent}
+  {path : 'profile', component : ProfileMedecinComponent},
+
 ];
 
 @NgModule({
