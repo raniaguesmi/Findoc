@@ -16,9 +16,9 @@ const baseoption={
     dateNaissance:{type: String, required : true,trim :true},
     adresse:{type: String, required : true,trim :true},
     telephone:{type: Number, required : true},
-    image: {type: String,required : false},
+   // image: {type: String,required : false},
     cin:{type: Number, required : true},
-    email: {type: String, required : true },} 
+  } 
 , baseoption
 )
   

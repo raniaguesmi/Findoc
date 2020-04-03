@@ -9,6 +9,7 @@ const routes: Routes = [
   {path : 'listeMedecins', component : ListeMedecinsComponent},
   {path : 'modifierMedecin', component : ModifierMedecinComponent},
   {path : 'profile', component : ProfileMedecinComponent},
+ // {path : 'ajouterMedecin', component : AjouterMedecinComponent},
 
 ];
 

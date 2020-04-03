@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MedecinService {
-  baseUrl = environment.baseUrl
-
+  baseUrl = environment.baseUrl;
+//baseUrl : 'http://localhost:3000' 
   constructor(private http: HttpClient) { }
   listeMedecins() {
     return this.http.get(this.baseUrl + '/medecin/listeMedecins')

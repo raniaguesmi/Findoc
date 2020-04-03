@@ -64,13 +64,10 @@ module.exports={
           cin:req.body.cin,
           email: req.body.email,
         },function(err)
-        {if(err)
-          {res.json({state:'no',message:'il ya un erreur : '+err})
-          }
-         else {
-              res.json({state:'yes',message:'la modification terminé avec succées'})
-               }
-    })
+        {
+        if(err)  {res.json({state:'no',message:'il ya un erreur : '+err})}
+         else {res.json({state:'yes',message:'la modification terminé avec succées'}) }
+         })
 },
 //fonctionne
   supprimer:function (req,res) {

@@ -8,7 +8,7 @@ import { ProfileMedecinComponent } from './profile-medecin/profile-medecin.compo
 
 
 @NgModule({
-  declarations: [ListeMedecinsComponent, ModifierMedecinComponent, ProfileMedecinComponent],
+  declarations: [ListeMedecinsComponent, ModifierMedecinComponent, ProfileMedecinComponent, ],
   imports: [
     CommonModule,
     GererMedecinsRoutingModule

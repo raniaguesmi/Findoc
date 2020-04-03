@@ -13,6 +13,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AjouterMedecinComponent } from './ajouter-medecin/ajouter-medecin.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { SpecialiteComponent } from './home/specialite/specialite.component';
 
 
 @NgModule({
@@ -25,13 +26,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     LayoutComponent,
     AcceuilComponent,
     SignInComponent,
-    AjouterMedecinComponent
+    AjouterMedecinComponent,
+    SpecialiteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-ReactiveFormsModule,
+    HttpClientModule, // pour les requetes http vest obligatoir
+ReactiveFormsModule, 
     FormsModule
   ],
   providers: [],

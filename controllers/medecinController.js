@@ -1,5 +1,6 @@
 const medecinModel=require('../models/medecinModel')
 const multer = require('multer');// multer y5alini n'uplowdi taswira fl formulaire
+var fs = require("fs") // y5alini naml controle de saisie 3al les champs mte3 el formulaire
 
 /* fs cest un module dans node pas besoin de l'installé
 fs : file sysyem ! cest un module qui permet le controle de saisie dans les champs de formulaire */
@@ -10,32 +11,47 @@ module.exports={
 /**********************************ajout ***************************************************************/
 //fonctionne
 ajouter:function(req,res){
-     const medecin = new medecinModel ({
-        nom: req.body.nom,
-        prenom: req.body.prenom,
-        login:req.body.login,
-        password: req.body.password,
-        dateNaissance:req.body.dateNaissance,
-        adresse:req.body.adresse,
-        telephone:req.body.telephone,
-        image:req.files['image'][0].originalname,
-        cin:req.body.cin,
-        email: req.body.email,
-        adresseCabinet:req.body.adresseCabinet,
-        diplome:req.files['diplome'][0].originalname,
-        specialite:req.body.specialite,
-        cv:req.files['cv'][0].originalname,
-      } )
-    medecin.save(function (err) {
-      if (err) {
-        console.error(err);
+ 
+  var file = __dirname + '/uploads/' + req.file.originalname;
+    fs.readFile(req.file.path, function (err, data) {
+      fs.writeFile(file, data, function (err) {
+          if (err) {
+            console.error(err);
+            var response = {
+              message: 'Sorry, file couldn\'t be uploaded.',
+              filename: req.file.originalname
+            }
+          }
+          else {
 
-        res.json({state: 'no', msg: 'vous avez un erreur ' + err})
-      }
-      else {
-        res.json({state: 'ok', msg: 'medecin ajouté'})
-      }
+            const medecin = new medecinModel({
+              nom: req.body.nom,
+              prenom: req.body.prenom,
+              login:req.body.login,
+              password: req.body.password,
+              dateNaissance:req.body.dateNaissance,
+              adresse:req.body.adresse,
+              telephone:req.body.telephone,
+              cin:req.body.cin,
+              email: req.body.email,
+              image:req.file.originalname,
+              adresseCabinet:req.body.adresseCabinet,
+              specialite:req.body.specialite,
+              }
+            )
 
+            medecin.save(function (err) {
+              if (err) {
+                res.json({state: 'non', msg: 'il ya un erreur ' + err})
+              }
+              else {
+                res.json({state: 'ok', msg: 'medecin ajouté'})
+              }
+
+            })
+          }
+        }
+      )
     })
 },
   
@@ -70,17 +86,15 @@ modifier:function(req,res){
     dateNaissance:req.body.dateNaissance,
     adresse:req.body.adresse,
     telephone:req.body.telephone,
-    image:req.files['image'][0].originalname,
     cin:req.body.cin,
     email: req.body.email,
+    image:req.file.originalname,
     adresseCabinet:req.body.adresseCabinet,
-    diplome:req.files['diplome'][0].originalname,
-    specialite:req.body.specialite,
-    cv:req.files['cv'][0].originalname},
+    specialite:req.body.specialite},
   function(err)
   {
     if(err)
-    {res.json({state:'no',message:'il ya un erreur : '+err})}
+    {res.json({state:'no',message:'il ya un erreur : '+ err})}
     else {res.json({state:'yes',message:'la modification terminé avec succées'})}
 
   }
@@ -98,7 +112,11 @@ afficheParId:function (req,res) {
     }
   )
 
-}
+},
+affichePhoto: function (req, res) {
+  res.sendFile(__dirname + '/uploads/'+ req.params.image)
+  // l'utilisation de cette fonctionnalité est d'afficher la photo de medecin dans la partie front 
+},
 
 
 }

@@ -5,17 +5,7 @@ const upload = multer({dest: __dirname + '/uploads/images'});
 module.exports={
 //fonctionne
     ajouter : function (req,res) {
-        var file = __dirname + '/uploads/' + req.file.originalname;
-        fs.readFile(req.file.path, function (err, data) {
-          fs.writeFile(file, data, function (err) {
-            if (err) {
-              
-              console.error(err);
-              var response = {
-                message: 'Sorry, file couldn\'t be uploaded.',
-                filename: req.file.originalname
-              };
-            } else {
+     
                 const patient=new patientModel({
                   nom: req.body.nom,
                   prenom: req.body.prenom,
@@ -24,9 +14,8 @@ module.exports={
                   dateNaissance:req.body.dateNaissance,
                   adresse:req.body.adresse,
                   telephone:req.body.telephone,
-                  image:req.file.originalname,
                   cin:req.body.cin,
-                  email: req.body.email,
+                  
 
                  })
               patient.save(function (err) {
@@ -34,13 +23,13 @@ module.exports={
                   res.json({state: 'no', msg: 'vous avez un erreur ' + err})
                 }
                 else {
-                  res.json({state: 'ok', msg: 'patient ajouté avec succées'})
+                  res.json([{state: 'ok', msg: 'patient ajouté avec succées'}])
                 }
     
               })
-            }
-          })
-        })
+            
+          
+        
       },
     //fonctionne
     afficher:function(req,res){
@@ -60,7 +49,7 @@ module.exports={
           dateNaissance:req.body.dateNaissance,
           adresse:req.body.adresse,
           telephone:req.body.telephone,
-          image:req.file.originalname,
+      //    image:req.file.originalname,
           cin:req.body.cin,
           email: req.body.email,
         },function(err)

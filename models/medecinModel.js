@@ -7,10 +7,11 @@ const utlisateurs=require('./utilisateurModel')
 // descriminator pour dire eli houwa l classe fille mte3 l user ye5ou tout les attributs du model user wizidhom attributs specifique sil existe
 
 const medecinSchema=utlisateurs.discriminator('medecin', new mongoose.Schema ({
-
+    email:{type:String,required:true},
+    image:{type:String,required:true},
     adresseCabinet:{type: String, required : true,trim :true},
-    diplome:{type: String, required : true},
     specialite:{type: String, required:true , trim:true},
-cv:{type:String}}))
+}
+))
 
 module.exports=medecinSchema;
