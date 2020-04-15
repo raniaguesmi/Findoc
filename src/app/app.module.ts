@@ -10,10 +10,12 @@ import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { LayoutComponent } from './home/layout/layout.component';
 import { AcceuilComponent } from './home/acceuil/acceuil.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { AjouterMedecinComponent } from './ajouter-medecin/ajouter-medecin.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SpecialiteComponent } from './home/specialite/specialite.component';
+import { GererSecretaireComponent } from './home/gerer-secretaire/gerer-secretaire.component';
+import { ProfileMedecinComponent } from './home/profile-medecin/profile-medecin.component';
+import { ModifierMedecinComponent } from './home/modifier-medecin/modifier-medecin.component';
 
 
 @NgModule({
@@ -26,14 +28,16 @@ import { SpecialiteComponent } from './home/specialite/specialite.component';
     LayoutComponent,
     AcceuilComponent,
     SignInComponent,
-    AjouterMedecinComponent,
-    SpecialiteComponent
+    SpecialiteComponent,
+    GererSecretaireComponent,
+    ProfileMedecinComponent,
+    ModifierMedecinComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, // pour les requetes http vest obligatoir
-ReactiveFormsModule, 
+ReactiveFormsModule, // importitha ater jai utilisé formbuilder wel form groupe eli houma des fonctionalité mawjoudine fl module hethe
     FormsModule
   ],
   providers: [],

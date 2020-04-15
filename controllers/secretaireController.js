@@ -5,17 +5,18 @@ const upload = multer({dest: __dirname + '/uploads/images'});
 module.exports={
 //fonctionne
     ajouter : function (req,res) {
-        var file = __dirname + '/uploads/' + req.file.originalname;
-        fs.readFile(req.file.path, function (err, data) {
-          fs.writeFile(file, data, function (err) {
-            if (err) {
+        // var file = __dirname + '/uploads/' + req.file.originalname;
+        // fs.readFile(req.file.path, function (err, data) {
+        //   fs.writeFile(file, data, function (err) {
+            // if (err) {
               
-              console.error(err);
-              var response = {
-                message: 'Sorry, file couldn\'t be uploaded.',
-                filename: req.file.originalname
-              };
-            } else {
+            //   console.error(err);
+            //   var response = {
+            //     message: 'Sorry, file couldn\'t be uploaded.',
+            //     filename: req.file.originalname
+            //   };
+            // } 
+            // else {
                 const secretaire=new secretairetModel({
                   nom: req.body.nom,
                   prenom: req.body.prenom,
@@ -24,10 +25,10 @@ module.exports={
                   dateNaissance:req.body.dateNaissance,
                   adresse:req.body.adresse,
                   telephone:req.body.telephone,
-                  image:req.file.originalname,
+                  // image:req.file.originalname,
                   cin:req.body.cin,
                   email: req.body.email,
-
+                  idmed:req.body.idmed
                  })
               secretaire.save(function (err) {
                 if (err) {
@@ -38,10 +39,10 @@ module.exports={
                 }
     
               })
-            }
-          })
-        })
-      },
+            },
+        //   })
+        // })
+      // },
     //fonctionne
     afficher:function(req,res){
         secretairetModel.find({},function(err,liste){
@@ -60,9 +61,10 @@ module.exports={
           dateNaissance:req.body.dateNaissance,
           adresse:req.body.adresse,
           telephone:req.body.telephone,
-          image:req.file.originalname,
+          // image:req.file.originalname,
           cin:req.body.cin,
           email: req.body.email,
+          idmed:req.body.idmed
         },function(err)
         {
         if(err)  {res.json({state:'no',message:'il ya un erreur : '+err})}
@@ -84,5 +86,13 @@ module.exports={
     }
   )
 },
+ afficherParMedecin:function(req,res){
+  secretairetModel.find({idmed:req.params.id},function(err,liste){
+    if(err){res.json({state:'no', message:'erreur : '+err})}
+    else{res.json(liste)}
+  })
 
+
+
+ }
 }

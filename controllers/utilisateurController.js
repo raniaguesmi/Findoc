@@ -4,15 +4,15 @@ const bcrypt = require('bcrypt')
 
 module.exports={
     authentification : function (req,res) {
-       /*  utilisateurModel.findOne({login:req.body.login},function (err,utilisateurinfo) {
+         utilisateurModel.findOne({login:req.body.login},function (err,utilisateurinfo) {
             if (err) {
               next(err);
             }
             else {
               if (utilisateurinfo != null) {
                 if (bcrypt.compare(req.body.password, utilisateurinfo.password)) {
-               //   const token = jwt.sign({id: utilisateurinfo.id}, req.app.get('secretKey'), {expiresIn: '1h'})
-                  res.json({status: "sucess", msg: "user found", data: {user: utilisateurinfo}, message:"vous etes un "+ utilisateurinfo.type})
+                 const token = jwt.sign({id: utilisateurinfo.id}, req.app.get('secretKey'), {expiresIn: '1h'})
+                  res.json({status: "sucess", msg: "user found", data: {user: utilisateurinfo, token: token}, message:"vous etes un "+ utilisateurinfo.type})
     
                 }
     
@@ -27,10 +27,10 @@ module.exports={
               }
             }
           }
-          )*/
-          utilisateurModel.findOne({_id:req.params.id},function(err,userinfo){
-            if (err){res.json({err})}
-            else{res.json({state:"ok",message:"type:"+userinfo})}
-          })
+          )
+          // utilisateurModel.findOne({_id:req.params.id},function(err,userinfo){
+          //   if (err){res.json({err})}
+          //   else{res.json({state:"ok",message:"type:"+userinfo})}
+          // })
       },
 }

@@ -1,0 +1,139 @@
+<div class="container-fluid">
+   <form [formGroup]="registerForm" (ngSubmit)="ajouterMedecin()" >
+
+  <div class="row">
+      <div class="col-lg-3">
+        <div class="iq-card">
+           <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                 <h4 class="card-title">Add New User</h4>
+              </div>
+           </div>
+            <div class="iq-card-body">
+               <!-- image-->
+                 <div class="form-group">
+                    <div class="add-img-user profile-img-edit">
+                                            <!-- src="http://localhost:3000/medecin/affichePhoto/{{image}}" -->
+
+                       <img class="profile-pic img-fluid" src="http://localhost:3000/medecin/affichePhoto/{{image}}" >
+                        
+                          <input  type="file"  (change)="recupereFile($event)">
+                    </div>
+                   
+                 </div>
+                           <!-- specialite-->
+                 <div class="form-group">
+                  <label>specialite:</label>
+                  <select class="form-control" formControlName="specialite" [ngClass]="{ 'is-invalid': submitted && f.specialite.errors }">
+                     <option *ngFor="let i of listeSpecialite" >{{i.nom}}</option>
+                     <div *ngIf="submitted && f.specialite.errors" class="invalid-feedback">
+                      <div *ngIf="f.specialite.errors.required">le champ est obligatoire</div>
+                    </div> 
+                  </select>
+               </div>
+                
+           </div> 
+        </div>
+     </div> 
+     <div class="col-lg-9">
+        <div class="iq-card">
+           <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                 <h4 class="card-title">New User Information</h4>
+              </div>
+           </div>
+           <div class="iq-card-body">
+              <div class="new-user-info">
+                    <div class="row">
+                       <div class="form-group col-md-6">
+                          <label for="fname">Nom:</label>
+                          <input type="text" class="form-control"  placeholder="Nom" formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                          <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                           <div *ngIf="f.nom.errors.required">le champ est obligatoire</div>
+                         </div>
+                        </div>
+                       <div class="form-group col-md-6">
+                          <label for="lname">Prenom:</label>
+                          <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom"[ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
+                          <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                           <div *ngIf="f.prenom.errors.required">le champ est obligatoire</div>
+                         </div>
+                        </div>
+                       <div class="form-group col-md-6">
+                          <label for="add1">login:</label>
+                          <input type="text" class="form-control"  placeholder="login" formControlName="login"[ngClass]="{ 'is-invalid': submitted && f.login.errors }">
+                          <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+                           <div *ngIf="f.login.errors.required">le champ est obligatoire</div>
+                         </div>
+                        </div>
+                       <div class="form-group col-md-6">
+                          <label for="add2">password</label>
+                          <input type="text" class="form-control" placeholder="password" formControlName="password"[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                           <div *ngIf="f.password.errors.required">le champ est obligatoire</div>
+                           <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 6 lettres</div>
+
+                         </div>
+                        </div>
+                      
+
+                       <div class="form-group col-md-6">
+                        <label for="fname">dateNaissance:</label>
+                        <input type="date" class="form-control"  placeholder="dateNaissance" formControlName="dateNaissance"[ngClass]="{ 'is-invalid': submitted && f.dateNaissance.errors }">
+                        <div *ngIf="submitted && f.dateNaissance.errors" class="invalid-feedback">
+                           <div *ngIf="f.dateNaissance.errors.required">le champ est obligatoire</div>
+                         </div>
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="fname">Adresse:</label>
+                        <input type="text" class="form-control"  placeholder="adresse" formControlName="adresse"[ngClass]="{ 'is-invalid': submitted && f.adresse.errors }">
+                        <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+                           <div *ngIf="f.adresse.errors.required">le champ est obligatoire</div>
+                         </div>
+                     </div>
+                     
+                     <div class="form-group col-md-6">
+                        <label for="lname">telephone:</label>
+                        <input type="number" class="form-control" placeholder="telephone"formControlName="telephone"[ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                        <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                           <div *ngIf="f.telephone.errors.required">le champ est obligatoire</div>
+                         </div>
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label >cin:</label>
+                        <input type="number" class="form-control"  placeholder="cin" formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+                        <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                           <div *ngIf="f.cin.errors.required">le champ est obligatoire</div>
+                         </div>
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="add2">email:</label>
+                        <input type="text" class="form-control"  placeholder="email" formControlName="email"[ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                           <div *ngIf="f.email.errors.required">le champ est obligatoire</div>
+                           <div *ngIf="f.email.errors.email">veuillez entrer une adresse électronique valide</div>
+
+                         </div>
+                     </div>
+                 
+                   <div class="form-group col-md-6">
+                      <label >adresseCabinet:</label>
+                      <input type="text" class="form-control"  placeholder="adresseCabinet"formControlName="adresseCabinet"[ngClass]="{ 'is-invalid': submitted && f.adresseCabinet.errors }">
+                      <div *ngIf="submitted && f.adresseCabinet.errors" class="invalid-feedback">
+                        <div *ngIf="f.adresseCabinet.errors.required">le champ est obligatoire</div>
+                      </div>
+                     </div>
+                
+                    </div>
+                    <hr>
+                   
+                    <button type="submit" class="btn btn-primary"  >Ajouter</button>
+                    <!-- routerLink="../listeMedecins" -->
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</form>
+
+</div>

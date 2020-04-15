@@ -1,0 +1,172 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12">
+         <div class="iq-card">
+            <div class="iq-card-body p-0">
+               <div class="iq-edit-list">
+                  <ul class="iq-edit-profile d-flex nav nav-pills">
+                     <li class="col-md-3 p-0">
+                        <a class="nav-link active" data-toggle="pill" href="#personal-information">
+                        Personal Information
+                        </a>
+                     </li>
+                     <li class="col-md-3 p-0">
+                        <a class="nav-link" data-toggle="pill" href="#chang-pwd">
+                        Change Password
+                        </a>
+                     </li>
+                     <li class="col-md-3 p-0">
+                        <a class="nav-link" data-toggle="pill" href="#emailandsms">
+                        Email and SMS
+                        </a>
+                     </li>
+                     <li class="col-md-3 p-0">
+                        <a class="nav-link" data-toggle="pill" href="#manage-contact">
+                        Manage Contact
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <form [formGroup]="EditForm">
+      <div class="col-lg-12">
+         <div class="iq-edit-list-data">
+            <div class="tab-content">
+
+
+            <!--information persoonels-->
+               <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
+                  <div class="iq-card">
+                     <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                           <h4 class="card-title">Personal Information</h4>
+                        </div>
+                     </div>
+                     <div class="iq-card-body">
+                           <div class="form-group row align-items-center">
+                              <div class="col-md-6">
+                                 <div class="profile-img-edit">
+                                    <img class="profile-pic" src="assets/images/user/11.png" alt="profile-pic">
+                                    <div class="p-image">
+                                       <i class="ri-pencil-line upload-button"></i>
+                                       <input class="file-upload" type="file" accept="image/*"/>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <div class=" row col-md-6">
+                                 <div class="form-group ">
+                                    <label for="fname">Nom d'utilisateur:</label>
+                                    <input type="text" class="form-control"  formControlName="login">
+                                 </div>
+                                 <div class="form-group ">
+                                    <label for="fname">CIN:</label>
+                                    <input type="text" class="form-control"  formControlName="cin">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class=" row align-items-center">
+                              <div class="form-group col-sm-6">
+                                 <label for="fname">Nom:</label>
+                                 <input type="text" class="form-control"  formControlName="nom">
+                              </div>
+                              <div class="form-group col-sm-6">
+                                 <label for="lname">Prenom:</label>
+                                 <input type="text" class="form-control"  formControlName="prenom">
+                              </div>
+                              <div class="form-group col-sm-6">
+                                 <label for="dob">Date De naissance:</label>
+                                 <input  class="form-control"  formControlName="dateNaissance">
+                              </div>
+                              <div class="form-group col-sm-6">
+                                 <label for="uname">Adresse:</label>
+                                 <input type="text" class="form-control"  formControlName="adresse">
+                              </div>
+             
+                     
+                           </div>
+                          
+                     </div>
+                  </div>
+               </div>
+
+               <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                  <div class="iq-card">
+                     <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                           <h4 class="card-title">Changer Mot de passe</h4>
+                        </div>
+                     </div>
+                     <div class="iq-card-body">
+                           <div class="form-group">
+                              <label for="cpass">Mot de passe actuel:</label>
+                              <a  class="float-right">Forgot Password</a>
+                              <input type="Password" class="form-control"  formControlName="password">
+                           </div>
+                           <div class="form-group">
+                              <label for="npass">Nouveau Mot de passe:</label>
+                              <input type="Password" class="form-control" >
+                           </div>
+                           <div class="form-group">
+                              <label for="vpass">Verifier Mot de passe:</label>
+                              <input type="Password" class="form-control" >
+                           </div>
+                          
+                     </div>
+                  </div>
+               </div>
+               <div class="tab-pane fade" id="emailandsms" role="tabpanel">
+                  <div class="iq-card">
+                     <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                           <h4 class="card-title">Email and SMS</h4>
+                        </div>
+                     </div>
+                     <div class="iq-card-body">
+                         
+                           
+                           <div class="form-group col-sm-12">
+                              <label for="dob">Spécialité :</label>
+                              <input  class="form-control"  formControlName="specialite">
+                           </div>
+                           <div class="form-group col-sm-12">
+                              <label for="uname">Adresse Cabinet:</label>
+                              <input type="text" class="form-control"  formControlName="adresseCabinet">
+                           </div>
+                          
+                         
+                     </div>
+                  </div>
+               </div>
+               <div  class="tab-pane fade " id="manage-contact" role="tabpanel">
+                  <div class="iq-card">
+                     <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                           <h4 class="card-title">Manage Contact</h4>
+                        </div>
+                     </div>
+                     <div class="iq-card-body">
+                           <div class="form-group">
+                              <label for="cno">Numéro de téléphone:</label>
+                              <input type="text" class="form-control" formControlName="telephone">
+                           </div>
+                           <div class="form-group">
+                              <label for="email">Email:</label>
+                              <input type="text" class="form-control" formControlName="email">
+                           </div>
+                          
+                          
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div>
+      <button type="submit" class="btn btn-primary mr-2">Enregistrer les modifications</button>
+      <button type="reset" class="btn iq-bg-danger">Annuler</button></div>
+   </form>
+   </div>
+</div>

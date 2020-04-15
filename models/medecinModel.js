@@ -8,7 +8,7 @@ const utlisateurs=require('./utilisateurModel')
 
 const medecinSchema=utlisateurs.discriminator('medecin', new mongoose.Schema ({
     email:{type:String,required:true},
-    image:{type:String,required:true},
+    image:{type:String,required:false},
     adresseCabinet:{type: String, required : true,trim :true},
     specialite:{type: String, required:true , trim:true},
 }

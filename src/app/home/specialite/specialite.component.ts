@@ -13,6 +13,7 @@ listeSpecialite;
 registerForm: FormGroup;
 submitted = false;
 _id;
+data;
   constructor(private specialiteService:SpecialiteService,private formBuilder: FormBuilder) { 
     this.afficherSpecialite();
   }
@@ -43,7 +44,13 @@ _id;
       return;
     }
     this.specialiteService.ajouterSpecialite(this.registerForm.value).subscribe(res => {
-      console.log(res);
+      this.data=res;
+      console.log(this.data.state)
+      if(this.data.state=="no"){
+       return Swal.fire('Cette spécialité existe déjà')
+
+      }
+
      Swal.fire(
        'Bien',
        'Specialité ajoutée avec succée!',
@@ -51,6 +58,7 @@ _id;
      )  
       this.submitted = false ;
         this.registerForm.reset()
+        
       })
       this.afficherSpecialite();
   }
@@ -59,16 +67,21 @@ _id;
     this.submitted = true
 
     this.specialiteService.modifierSpecialite(this._id,this.registerForm.value).subscribe(res=>{
+      this.data=res;
+      console.log(this.data.state)
+      if(this.data.state=="no"){
+       return Swal.fire('Cette spécialité existe déjà')
 
-      console.log(res);
+      }
       Swal.fire(
         'Bien!',
         'la modification a terminé avec succée',
         'success'
       )  
        this.submitted = false ;
-       this.afficherSpecialite();
-    })
+    })   
+       //  this.afficherSpecialite();
+
   
 }
   
