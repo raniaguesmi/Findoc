@@ -17,28 +17,38 @@ module.exports={
             //   };
             // } 
             // else {
-                const secretaire=new secretairetModel({
-                  nom: req.body.nom,
-                  prenom: req.body.prenom,
-                  login:req.body.login,
-                  password: req.body.password,
-                  dateNaissance:req.body.dateNaissance,
-                  adresse:req.body.adresse,
-                  telephone:req.body.telephone,
-                  // image:req.file.originalname,
-                  cin:req.body.cin,
-                  email: req.body.email,
-                  idmed:req.body.idmed
-                 })
-              secretaire.save(function (err) {
-                if (err) {
-                  res.json({state: 'no', msg: 'vous avez un erreur ' + err})
+              secretairetModel.findOne({login:req.body.login},function(err,reslt){
+                if(err){res.json({state: 'non', msg: 'vous avez un erreur ' + err})}
+                else{
+                    if(reslt==null)
+                   { res.json({state:'oui',msg:'secretaire ajouté avec succées'})
+                   const secretaire=new secretairetModel({
+                    nom: req.body.nom,
+                    prenom: req.body.prenom,
+                    login:req.body.login,
+                    password: req.body.password,
+                    dateNaissance:req.body.dateNaissance,
+                    adresse:req.body.adresse,
+                    telephone:req.body.telephone,
+                    // image:req.file.originalname,
+                    cin:req.body.cin,
+                    email: req.body.email,
+                    idmed:req.body.idmed
+                   })
+                secretaire.save(function (err) {
+                  if (err) {
+                    res.json({state: 'no', msg: 'vous avez un erreur ' + err})
+                  }
+                  else {
+                    res.json({state: 'ok', msg: 'secrétaire ajouté avec succées'})
+                  }
+      
+                })
                 }
-                else {
-                  res.json({state: 'ok', msg: 'secrétaire ajouté avec succées'})
-                }
-    
-              })
+                else{ res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+            }})
+            
+                
             },
         //   })
         // })

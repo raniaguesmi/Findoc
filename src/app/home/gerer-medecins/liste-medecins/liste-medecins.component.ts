@@ -28,12 +28,15 @@ supprimerMedecin(id){
     confirmButtonText: 'Oui, Supprimer!',
     cancelButtonText:'Annuler'
   })
-    
+  .then((result) => {
+    if (result.value) {
     return  this.medecinService.supprimerMedecin(id)
       .subscribe(res => {
           this.listeMedecins();
 
       })
+    }
+  })
 
 }
 

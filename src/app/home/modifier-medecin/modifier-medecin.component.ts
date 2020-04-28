@@ -39,7 +39,7 @@ export class ModifierMedecinComponent implements OnInit {
   
     this.afficheParId(this.id)
 
-this.remplissage(this.medecin)
+// this.remplissage(this.medecin)
   }
   afficheParId(id){
   this.medecinService.afficheParId(id).subscribe(res=>{

@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileMedecinComponent implements OnInit {
 medecin;
 id;
+image;
   constructor(private medecinService:MedecinService, private activroute:ActivatedRoute) {
     this.id=this.activroute.params['value']['id']
     this.afficheParId(this.id);
@@ -20,9 +21,10 @@ id;
 
   afficheParId(id){
     console.log(this.id)
-  this.medecinService.afficheParId(id).subscribe(res=>{this.medecin=res;})
+  this.medecinService.afficheParId(id).subscribe(res=>{this.medecin=res;
+    this.image=this.medecin.image;
+  })
  
-console.log(this.medecin)
   }
 
 }

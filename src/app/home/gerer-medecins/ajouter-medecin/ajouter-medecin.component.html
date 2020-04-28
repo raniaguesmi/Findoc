@@ -6,7 +6,7 @@
         <div class="iq-card">
            <div class="iq-card-header d-flex justify-content-between">
               <div class="iq-header-title">
-                 <h4 class="card-title">Add New User</h4>
+                 <h4 class="card-title">Nouveau medecin</h4>
               </div>
            </div>
             <div class="iq-card-body">
@@ -15,9 +15,10 @@
                     <div class="add-img-user profile-img-edit">
                                             <!-- src="http://localhost:3000/medecin/affichePhoto/{{image}}" -->
 
-                       <img class="profile-pic img-fluid" src="http://localhost:3000/medecin/affichePhoto/{{image}}" >
+                       <img class="profile-pic img-fluid" src="assets/images/user/11.png" >
                         
-                          <input  type="file"  (change)="recupereFile($event)">
+                       <div>                          <input  type="file"  (change)="recupereFile($event)">
+                       </div>
                     </div>
                    
                  </div>
@@ -39,7 +40,7 @@
         <div class="iq-card">
            <div class="iq-card-header d-flex justify-content-between">
               <div class="iq-header-title">
-                 <h4 class="card-title">New User Information</h4>
+                 <h4 class="card-title">Informations d'utilisateur</h4>
               </div>
            </div>
            <div class="iq-card-body">
@@ -60,14 +61,14 @@
                          </div>
                         </div>
                        <div class="form-group col-md-6">
-                          <label for="add1">login:</label>
+                          <label for="add1">Nom d'utilisateur:</label>
                           <input type="text" class="form-control"  placeholder="login" formControlName="login"[ngClass]="{ 'is-invalid': submitted && f.login.errors }">
                           <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
                            <div *ngIf="f.login.errors.required">le champ est obligatoire</div>
                          </div>
                         </div>
                        <div class="form-group col-md-6">
-                          <label for="add2">password</label>
+                          <label for="add2">Mot de passe:</label>
                           <input type="text" class="form-control" placeholder="password" formControlName="password"[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                            <div *ngIf="f.password.errors.required">le champ est obligatoire</div>
@@ -78,7 +79,7 @@
                       
 
                        <div class="form-group col-md-6">
-                        <label for="fname">dateNaissance:</label>
+                        <label for="fname">Date de Naissance:</label>
                         <input type="date" class="form-control"  placeholder="dateNaissance" formControlName="dateNaissance"[ngClass]="{ 'is-invalid': submitted && f.dateNaissance.errors }">
                         <div *ngIf="submitted && f.dateNaissance.errors" class="invalid-feedback">
                            <div *ngIf="f.dateNaissance.errors.required">le champ est obligatoire</div>
@@ -93,7 +94,7 @@
                      </div>
                      
                      <div class="form-group col-md-6">
-                        <label for="lname">telephone:</label>
+                        <label for="lname">Téléphone:</label>
                         <input type="number" class="form-control" placeholder="telephone"formControlName="telephone"[ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
                         <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
                            <div *ngIf="f.telephone.errors.required">le champ est obligatoire</div>
@@ -107,7 +108,7 @@
                          </div>
                      </div>
                      <div class="form-group col-md-6">
-                        <label for="add2">email:</label>
+                        <label for="add2">Email:</label>
                         <input type="text" class="form-control"  placeholder="email" formControlName="email"[ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                            <div *ngIf="f.email.errors.required">le champ est obligatoire</div>
@@ -117,7 +118,7 @@
                      </div>
                  
                    <div class="form-group col-md-6">
-                      <label >adresseCabinet:</label>
+                      <label >Adresse Cabinet:</label>
                       <input type="text" class="form-control"  placeholder="adresseCabinet"formControlName="adresseCabinet"[ngClass]="{ 'is-invalid': submitted && f.adresseCabinet.errors }">
                       <div *ngIf="submitted && f.adresseCabinet.errors" class="invalid-feedback">
                         <div *ngIf="f.adresseCabinet.errors.required">le champ est obligatoire</div>

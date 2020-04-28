@@ -49,7 +49,6 @@ module.exports={
           dateNaissance:req.body.dateNaissance,
           adresse:req.body.adresse,
           telephone:req.body.telephone,
-      //    image:req.file.originalname,
           cin:req.body.cin,
           email: req.body.email,
         },function(err)
@@ -76,5 +75,10 @@ module.exports={
     }
   )
 },
-
+afficheParId:function(req,res){
+  patientModel.findOne({_id:req.params.id},function(err,patient){
+    if(err){res.json({state:'no',message:'il ya un erreur'+err})}
+    else{res.json(patient)}
+  })
+}
 }

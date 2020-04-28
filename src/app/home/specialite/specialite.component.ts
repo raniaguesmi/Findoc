@@ -56,11 +56,12 @@ data;
        'Specialité ajoutée avec succée!',
        'success'
      )  
+     this.registerForm.reset()
+
       this.submitted = false ;
-        this.registerForm.reset()
-        
+              this.afficherSpecialite();
+
       })
-      this.afficherSpecialite();
   }
 
   modifierSpecialite(){
@@ -73,15 +74,17 @@ data;
        return Swal.fire('Cette spécialité existe déjà')
 
       }
+      // this.afficherSpecialite();
+
       Swal.fire(
         'Bien!',
         'la modification a terminé avec succée',
         'success'
       )  
+this.registerForm.reset();
        this.submitted = false ;
     })   
-       //  this.afficherSpecialite();
-
+this.afficherSpecialite();
   
 }
   

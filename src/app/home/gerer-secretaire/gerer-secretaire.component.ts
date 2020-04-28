@@ -142,6 +142,8 @@ this.editForm=this.formBuilder.group({
           )  
           this.editForm.reset() 
            this.submitted = false ;
+           this.secretaireParMedecin(this.idmedec)
+
           })}
       }
 

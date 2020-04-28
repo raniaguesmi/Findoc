@@ -16,6 +16,8 @@ import { SpecialiteComponent } from './home/specialite/specialite.component';
 import { GererSecretaireComponent } from './home/gerer-secretaire/gerer-secretaire.component';
 import { ProfileMedecinComponent } from './home/profile-medecin/profile-medecin.component';
 import { ModifierMedecinComponent } from './home/modifier-medecin/modifier-medecin.component';
+import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
+
 
 
 @NgModule({
@@ -31,13 +33,15 @@ import { ModifierMedecinComponent } from './home/modifier-medecin/modifier-medec
     SpecialiteComponent,
     GererSecretaireComponent,
     ProfileMedecinComponent,
-    ModifierMedecinComponent
+    ModifierMedecinComponent,
+    ListeRdvComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, // pour les requetes http vest obligatoir
-ReactiveFormsModule, // importitha ater jai utilisé formbuilder wel form groupe eli houma des fonctionalité mawjoudine fl module hethe
+    ReactiveFormsModule, // importitha ater jai utilisé formbuilder wel form groupe eli houma des fonctionalité mawjoudine fl module hethe
     FormsModule
   ],
   providers: [],

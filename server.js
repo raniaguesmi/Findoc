@@ -14,6 +14,7 @@ const patient=require('./routers/patientRouter')
 const secretaire=require('./routers/secretaireRouter')
 const utilisateur=require('./routers/utilisateurRouter')
 const specialite=require('./routers/specialiteRouter')
+const rdv=require('./routers/rdvRouter')
 const app=express(); // app est une instance d'express
  app.use(bodyParser.urlencoded({extended:false}))
  app.use(bodyParser.json())
@@ -29,6 +30,7 @@ app.use(cors('*')) //Cors: it provides a middleware to handle cross-origin resou
 app.use('/secretaire',secretaire)
 app.use('/utilisateur',utilisateur)
 app.use('/specialite',specialite)
+app.use('/rdv',rdv)
  app.listen(3000,function(){
      console.log('******* Hello the server is runnig on port 3000 *******')
  })
