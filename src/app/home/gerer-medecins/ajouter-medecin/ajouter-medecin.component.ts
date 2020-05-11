@@ -21,9 +21,12 @@ submitted = false;
    }
    image;
    fileToApload: Array<File> ; // ici je veux stocker l'image a télécharger'
-  
+   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
+
+
   ngOnInit() {
     // amalna formulaire esmha this.registerForm
+
     this.registerForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
@@ -31,9 +34,9 @@ submitted = false;
       password: ['', [Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
-      telephone: ['', Validators.required ],
-      cin: ['', Validators.required ],
-      email: ['', [Validators.required,Validators.email] ],
+      telephone: ['', [Validators.required,Validators.minLength(6)]],
+      cin: ['', [Validators.required,Validators.minLength(8),Validators.maxLength(8)] ],
+      email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required],
 

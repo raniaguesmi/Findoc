@@ -8,4 +8,5 @@ router.get('/afficher',patientController.afficher)
 router.put('/modifier/:id',patientController.modifier)
 router.delete('/supprimer/:id',patientController.supprimer)
 router.get('/afficheParId/:id',patientController.afficheParId)
+
 module.exports = router;

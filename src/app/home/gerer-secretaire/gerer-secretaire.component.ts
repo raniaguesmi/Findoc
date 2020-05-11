@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SecretaireService } from 'src/app/service/secretaire.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Key } from 'protractor';
 
 @Component({
   selector: 'app-gerer-secretaire',
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class GererSecretaireComponent implements OnInit {
 secretaire;
+sec;
 data;
 utilisateur;
 secretaireParmed;
@@ -18,6 +20,9 @@ editForm:FormGroup;
 registerForm:FormGroup;
 submitted = false;
 _id;
+user: string
+emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
+
   constructor(private secretaireService:SecretaireService ,private formBuilder:FormBuilder) { 
     this.data=localStorage.getItem('user')
     console.log('utli',JSON.parse(this.data))
@@ -29,28 +34,28 @@ _id;
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      nom: ['', Validators.required],
+      nom: ['',[Validators.required,this.validateUsername()] ],
       prenom: ['', Validators.required],
       login: ['', Validators.required],
       password: ['',[Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
-      adresse: ['', Validators.required],
-      telephone: ['', Validators.required],
-      cin: ['', Validators.required],
-      email: ['',[ Validators.required ,Validators.email]],
+      adresse: ['', [Validators.required]],
+      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+      email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
       idmed:[this.idmedec]
 
   });
 this.editForm=this.formBuilder.group({
-  nom: ['', Validators.required],
+  nom: ['', [Validators.required]],
   prenom: ['', Validators.required],
-  login: ['', Validators.required],
+  login: ['', [Validators.required]],
   password: ['',[Validators.required,Validators.minLength(6)]],
   dateNaissance: ['', Validators.required],
   adresse: ['', Validators.required],
-  telephone: ['', Validators.required],
-  cin: ['', Validators.required],
-  email: ['',[ Validators.required ,Validators.email]],
+  telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+  cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+  email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
   idmed:[this.idmedec]
 })
   
@@ -147,4 +152,25 @@ this.editForm=this.formBuilder.group({
           })}
       }
 
+
+
+      private  validateUsername(): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: boolean } | any => {
+          this.secretaireService.checkUsername(control) .subscribe(
+              res => {
+                console.log(control.value)
+               this.sec=res;
+              //  console.log('this.sec',this.sec)
+                if ( this.sec === control.value) 
+                 { return {'alreadyExist': true};} 
+
+                else {  return null}
+              },
+              (error) => {
+                console.log(error);
+              }
+            )
+        }
+    }
+    
 }

@@ -23,7 +23,8 @@ module.exports={
                   res.json({state: 'no', msg: 'vous avez un erreur ' + err})
                 }
                 else {
-                  res.json([{state: 'ok', msg: 'patient ajouté avec succées'}])
+                  res.send("OK")
+                  //res.json([{state: 'ok', msg: 'patient ajouté avec succées'}])
                 }
     
               })

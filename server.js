@@ -20,7 +20,7 @@ const app=express(); // app est une instance d'express
  app.use(bodyParser.json())
 /************************************* utilisation de route importé  ************************************************************* */
 app.set( 'secretKey', 'pfe') // this is for jwt ! error found if i remove it is  Error: secretOrPrivateKey must have a value
-
+//el key mte3i pour json web token jwt est pfe kinmchi nchouf fl authentification nal9a req.app.get('secretKey')
 app.use(morgan('dev'));//Morgan is a HTTP request logger middleware for Node.js. It simplifies the process of logging requests to your application
 app.use(cors('*')) //Cors: it provides a middleware to handle cross-origin resource sharing
 

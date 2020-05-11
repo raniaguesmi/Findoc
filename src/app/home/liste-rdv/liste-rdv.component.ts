@@ -26,9 +26,9 @@ patient;
 listeRdvParMed(id){
   this.rdvService.rdvParMed(id).subscribe(res=>{
    this.rdvs=res;
-   console.log(this.rdvs)
+   console.log('les rendez vous',this.rdvs)
 this.idPatient=this.rdvs.patient;
-this.trouverPatient(this.idPatient)
+// this.trouverPatient(this.idPatient)
 
 console.log(this.idPatient)
   })

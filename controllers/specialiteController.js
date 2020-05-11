@@ -18,9 +18,6 @@ specialiteModel.findOne({nom:req.body.nom},function(err,reslt){
     }
     else{ res.json({state:'no',msg:'Le nom du specialité existe déjà'})}
 }})
-
-
-  
 },
 
 modifier:function(req,res){

@@ -95,16 +95,21 @@
                      
                      <div class="form-group col-md-6">
                         <label for="lname">Téléphone:</label>
-                        <input type="number" class="form-control" placeholder="telephone"formControlName="telephone"[ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                        <input  type="number"  class="form-control" placeholder="telephone"formControlName="telephone"[ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
                         <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
                            <div *ngIf="f.telephone.errors.required">le champ est obligatoire</div>
+                           <div *ngIf="f.telephone.errors.minlength ">Le numéro doit étre de 8 chiffre</div> 
+                          <div *ngIf="f.telephone.errors.maxlength">Le numéro doit étre de 8 chiffre</div> 
+
                          </div>
                      </div>
                      <div class="form-group col-md-6">
                         <label >cin:</label>
-                        <input type="number" class="form-control"  placeholder="cin" formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
-                        <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                        <input  type="number" class="form-control"  placeholder="cin" formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+                        <div   *ngIf="submitted && f.cin.errors" class="invalid-feedback" minlength="8" maxlength="8">
                            <div *ngIf="f.cin.errors.required">le champ est obligatoire</div>
+                            <div *ngIf="f.cin.errors.minlength">Le cin doit étre de 8 chiffre</div> 
+                           <div *ngIf="f.cin.errors.maxlength">Le cin doit étre de 8 chiffre</div> 
                          </div>
                      </div>
                      <div class="form-group col-md-6">
@@ -112,8 +117,8 @@
                         <input type="text" class="form-control"  placeholder="email" formControlName="email"[ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                            <div *ngIf="f.email.errors.required">le champ est obligatoire</div>
-                           <div *ngIf="f.email.errors.email">veuillez entrer une adresse électronique valide</div>
-
+                           <!-- <div *ngIf="f.email.errors.email">veuillez entrer une adresse électronique valide</div> -->
+                   <div *ngIf="f.email.errors">veuillez entrer une adresse électronique valide</div>
                          </div>
                      </div>
                  

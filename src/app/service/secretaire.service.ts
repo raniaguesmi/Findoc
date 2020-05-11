@@ -24,4 +24,7 @@ export class SecretaireService {
   modifierSecretaire(id,sec){
     return this.http.put(this.baseUrl+'/secretaire/modifier/'+id,sec)
   }
+  checkUsername(login){
+    return this.http.get(this.baseUrl+'/secretaire/checkUsername',login)
+  }
 }
