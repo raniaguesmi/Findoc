@@ -19,7 +19,9 @@ patient;
   ngOnInit() {
     this.data=localStorage.getItem('user')
     this.utilisateur=JSON.parse(this.data)
-   this.idmedec=this.utilisateur._id;
+    // console.log('info',this.utilisateur)
+   this.idmedec=this.utilisateur.idmed;
+
     this.listeRdvParMed(this.idmedec)
 
   }
@@ -28,7 +30,7 @@ listeRdvParMed(id){
    this.rdvs=res;
    console.log('les rendez vous',this.rdvs)
 this.idPatient=this.rdvs.patient;
-// this.trouverPatient(this.idPatient)
+this.trouverPatient(this.idPatient)
 
 console.log(this.idPatient)
   })

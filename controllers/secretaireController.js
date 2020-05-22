@@ -89,9 +89,19 @@ module.exports={
  },
 
  checkUsername:function(req,res){
-   secretairetModel.findOne({login:req.body.login},function(err,reslt){
+   secretairetModel.find({},function(err,reslt){
      if(err){res.json({state:'no',message:'erreur:'+err})}
-     else{res.json({reslt})}
+     else{
+      for (var i = 0; i < reslt.length; i++) {
+       
+          var list=reslt[i].login;
+         
+        
+//pour les moments yatl3ouli les login lkol fl consol wfl rejson il prend que le premier element si je le met dans la boucle et le dernier element si je le met dehors !
+      } console.log(list)
+           res.send(list)
+      }
+     
    })
 
  }

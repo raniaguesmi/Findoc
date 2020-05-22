@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { SecretaireService } from 'src/app/service/secretaire.service';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Key } from 'protractor';
+import { ValidateFirstName,espace ,validateLogin} from '../customvalidator.validator';
 
 @Component({
   selector: 'app-gerer-secretaire',
   templateUrl: './gerer-secretaire.component.html',
   styleUrls: ['./gerer-secretaire.component.css']
 })
+
 export class GererSecretaireComponent implements OnInit {
 secretaire;
 sec;
@@ -34,9 +36,9 @@ emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lema
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      nom: ['',[Validators.required,this.validateUsername()] ],
+      nom: ['',[Validators.required,ValidateFirstName] ],
       prenom: ['', Validators.required],
-      login: ['', Validators.required],
+      login: ['',[ Validators.required,espace(),validateLogin(this.secretaireService) ]],
       password: ['',[Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', [Validators.required]],
@@ -152,25 +154,37 @@ this.editForm=this.formBuilder.group({
           })}
       }
 
-
-
-      private  validateUsername(): ValidatorFn {
-        return (control: AbstractControl): { [key: string]: boolean } | any => {
-          this.secretaireService.checkUsername(control) .subscribe(
-              res => {
-                console.log(control.value)
-               this.sec=res;
-              //  console.log('this.sec',this.sec)
-                if ( this.sec === control.value) 
-                 { return {'alreadyExist': true};} 
-
-                else {  return null}
-              },
-              (error) => {
-                console.log(error);
-              }
-            )
-        }
-    }
     
-}
+
+    //   public  validateUsername(control: AbstractControl){
+      
+    //       this.secretaireService.checkUsername(control) .subscribe(
+    //           res => {
+    //             console.log(res)
+               
+               
+    //             if ( res!==null) 
+    //              { return {alreadyExist: true}} 
+
+    //             else {  return null}
+    //           },
+    //           (error) => {
+    //             console.log(error)
+    //           }
+    //         )
+        
+    // }
+  }
+    
+  //    class UsernameValidator {
+  //     static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
+  //         if((control.value as string).indexOf(' ') >= 0){
+  //             return {cannotContainSpace: true}
+  //         }
+    
+  //         return null;
+  //     }
+  // }
+
+
+

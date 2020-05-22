@@ -169,9 +169,14 @@
            <ul class="navbar-list">
               <li>
                  <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                    <img src="http://localhost:3000/medecin/affichePhoto/{{utilisateur.image}}" class="img-fluid rounded mr-3" alt="user">
+                  <img *ngIf="this.type=='secrétaire'" src="assets/images/user/11.png">
+                  <img *ngIf="this.type=='admin'" src="assets/images/user/16.jpg">
+
+                  <img *ngIf="this.type=='medecin'" src="http://localhost:3000/medecin/affichePhoto/{{utilisateur.image}}" class="img-fluid rounded mr-3" alt="user">
                     <div class="caption">
                        <h6 class="mb-0 line-height">{{utilisateur.nom }} {{utilisateur.prenom}}</h6>
+                       <h6 *ngIf="this.type=='admin'" class="mb-0 line-height">Compte Administrateur</h6>
+
                        <span class="font-size-12">Connecté</span>
                     </div>
                  </a>
@@ -179,10 +184,14 @@
                     <div class="iq-card shadow-none m-0">
                        <div class="iq-card-body p-0 ">
                           <div class="bg-primary p-3">
-                             <h5 class="mb-0 text-white line-height">Bonjour {{utilisateur.nom }} !</h5>
+                           <h5 *ngIf="this.type=='secrétaire'"  class="mb-0 text-white line-height">Bonjour {{utilisateur.nom }} !</h5>
+
+                           <h5 *ngIf="this.type=='medecin'"  class="mb-0 text-white line-height">Bonjour {{utilisateur.nom }} !</h5>
+                             <h5 *ngIf="this.type=='admin'"  class="mb-0 text-white line-height">Bonjour Admin !</h5>
+
                              <span class="text-white font-size-12">Connecté</span>
                           </div>
-                          <a  routerLink="profile/{{utilisateur._id}}" class="iq-sub-card iq-bg-primary-hover">
+                          <a *ngIf="this.type=='medecin'" routerLink="profile/{{utilisateur._id}}" class="iq-sub-card iq-bg-primary-hover">
                              <div class="media align-items-center">
                                 <div class="rounded iq-card-icon iq-bg-primary">
                                    <i class="ri-file-user-line"></i>
@@ -193,12 +202,12 @@
                                 </div>
                              </div>
                           </a>
-                          <a  class="iq-sub-card iq-bg-primary-hover">
+                          <a  *ngIf="this.type=='medecin'" class="iq-sub-card iq-bg-primary-hover">
                              <div class="media align-items-center">
                                 <div class="rounded iq-card-icon iq-bg-primary">
                                    <i class="ri-profile-line"></i>
                                 </div>
-                                <div class="media-body ml-3" routerLink="modifierProfile/{{utilisateur._id}}">
+                                <div *ngIf="this.type=='medecin'" class="media-body ml-3" routerLink="modifierProfile/{{utilisateur._id}}">
                                    <h6 class="mb-0 ">Modifier Profile</h6>
                                    <p class="mb-0 font-size-12">Modifier les détails personnel</p>
                                 </div>

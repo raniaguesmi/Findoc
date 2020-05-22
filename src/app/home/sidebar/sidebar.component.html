@@ -16,17 +16,23 @@
     <div id="sidebar-scrollbar">
        <nav class="iq-sidebar-menu">
           <ul class="iq-menu">
-
-             <li class="iq-menu-title"><i class="ri-subtract-line"></i><span></span></li>
+            <li class="iq-menu-title"><i class="ri-subtract-line"></i><span></span></li>
+            <li class="active" *ngIf="this.type=='secrétaire'" >
+               <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Sécretaire</span></a>
+            </li> 
+            <li class="active" *ngIf="this.type=='medecin'">
+               <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Medecin</span></a>
+            </li> 
+            <li *ngIf="this.type=='admin'" class="active"  >
+               <a  class="iq-waves-effect" ><i class="ri-hospital-fill"></i><span>Espace Administrateur</span></a>
+            </li> 
              <li class="active">           
                   <a routerLink="/acceuil" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
 
             </li> 
-             <li class="active" *ngIf="this.type=='medecin'">
-                <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Medecin</span></a>
-             </li> 
+            
              <!-- ********************************gerer secretaire************************************************ !-->                  
-             <li *ngIf="this.type=='medecin'">
+             <li  class="active" *ngIf="this.type=='medecin'">
                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span> Sécretaire</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                <ul class="iq-submenu">
                   <li><a routerLink="secretaire"><i class="ri-profile-fill"></i> Liste Secretaire</a></li>
@@ -35,7 +41,7 @@
             </li>
             <!-- ********************************rdv************************************************ !-->                
             
-            <li *ngIf="this.type=='medecin'">
+            <li  class="active" *ngIf="this.type=='medecin'">
                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                <ul class="iq-submenu">
                   <li><a routerLink="/acceuil/gestionMedecins/profile"><i class="ri-profile-fill"></i> Consulter Rendez-vous</a></li>
@@ -45,7 +51,7 @@
             </li>
             <!-- ********************************Dossier Medical************************************************ !-->                  
 
-            <li *ngIf="this.type=='medecin'">
+            <li class="active" *ngIf="this.type=='medecin'">
                <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Dossier Médical</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                <ul class="iq-submenu">
                   <li><a href="assets/add-doctor.html"><i class="ri-user-add-fill"></i> Ajouter Fichier</a></li>
@@ -62,12 +68,12 @@
             <!-- ********************************Espace Admin************************************************ !-->                 
         
             
-            <li class="active"  >
+            <li *ngIf="this.type=='admin'" class="active"  >
                <a  class="iq-waves-effect" ><i class="ri-hospital-fill"></i><span>Espace Admin</span></a>
             </li> 
             
               <!-- ********************************gerer medecins************************************************ !-->  
-             <li>
+             <li *ngIf="this.type=='admin'" class="active" >
                 <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Médecins</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                 <ul class="iq-submenu">
                    <li><a routerLink="listeMedecins"><i class="ri-file-list-fill"></i>Liste de Médecins</a></li>
@@ -76,18 +82,16 @@
                 </ul>
              </li>
                <!-- ********************************gerer Spécialités************************************************ !-->  
-               <li>
+               <li *ngIf="this.type=='admin'" class="active">
                   <a routerLink="specialite" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Consulter Spécialités</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                   
                </li>
           
                
     <!-- ********************************Espace secretaire************************************************ !-->                 
-             <li class="active" *ngIf="this.type=='secrétaire'" >
-               <a href="index.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Sécretaire</span></a>
-            </li> 
+            
            
-            <li *ngIf="this.type=='secrétaire'">
+            <li class="active" *ngIf="this.type=='secrétaire'">
                <a href="javascript:void(0);"  class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                <ul class="iq-submenu">
                   <li><a routerLink="rendez-vous"><i class="ri-file-edit-fill"></i> Consulter Liste Rendez-vous</a></li>

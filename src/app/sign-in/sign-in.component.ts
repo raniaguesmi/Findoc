@@ -19,8 +19,10 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.LoginForm = this.formBuilder.group({
       login: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      
     })
+
     localStorage.removeItem('user')
     localStorage.removeItem('token')
   }
@@ -28,11 +30,7 @@ export class SignInComponent implements OnInit {
 
   login(){
     this.submitted = true;
-    //JSON. stringify() converts a value to JSON notation
-    //the JSON. parse() method parses a JSON string, constructing the JavaScript value or object described by the string
-    //stringify() is used to convert JSON object to JSON String. It serializes a JavaScript object into a JSON string. parse() is used to convert JSON string/Array object to JSON Object.
-    // console.log(this.LoginForm.value)//juste bech nchouf behe l contenu mte3 l form
-
+ 
     this.loginService.login(this.LoginForm.value).subscribe(res=>{
 
       // console.log(res)
@@ -46,32 +44,21 @@ export class SignInComponent implements OnInit {
            localStorage.setItem('token', JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(res)).data.token)));
            console.log('message',JSON.parse(localStorage.getItem('userConnecte')))
            this.router.navigate(['acceuil'])
-
       })
-
-//  this.dataa=JSON.parse(JSON.stringify(res)).data
-//   this.userr=JSON.parse(JSON.stringify(this.dataa)).user
-//   localStorage.setItem('token',this.userr)
-  
-  
-        //  console.log('message',JSON.parse(localStorage.getItem('userConnecte')))
-  
-  
-       
       }
-  
+     else if(JSON.parse(JSON.stringify(res)).status === "admin"){
+        localStorage.setItem('user', '{"type": "admin"}');
+        localStorage.setItem('token', '{type: "admin"}');
+        this.router.navigate(['acceuil'])
+
+      }
       else {
-  
-        Swal.fire(
+   Swal.fire(
           'OPPS',
           'Verifier votre Email et password',
           'error'
         )
-  
       }
-  
-
-
     })
   }
 

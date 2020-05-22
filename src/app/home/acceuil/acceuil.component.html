@@ -1,13 +1,13 @@
 
   <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-8">
+        <div *ngIf="this.type=='medecin'" class="col-lg-8">
             <div class="iq-card">
-               <div class="iq-card-header d-flex justify-content-between">
+               <div  class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
                      <h4 class="card-title">Liste de patients </h4>
                   </div>
-                  <div class="iq-card-header-toolbar d-flex align-items-center">
+                  <div  class="iq-card-header-toolbar d-flex align-items-center">
                      <div class="dropdown">
                         <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
                         <i class="ri-more-fill"></i>

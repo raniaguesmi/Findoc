@@ -34,8 +34,8 @@ submitted = false;
       password: ['', [Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
-      telephone: ['', [Validators.required,Validators.minLength(6)]],
-      cin: ['', [Validators.required,Validators.minLength(8),Validators.maxLength(8)] ],
+      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))] ],
       email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required],
@@ -59,7 +59,7 @@ if (this.registerForm.invalid) {
         console.log(res);
         Swal.fire(
           'Good job!',
-          'You clicked the button!',
+          'Le medecin est ajouté avec succès!',
           'success')
         this.submitted = false;
         this.registerForm.reset()
