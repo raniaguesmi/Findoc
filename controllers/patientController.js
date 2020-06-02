@@ -15,15 +15,16 @@ module.exports={
                   adresse:req.body.adresse,
                   telephone:req.body.telephone,
                   cin:req.body.cin,
-                  
-
                  })
+                                 console.log("Nom: -----------> "+req.body.nom);
+
               patient.save(function (err) {
                 if (err) {
                   res.json({state: 'no', msg: 'vous avez un erreur ' + err})
                 }
                 else {
-                  res.send("OK")
+                   res.send("OK");
+                 // res.json({state: 'OK'})
                   //res.json([{state: 'ok', msg: 'patient ajouté avec succées'}])
                 }
     

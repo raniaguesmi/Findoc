@@ -17,6 +17,9 @@ import { GererSecretaireComponent } from './home/gerer-secretaire/gerer-secretai
 import { ProfileMedecinComponent } from './home/profile-medecin/profile-medecin.component';
 import { ModifierMedecinComponent } from './home/modifier-medecin/modifier-medecin.component';
 import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
+import { CalendarComponent } from './home/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { EmailComponent } from './home/email/email.component'; // for FullCalendar!
 
 
 
@@ -34,7 +37,9 @@ import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
     GererSecretaireComponent,
     ProfileMedecinComponent,
     ModifierMedecinComponent,
-    ListeRdvComponent
+    ListeRdvComponent,
+    CalendarComponent,
+    EmailComponent
 
   ],
   imports: [
@@ -42,7 +47,9 @@ import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
     AppRoutingModule,
     HttpClientModule, // pour les requetes http vest obligatoir
     ReactiveFormsModule, // importitha ater jai utilisé formbuilder wel form groupe eli houma des fonctionalité mawjoudine fl module hethe
-    FormsModule
+    FormsModule,
+    FullCalendarModule // for FullCalendar!
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,4 +12,7 @@ export class LoginService {
   login(user){
     return this.http.post(this.baseUrl+'/utilisateur/authentification',user);
   }
+  sendEmail(email){
+    return this.http.post(this.baseUrl+'/sendEmail',email)
+  }
 }

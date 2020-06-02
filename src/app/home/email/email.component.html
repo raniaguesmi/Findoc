@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row row-eq-height">
+       <div class="col-md-12">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="iq-card iq-border-radius-20">
+                   <div class="iq-card-body">
+                      <div class="row">
+                         <div class="col-md-12 mb-3">
+                            <h5 class="text-primary card-title"><i class="ri-pencil-fill"></i> Composer un Message</h5>
+                         </div>
+                      </div>
+                      <form class="email-form" [formGroup]="emailForm">
+                        <div class="form-group row">
+                            <label for="subject" class="col-sm-2 col-form-label">To:</label>
+                            <div class="col-sm-10">
+                               <input type="text"  id="subject" class="form-control" formControlName="to" [ngClass]="{ 'is-invalid': submitted && f.to.errors }" >
+                               <div *ngIf="submitted && f.to.errors" class="invalid-feedback">
+                                <div *ngIf="f.to.errors.required">le champ est obligatoire</div>
+                                <div *ngIf="f.to.errors.pattern">veuillez entrer une adresse électronique valide</div>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
+                            <div class="col-sm-10">
+                               <input type="text"  id="subject" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" >
+                               <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                                <div *ngIf="f.subject.errors.required">le champ est obligatoire</div>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label for="subject" class="col-sm-2 col-form-label">Your Message:</label>
+                            <div class="col-md-10">
+                               <textarea class="textarea form-control" rows="5"formControlName="text" [ngClass]="{ 'is-invalid': submitted && f.text.errors }" >Next, use our Get Started docs to setup Tiny!</textarea>
+                               <div *ngIf="submitted && f.text.errors" class="invalid-feedback">
+                                <div *ngIf="f.text.errors.required">le champ est obligatoire</div>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="form-group row align-items-center">
+                            <div class="d-flex flex-grow-1 align-items-center">
+                               <div class="send-btn pl-3">
+                                  <button type="submit" class="btn btn-primary"(click)="envoyerEmail()" >Envoyer</button>
+                               </div>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

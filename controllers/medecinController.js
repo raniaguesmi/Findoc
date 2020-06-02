@@ -23,7 +23,6 @@ ajouter:function(req,res){
             }
           }
           else {
-
             const medecin = new medecinModel({
               nom: req.body.nom,
               prenom: req.body.prenom,
@@ -39,7 +38,6 @@ ajouter:function(req,res){
               specialite:req.body.specialite,
               }
             )
-
             medecin.save(function (err) {
               if (err) {
                 res.json({state: 'non', msg: 'il ya un erreur ' + err})
@@ -53,8 +51,7 @@ ajouter:function(req,res){
         }
       )
     })
-},
-  
+}, 
 /**********************************suppression ***************************************************************/
 //fonctionne
 supprimer:function(req,res){
@@ -64,7 +61,6 @@ supprimer:function(req,res){
     else
     {res.json({state:'ok',message:'le medecin est supprimé avec succées'})}
   })
-
 },
 /**********************************affichage***************************************************************/
 //fonctionne
@@ -111,12 +107,9 @@ afficheParId:function (req,res) {
       }
     }
   )
-
 },
 affichePhoto: function (req, res) {
   res.sendFile(__dirname + '/uploads/'+ req.params.image)
   // l'utilisation de cette fonctionnalité est d'afficher la photo de medecin dans la partie front 
 },
-
-
 }
