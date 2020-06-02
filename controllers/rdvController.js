@@ -1,4 +1,6 @@
 const rdvModel=require('../models/rdvModel')
+var ObjectID = require("mongodb").ObjectID;
+
 module.exports={
 ajouter:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure},function(err,reslt){
@@ -31,7 +33,28 @@ rdvParMed:function(req,res){
         if(err){res.json({state:'no', message:'ya un erreur:'+err})}
         else{res.json(liste)}
     })
-}
-
-
+} ,
+afficheComplet:function(req,res){
+    //  var _id=_id.$oid
+    rdvModel.aggregate([
+        {$lookup:{
+            localField:'patient',
+            from: 'utilisateurs',
+            foreignField:  '_id',
+            as: 'userinfo'
+        }},
+        { $unwind: '$userinfo' },
+        { $project: {
+            date: 1,
+            heure: 1,
+            motif:1,
+            userinfo: 1,
+          } }
+    ],function(err,result){
+        if(err){res.json({state:'no',message:'errc!!!'+err})}
+        else{res.json(result) }
+    });
+},
+//lors de test faut tout dabbord verifier si
+/**Aggregation is more difficult to understand than simpler find queries and will generally run slower. However, they are powerful and an invaluable option for complex search operations */
 }
