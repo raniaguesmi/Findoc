@@ -12,7 +12,10 @@ export class RdvService {
   rdvParMed(id){
     return this.http.get(this.baseUrl+'/rdv/rdvParMed/'+id)
   }
-  patientParid(id){
-    return this.http.get(this.baseUrl+'/patient/afficheParId/'+id)
+  // patientParid(id){
+  //   return this.http.get(this.baseUrl+'/patient/afficheParId/'+id)
+  // }
+  rdvParMedComplet(id){
+    return this.http.get(this.baseUrl+'/rdv/afficheCompletParMed/'+id)
   }
 }
