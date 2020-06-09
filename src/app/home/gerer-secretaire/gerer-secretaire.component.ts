@@ -38,7 +38,7 @@ emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lema
     this.registerForm = this.formBuilder.group({
       nom: ['',[Validators.required,ValidateFirstName] ],
       prenom: ['', Validators.required],
-      login: ['',[ Validators.required,espace(),validateLogin(this.secretaireService) ]],
+      login: ['',[ Validators.required,espace() ]],
       password: ['',[Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', [Validators.required]],
@@ -139,7 +139,7 @@ this.editForm=this.formBuilder.group({
 
       modifierSecretaire(){
        this.submitted = true
-     if(       this.submitted = true && this.editForm.valid){
+    //  if(       this.submitted = true && this.editForm.valid){
         this.secretaireService.modifierSecretaire(this._id,this.editForm.value).subscribe(res=>{
           console.log(res);
           Swal.fire(
@@ -149,10 +149,10 @@ this.editForm=this.formBuilder.group({
           )  
           this.editForm.reset() 
            this.submitted = false ;
-           this.secretaireParMedecin(this.idmedec)
+          //  this.secretaireParMedecin(this.idmedec)
 
           })}
-      }
+      // }
 
     
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RdvService } from 'src/app/service/rdv.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-liste-rdv',
@@ -9,25 +11,78 @@ import { RdvService } from 'src/app/service/rdv.service';
 export class ListeRdvComponent implements OnInit {
 data;
 idmedec;
+submitted = false;
 utilisateur;
 rdvs;
 idPatient;
 patient;
-  constructor(private rdvService:RdvService) {
-   
+rdvForm:FormGroup
+  constructor(private rdvService:RdvService,private formBuilder:FormBuilder) {
+  
+
   }
   ngOnInit() {
     this.data=localStorage.getItem('user')
     this.utilisateur=JSON.parse(this.data)
    this.idmedec=this.utilisateur.idmed;
-    this.listeRdvParMed(this.idmedec)
+   this.listeRdvParMed(this.idmedec);
+    this.rdvForm = this.formBuilder.group({
+      date: ['',Validators.required],
+      heure: ['',Validators.required],
+      medecin: [this.idmedec],
+      patient: ['',Validators.required],
+      motif: ['',Validators.required],
 
+  });
   }
+  get f() { return this.rdvForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
+
 listeRdvParMed(id){
   this.rdvService.rdvParMedComplet(id).subscribe(res=>{
    this.rdvs=res;
   })
 }
+ajouterRdv(){
+  this.submitted = true;
+  if (this.rdvForm.invalid) {
+    return;
+  }
+  console.log(this.rdvForm.value);
+  this.rdvService.ajouterRdv(this.rdvForm.value).subscribe(res=>{
+    Swal.fire(
+      'Bien',
+      'Specialité ajoutée avec succée!',
+      'success'
+    )  
+    // this.rdvForm.hide();
 
+     this.submitted = false ;
+             this.listeRdvParMed(this.idmedec);
+
+     })
+  
+}
+supprimerRdv(id){
+  Swal.fire({
+    title: 'vous êtes sûr  ?',
+    text: "Vous ne pourrez pas revenir en arriére !",
+  // type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3DABB6',
+    cancelButtonColor: '#909193',
+    confirmButtonText: 'Oui, Supprimer!',
+    cancelButtonText:'Annuler'
+  })
+    .then((result) => {
+      if (result.value) {
+    return this.rdvService.supprimerRdv(id)
+      .subscribe(res => {
+        console.log(res);
+        this.listeRdvParMed(this.idmedec)
+      })
+  }
+})
+ 
+}
 
 }

@@ -17,17 +17,15 @@ const routes: Routes = [
  {path:'',component:SignInComponent},
 
 {path:'acceuil',component:HomeComponent, canActivate:[AuthgradService],children : [
-      {path:'',component:AcceuilComponent},
-      {path : '',
-         loadChildren : './home/gerer-medecins/gerer-medecins.module#GererMedecinsModule'},
-     
-         {path:'specialite',component:SpecialiteComponent ,canActivate:[AuthgradService]},
-         {path:'secretaire',component:GererSecretaireComponent, canActivate:[AuthgradService]},
-         {path : 'profile/:id', component :ProfileMedecinComponent},
-         {path : 'modifierProfile/:id', component : ModifierMedecinComponent},
-         {path:'rendez-vous',component:ListeRdvComponent},
-         {path:'calendar',component: CalendarComponent},
-         {path:'email',component: EmailComponent},
+           {path:'',component:AcceuilComponent},
+           {path : '',loadChildren : './home/gerer-medecins/gerer-medecins.module#GererMedecinsModule'},
+           {path:'specialite',component:SpecialiteComponent ,canActivate:[AuthgradService]},
+           {path:'secretaire',component:GererSecretaireComponent, canActivate:[AuthgradService]},
+           {path : 'profile/:id', component :ProfileMedecinComponent},
+           {path : 'modifierProfile/:id', component : ModifierMedecinComponent},
+           {path:'rendez-vous',component:ListeRdvComponent},
+           {path:'calendar',component: CalendarComponent},
+           {path:'email',component: EmailComponent},
 
 
     ]

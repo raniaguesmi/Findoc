@@ -38,25 +38,13 @@ export class MedecinService {
   {
   return this.http.get(this.baseUrl+'/medecin/afficheParId/'+id) 
   }
-  modifierMedecin(id,medecin,image){
-
-let formData = new FormData();
-    formData.append('nom', '' + medecin.nom)
-    formData.append('prenom', '' + medecin.prenom)
-    formData.append('login', '' + medecin.login)
-    formData.append('password', '' + medecin.password)
-    formData.append('dateNaissance', '' + medecin.dateNaissance)
-    formData.append('adresse', '' + medecin.adresse)
-    formData.append('telephone', '' + medecin.telephone)
-    formData.append('cin', '' + medecin.cin)
-    formData.append('email', '' + medecin.email)
-    formData.append('image', image);
-    formData.append('adresseCabinet', '' + medecin.adresseCabinet)
-    formData.append('specialite', '' + medecin.specialite)
-
-    return this.http.put(this.baseUrl+'/medecin/modifier/'+id,formData)
+  modifierMedecin(id,medecin){
+    return this.http.put(this.baseUrl+'/medecin/modifier/'+id,medecin)
   }
   supprimerMedecin(id){
     return this.http.delete(this.baseUrl+'/medecin/supprimer/'+id)
+  }
+  envoieEmail(email){
+    return this.http.post(this.baseUrl+ '/sendEmail',email)
   }
 }

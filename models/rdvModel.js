@@ -6,7 +6,7 @@ const rdvSchema=mongoose.model('rdv',new mongoose.Schema({
     medecin:{type:String, required:true},
     patient:{type:String, required:true},
     motif:{type:String, required:true},
-    // state:{type:String,required:true}
+    state:{type:String,required:true}
 }))
 
 module.exports=rdvSchema;

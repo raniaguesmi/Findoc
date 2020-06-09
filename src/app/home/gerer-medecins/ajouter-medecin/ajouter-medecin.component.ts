@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class AjouterMedecinComponent implements OnInit {
   listeSpecialite;
- 
+  emailForm:FormGroup;
+
   registerForm:FormGroup;
 submitted = false;
 
@@ -22,7 +23,6 @@ submitted = false;
    image;
    fileToApload: Array<File> ; // ici je veux stocker l'image a télécharger'
    emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
-
 
   ngOnInit() {
     // amalna formulaire esmha this.registerForm
@@ -41,6 +41,7 @@ submitted = false;
       specialite: ['', Validators.required],
 
     });
+
   }
 
    get f() {
@@ -52,6 +53,12 @@ submitted = false;
      console.log(this.image)
     console.log(this.fileToApload[0])
     console.log(this.registerForm.value)
+    const email=this.registerForm.controls['email'].value;
+    const login=this.registerForm.controls['login'].value;
+    const password=this.registerForm.controls['password'].value;
+
+
+    console.log(email);
 if (this.registerForm.invalid) {
       return ;
    }
@@ -64,7 +71,19 @@ if (this.registerForm.invalid) {
         this.submitted = false;
         this.registerForm.reset()
       }
-    )
+      );
+
+      this.emailForm=this.formBuilder.group({
+        to:[email],
+        subject:['Demande Accepté '],
+        text:['vous pouvez ouvrir votre compte par ses deux informations confidentiels . votre login est ***'+login+'*** et votre mot de passe est ***'+password+'***'],
+      
+      })
+      console.log(this.emailForm.value)
+    this.medecinService.envoieEmail(this.emailForm.value).subscribe((res)=>{
+      console.log('email res',res)
+    })
+    
   }
 
   afficherSpecialite(){

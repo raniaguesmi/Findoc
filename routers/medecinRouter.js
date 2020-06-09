@@ -4,7 +4,7 @@ const router=require('express').Router();
 const multer = require('multer');
 
 const upload = multer({dest: __dirname + '/uploads/images'});
-/*dest is where to store data */
+/*dest is where to store files */
    
 
 /**********************************defininition des routes pour chaque fonctionnalité***************************************************************/

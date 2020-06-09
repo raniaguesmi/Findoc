@@ -1,6 +1,8 @@
 const medecinModel=require('../models/medecinModel')
 const multer = require('multer');// multer y5alini n'uplowdi taswira fl formulaire
 var fs = require("fs") // y5alini naml controle de saisie 3al les champs mte3 el formulaire
+var bcrypt = require ('bcrypt') //
+
 
 /* fs cest un module dans node pas besoin de l'installé
 fs : file sysyem ! cest un module qui permet le controle de saisie dans les champs de formulaire */
@@ -84,7 +86,7 @@ modifier:function(req,res){
     telephone:req.body.telephone,
     cin:req.body.cin,
     email: req.body.email,
-    image:req.file.originalname,
+    // image:req.file.originalname,
     adresseCabinet:req.body.adresseCabinet,
     specialite:req.body.specialite},
   function(err)
@@ -94,6 +96,12 @@ modifier:function(req,res){
     else {res.json({state:'yes',message:'la modification terminé avec succées'})}
 
   }
+  // .pre("save",function (next) {
+  //   this.password=bcrypt.hashSync(this.password,10);//hashSync : Store hash in password attrebute 
+  //   next();
+
+  // }) 
+  // le hash de passwprd veut pas fonctionner ici en disant .pre n'est pas une fonction
 )},
 /**********************************affichage by id ***************************************************************/
 //fonctionne

@@ -1,9 +1,12 @@
 <div class="iq-sidebar">
-    <div class="iq-sidebar-logo d-flex justify-content-between">
-       <a href="index.html">
-       <img src="assets/images/logo.JPG" class="img-fluid" alt="">
+  <!-- lentete mte3 side bar -->
+   <div class="iq-sidebar-logo d-flex justify-content-between">
+      <!--logo et le nom de notre app-->
+      <a>
+       <img src="assets/images/logoooo.png" class="img-fluid" alt="">
        <span>FinDoc  </span>
        </a>
+<!-- el div hethi fehe ekl 3 points mte3 sidebar -->
        <div class="iq-menu-bt-sidebar">
              <div class="iq-menu-bt align-self-center">
                 <div class="wrapper-menu">
@@ -11,23 +14,30 @@
                    <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
                 </div>
              </div>
-          </div>
+      </div>
     </div>
+
+    <!--l bodey mte3 side bar wen 7atin les liens lkol -->
     <div id="sidebar-scrollbar">
        <nav class="iq-sidebar-menu">
           <ul class="iq-menu">
+             <!--juste amlna span bch nbe3dou esm lapp al les liens mte3na-->
             <li class="iq-menu-title"><i class="ri-subtract-line"></i><span></span></li>
+          <!--espace secretaire nest visible que pour la secretaire et on la conditioné par son type li amlinou fl backend-->
             <li class="active" *ngIf="this.type=='secrétaire'" >
                <a  class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Sécretaire</span></a>
             </li> 
+
             <li class="active" *ngIf="this.type=='medecin'">
                <a  class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Espace Medecin</span></a>
             </li> 
+
             <li *ngIf="this.type=='admin'" class="active"  >
                <a  class="iq-waves-effect" ><i class="ri-hospital-fill"></i><span>Espace Administrateur</span></a>
             </li> 
+
              <li class="active">           
-                  <a routerLink="/acceuil" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                  <a routerLink="/acceuil" class="iq-waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span>Acceuil</span></a>
 
             </li> 
             
@@ -35,7 +45,7 @@
              <li  class="active" *ngIf="this.type=='medecin'">
                <a  class="iq-waves-effect"><i class="ri-user-3-fill"></i><span> Sécretaire</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                <ul class="iq-submenu">
-                  <li><a routerLink="secretaire"><i class="ri-profile-fill"></i> Liste Secretaire</a></li>
+                  <li><a routerLink="secretaire"><i class="ri-profile-fill "></i> Liste Secretaire</a></li>
 
                </ul>
             </li>
@@ -61,19 +71,11 @@
 
                </ul>
             </li>
-           <!-- ********************************patient**********************************************            
-             <li>
-                <a href="dashboard-3.html" class="iq-waves-effect"><i class="ri-group-fill"></i><span>Patient Dashboard</span></a>
-             </li>** !-->  
+           
             <!-- ********************************Espace Admin************************************************ !-->                 
         
-            
-            <li *ngIf="this.type=='admin'" class="active"  >
-               <a  class="iq-waves-effect" ><i class="ri-hospital-fill"></i><span>Espace Admin</span></a>
-            </li> 
-            
               <!-- ********************************gerer medecins************************************************ !-->  
-             <li *ngIf="this.type=='admin'" class="active" >
+             <li class="active"  *ngIf="this.type=='admin'">
                 <a  class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Médecins</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                 <ul class="iq-submenu">
                    <li><a routerLink="listeMedecins"><i class="ri-file-list-fill"></i>Liste de Médecins</a></li>
@@ -83,23 +85,22 @@
              </li>
                <!-- ********************************gerer Spécialités************************************************ !-->  
                <li *ngIf="this.type=='admin'" class="active">
-                  <a routerLink="specialite" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Consulter Spécialités</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                  <a routerLink="specialite" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Consulter Spécialités</span></a>
                   
                </li>
-          
+                         <!-- ********************************Envoie demail************************************************ !-->  
+
                <li *ngIf="this.type=='admin'" class="active">
-                  <a routerLink="email" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Envoyer Email</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                  <a routerLink="email" class="iq-waves-effect"><i class="fa fa-envelope-open" aria-hidden="true"></i><span>Envoyer Email</span></a>
                   
                </li>
     <!-- ********************************Espace secretaire************************************************ !-->                 
-            
-           
+  
             <li class="active" *ngIf="this.type=='secrétaire'">
                <a   class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gerer Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                <ul class="iq-submenu">
-                  <li><a routerLink="rendez-vous"><i class="ri-file-edit-fill"></i> Consulter Liste Rendez-vous</a></li>
-                  <li><a routerLink="calendar"><i class="ri-file-edit-fill"></i> Calendrier</a></li>
-
+                  <li><a routerLink="rendez-vous"><i class="ri-file-edit-fill"></i> Consulter Liste RDV</a></li>
+                  <li><a routerLink="calendar"><i class="ri-calendar-fill"></i> Calendrier</a></li>
 
                </ul>
             </li>

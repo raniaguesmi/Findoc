@@ -12,10 +12,18 @@ export class RdvService {
   rdvParMed(id){
     return this.http.get(this.baseUrl+'/rdv/rdvParMed/'+id)
   }
-  // patientParid(id){
-  //   return this.http.get(this.baseUrl+'/patient/afficheParId/'+id)
-  // }
+ 
   rdvParMedComplet(id){
     return this.http.get(this.baseUrl+'/rdv/afficheCompletParMed/'+id)
+  }
+  ajouterRdv(rdv){
+    return this.http.post(this.baseUrl+'/rdv/ajouter',rdv)
+  }
+  afficheRdvAttente(id){
+    return this.http.get(this.baseUrl+'/rdv/afficheRdvAttente/'+id)
+  }
+  supprimerRdv(id){
+    return this.http.delete(this.baseUrl+'/rdv/supprimer/'+id)
+
   }
 }

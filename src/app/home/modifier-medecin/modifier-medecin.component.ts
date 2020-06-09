@@ -83,7 +83,7 @@ export class ModifierMedecinComponent implements OnInit {
 modifier(){
   this.submitted = true
 
-  this.medecinService.modifierMedecin(this.id,this.EditForm.value,this.fileToApload[0]).subscribe(res=>{
+  this.medecinService.modifierMedecin(this.id,this.EditForm.value).subscribe(res=>{
     console.log(res);
     Swal.fire(
       'Good job!',

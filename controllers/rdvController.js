@@ -11,7 +11,7 @@ ajouter:function(req,res){
                 medecin:req.body.medecin,
                 patient:req.body.patient,
                 motif:req.body.motif,
-                // state
+                state:'en attente'
             })
             rdv.save(function(err){
                 if(err){res.json({state:'no',message:'ya un erreur :'+err})}
@@ -123,10 +123,65 @@ afficheCompletParMed:function(req,res){
            if(err){res.json({state:'no',message:'errc!!!'+err})}
            else{res.json(result) }
        });
-   }
+   },
 
+afficheRDVAttente:function(req,res){
+       var id=req.params.id
+       //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
+       rdvModel.aggregate([
+           //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+         {$match:{"medecin": id}},
+         {$match:{"state": 'en attente'}},
 
+         //lene amlt filed e5er bech njm nestoki fih patient mahou houwe ken string mnjmch n5dm bih 5tr bch n9arnou bl object id
+         //donc mchet bedltlou type mte3ou objectId
+         {
+           "$addFields": {
+             "patient": {
+               "$toObjectId": "$patient"
+             }
+           }
+         },
+         //lookup 3ibara ala jointure : lene 9otlou bara lel collection utilisateurs lewjli 3ala valeur mte3 l patient li houwe mte3i fl collection mte3i 
+         //fel chapm esmou _id eli houwa foreignkey fl collection lo5ra utilisateurs hekke ymchi yjbedhomm 
+         {
+           "$lookup": {
+             "from": "utilisateurs",
+             "localField": "patient",
+             "foreignField": "_id",
+             "as": "info"
+           }
+         },
+         //lene bech ijibli l info sous form dun array wahna lerray s3ib n5dmou bih objectId njmou njbdou facile donc  loperateur
+         //$unwind ye5ou l array iroudou string mes kan linfo rahouu haka aleh tala3heli heke 
+         {
+           "$unwind": "$info"
+         },
+         /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
+          * Which 0 means, do not put and 1 means put.
+           */
+         {
+           "$project": {
+               //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
+               _id : 1,
+               date: 1,
+             heure: 1,
+             motif: 1,
+             info: 1
+           }
+         }
+       ],function(err,result){
+           if(err){res.json({state:'no',message:'errc!!!'+err})}
+           else{res.json(result) }
+       });
 
+},
+supprimerRdv:function(req,res){
+  rdvModel.deleteOne({_id:req.params.id},function(err){
+    if(err){res.json({state:'no',message:'il ya un erreur'}+err)}
+    else{res.json({state:'ok',message:'le rdv a été supprimé avec succées'})}
+})
+}
 
 
 //lors de test faut tout dabbord verifier si
