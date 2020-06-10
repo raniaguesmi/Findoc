@@ -72,7 +72,37 @@ supprimer:function(req,res){
         if(err){res.json({state:'no',message:'il ya un erreur'}+err)}
         else{res.json({state:'ok',message:'la spécialit a été supprimé avec succées'})}
     })
+},
+MedecinParSpecialite:function(req,res){
+    var nom=req.params.nom
+    specialiteModel.aggregate([
+        {$match:{"nom": nom}},
+        {
+            "$lookup": {
+              "from": "utilisateurs",
+              "localField": "nom",
+              "foreignField": "specialite",
+              "as": "MedecinInfo"
+            }
+          },
+          {
+            "$unwind": "$MedecinInfo"
+          },
+          {
+            "$project": {
+                //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
+    
+                nom: 1,
+                MedecinInfo: 1
+            }
+          }
+   
+    ],function(err,result){
+        if(err){res.json({state:'no',message:'errc!!!'+err})}
+        else{res.json(result) }
+    })
 }
+
 
 
 

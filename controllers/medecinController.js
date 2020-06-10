@@ -120,4 +120,107 @@ affichePhoto: function (req, res) {
   res.sendFile(__dirname + '/uploads/'+ req.params.image)
   // l'utilisation de cette fonctionnalité est d'afficher la photo de medecin dans la partie front 
 },
+
+
+
+
+
+/* affiche medecin par adress =e cabinet */
+MedcinParAdress:function(req,res){
+  var adresse=req.params.adresse
+medecinModel.find({adresseCabinet:new RegExp(req.params.adresseCabinet) },function(err,liste){
+  if(err){res.json({state:'no',message:'erreur ***'+err})}
+else{res.json(liste)}
+})
 }
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//db.users.find({"name": /.*m.*/})
+// medecinModel.find({"adresse":{ $regex: /adresse$/ }},function(err,liste){
+//   if(err){res.json({state:'no',message:'erreur ***'+err})}
+// else{res.json(liste)}
+
+// })
+// medecinModel.aggregate([
+
+//   {$match:{"adresse":req.params.adresse}},
+//   //  { "$project": {
+//   //       _id : 0,
+//   //       nom: 1,
+//   //   }
+//   // }
+
+// medecinModel.find({adresse:req.body.adresse},function(err,liste){
+//   if(err){res.json({state:'no',message:'there is an error'+err})}
+//   else{res.json(liste)}
+// })
+// medecinModel.aggregate([
+
+//     {$match:{"adresse":req.params.adresse}},
+//     {$project:{
+//       _id:1,
+//       nom:1,
+//       prenom:1,
+
+//     }}
+// //   ],function(err,liste){
+//       if(err){res.json({state:'no',message:'erreur ***'+err})}
+//       else{res.json(liste)}
+//     })},
+
+// ])

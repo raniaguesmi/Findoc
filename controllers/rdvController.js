@@ -111,7 +111,7 @@ afficheCompletParMed:function(req,res){
          {
            "$project": {
                //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
-               _id : 0,
+               _id : 1,
    
                date: 1,
              heure: 1,

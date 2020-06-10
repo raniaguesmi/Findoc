@@ -15,5 +15,6 @@ router.delete('/supprimer/:id',medecinController.supprimer)
 router.get('/listeMedecins',medecinController.listeMedecin)
 router.get('/afficheParId/:id',medecinController.afficheParId)
 router.get('/affichePhoto/:image',medecinController.affichePhoto)
+router.get('/medecinParAdresse/:adresseCabinet',medecinController.MedcinParAdress)
 
 module.exports = router;
