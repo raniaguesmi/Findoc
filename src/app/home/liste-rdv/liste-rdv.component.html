@@ -8,7 +8,7 @@
                 </div>
                 <button type="button" class="btn mb-1 btn-outline-primary" data-toggle="modal" data-target="#exampleModal"> <span>+</span> Ajouter un rendez-vous  </button>
                  
-                  <!-- Modal -->
+                  <!--Ajouter Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -88,7 +88,7 @@
                             <td>{{i.info.cin}}</td>
 
                             <td><div class="row"> <div class="col-md-4">
-                               <button type="button" data-toggle="modal" data-target="#ReporterModal" class="btn mb-1 btn-outline-success"><span class="badge badge-success ml-2"></span>
+                               <button data-toggle="modal" data-target="#ReporterModal" class="btn mb-1 btn-outline-success" (click)="recupere(i._id,i.date,i.heure,i.motif)" ><span class="badge badge-success ml-2"></span>
                               Reporter
                               </button>  </div>
                               <div class="col-md-4"> <button type="button" class="btn mb-1 btn-outline-danger" (click)="supprimerRdv(i._id)"  >
@@ -98,6 +98,7 @@
                          </tr>
                          <div class="modal fade" id="ReporterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                            <div class="modal-dialog" role="document">
+                              <form [formGroup]="reportForm">
                               <div class="modal-content">
                                  <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Reporter un rendez-vous </h5>
@@ -106,54 +107,32 @@
                                     </button>
                                  </div>
                                  <div class="modal-body">
-                                       <form>                               
-                                          <div class="form-group">
-                                             <label >Date Consultation</label>
-                                             <input type="date" class="form-control" value="2020-05-28">
-                                          </div>                 
-                                          <div class="form-group">
-                                             <label>Heure de Consultation</label>
-                                             <input type="time" class="form-control" value="08:00">
-                                          </div>                                 
-                                         
+                                    <div class="form-group">
+                                       <label >Date Consultation</label>
+                                       <input type="text" class="form-control"formControlName="date"   [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
+                                       <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                          <div *ngIf="f.date.errors.required">le champ est obligatoire</div>
+                                        </div>
+                                    </div>                 
+                                    <div class="form-group">
+                                       <label>Heure de Consultation</label>
+                                       <input type="time" class="form-control"formControlName="heure"   [ngClass]="{ 'is-invalid': submitted && f.heure.errors }">
+                                       <div *ngIf="submitted && f.heure.errors" class="invalid-feedback">
+                                          <div *ngIf="f.heure.errors.required">le champ est obligatoire</div>
+                                        </div>
+                                    </div>                                 
+                                   
                                        
-                                       </form>
                                  </div>
                                  <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                    <button type="button" class="btn btn-primary">Enregistrer</button>
+                                    <button type="button" class="btn btn-primary" (click)="reporterRdv()">Enregistrer</button>
                                  </div>
                               </div>
+                           </form>
                            </div>
                         </div>
-                       <!-- Modal -->
-                  <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                         
-                           <div class="modal-body">
-                              
-                                 
-                                    <div class="alert alert-primary" role="alert">
-                                       <div class="iq-alert-text">
-                                          <h5 class="alert-heading">Well done!</h5>
-                                          <p>Aww yeah, you successfully read this important alert message. This
-                                             example text is going to run a bit longer so that you can see how
-                                             spacing within an alert works with this kind of content.
-                                          </p>
-                                          <hr>
-                                          <p class="mb-0">Whenever you need to, be sure to use margin utilities to
-                                             keep things nice and tidy.
-                                          </p>
-                                       </div>
-                                    
-                                 </div>
-                           </div>
-                           
-                        </div>
-                     </div>
-                  </div>
-                       
+                     
 
                       </tbody>
                       <!-- <tfoot>

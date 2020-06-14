@@ -50,7 +50,7 @@
                        <div class="iq-card shadow-none m-0">
                           <div class="iq-card-body p-0 " *ngFor="let i of rdvs">
                              <div class="bg-primary p-3">
-                                <h5 class="mb-0 text-white"> Notifications<small class="badge  badge-light float-right pt-1"></small></h5>
+                                <h5 class="mb-0 text-white"> Demandes Rendez-vous<small class="badge  badge-light float-right pt-1"></small></h5>
                              </div>
                          <a class="iq-sub-card" >
                             
@@ -62,7 +62,7 @@
                                       <h6 class="mb-0 ">{{i.info.nom}} {{i.info.prenom}}</h6>
                                       
                                       <p class="mb-0"> Le  {{i.date }}   à {{ i.heure}}h </p>
-                                      <small class="float-right font-size-12"> <button  class="btn btn-outline-primary mb-3">Accepter</button>
+                                      <small class="float-right font-size-12"> <button  class="btn btn-outline-primary mb-3" (click)="accepterRdv(i._id)">Accepter</button>
                                        <button class="btn btn-outline-danger mb-3" (click)="supprimerRdv(i._id)">Refuser</button>
                                 </small>
                                    </div>

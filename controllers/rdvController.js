@@ -1,5 +1,5 @@
 const rdvModel=require('../models/rdvModel')
-var ObjectID = require("mongodb").ObjectID;
+// var ObjectID = require("mongodb").ObjectID;
 
 module.exports={
 ajouter:function(req,res){
@@ -181,9 +181,174 @@ supprimerRdv:function(req,res){
     if(err){res.json({state:'no',message:'il ya un erreur'}+err)}
     else{res.json({state:'ok',message:'le rdv a été supprimé avec succées'})}
 })
+},
+afficheRDVconfirme:function(req,res){
+  var id=req.params.id
+  //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
+  rdvModel.aggregate([
+      //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+    {$match:{"medecin": id}},
+    {$match:{"state": 'confirmé'}},
+
+    //lene amlt filed e5er bech njm nestoki fih patient mahou houwe ken string mnjmch n5dm bih 5tr bch n9arnou bl object id
+    //donc mchet bedltlou type mte3ou objectId
+    {
+      "$addFields": {
+        "patient": {
+          "$toObjectId": "$patient"
+        }
+      }
+    },
+    //lookup 3ibara ala jointure : lene 9otlou bara lel collection utilisateurs lewjli 3ala valeur mte3 l patient li houwe mte3i fl collection mte3i 
+    //fel chapm esmou _id eli houwa foreignkey fl collection lo5ra utilisateurs hekke ymchi yjbedhomm 
+    {
+      "$lookup": {
+        "from": "utilisateurs",
+        "localField": "patient",
+        "foreignField": "_id",
+        "as": "info"
+      }
+    },
+    //lene bech ijibli l info sous form dun array wahna lerray s3ib n5dmou bih objectId njmou njbdou facile donc  loperateur
+    //$unwind ye5ou l array iroudou string mes kan linfo rahouu haka aleh tala3heli heke 
+    {
+      "$unwind": "$info"
+    },
+    /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
+     * Which 0 means, do not put and 1 means put.
+      */
+    {
+      "$project": {
+          //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
+          _id : 1,
+          date: 1,
+        heure: 1,
+        motif: 1,
+        info: 1
+      }
+    }
+  ],function(err,result){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{res.json(result) }
+  });
+
+},
+accepterRdv:function(req,res){
+rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},function(err,liste){
+  if(err){res.json({state:'no',message:'il ya un erreur'+err})}
+  else{res.json({state:'ok',message:'le rdv a été confirmé'})}
+
+})  
+},
+reporterRdv:function(req,res){
+  rdvModel.updateOne({_id:req.params.id},{$set:req.body},function(err,liste){
+    if(err){res.json({state:'no',message:'il ya un erreur'+err})}
+    else{res.json(liste)}
+  
+  })  
+  },
+
+rdvConfirmerParPatient:function(req,res){
+  var id=req.params.id
+  //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
+  rdvModel.aggregate([
+      //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+    {$match:{"patient": id}},
+    {$match:{"state": "confirmé"}},
+
+    //lene amlt filed e5er bech njm nestoki fih patient mahou houwe ken string mnjmch n5dm bih 5tr bch n9arnou bl object id
+    //donc mchet bedltlou type mte3ou objectId
+    {
+      "$addFields": {
+        "medecin": {
+          "$toObjectId": "$medecin"
+        }
+      }
+    },
+    //lookup 3ibara ala jointure : lene 9otlou bara lel collection utilisateurs lewjli 3ala valeur mte3 l patient li houwe mte3i fl collection mte3i 
+    //fel chapm esmou _id eli houwa foreignkey fl collection lo5ra utilisateurs hekke ymchi yjbedhomm 
+    {
+      "$lookup": {
+        "from": "utilisateurs",
+        "localField": "medecin",
+        "foreignField": "_id",
+        "as": "info"
+      }
+    },
+    //lene bech ijibli l info sous form dun array wahna lerray s3ib n5dmou bih objectId njmou njbdou facile donc  loperateur
+    //$unwind ye5ou l array iroudou string mes kan linfo rahouu haka aleh tala3heli heke 
+    {
+      "$unwind": "$info"
+    },
+    /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
+     * Which 0 means, do not put and 1 means put.
+      */
+    {
+      "$project": {
+          //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
+          _id : 1,
+          date: 1,
+        heure: 1,
+        motif: 1,
+        info: 1
+      }
+    }
+  ],function(err,result){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{res.json(result) }
+  });
+
+},
+rdvAttenteParPatient:function(req,res){
+  var id=req.params.id
+  //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
+  rdvModel.aggregate([
+      //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+    {$match:{"patient": id}},
+    {$match:{"state": "en attente"}},
+
+    //lene amlt filed e5er bech njm nestoki fih patient mahou houwe ken string mnjmch n5dm bih 5tr bch n9arnou bl object id
+    //donc mchet bedltlou type mte3ou objectId
+    {
+      "$addFields": {
+        "medecin": {
+          "$toObjectId": "$medecin"
+        }
+      }
+    },
+    //lookup 3ibara ala jointure : lene 9otlou bara lel collection utilisateurs lewjli 3ala valeur mte3 l patient li houwe mte3i fl collection mte3i 
+    //fel chapm esmou _id eli houwa foreignkey fl collection lo5ra utilisateurs hekke ymchi yjbedhomm 
+    {
+      "$lookup": {
+        "from": "utilisateurs",
+        "localField": "medecin",
+        "foreignField": "_id",
+        "as": "info"
+      }
+    },
+    //lene bech ijibli l info sous form dun array wahna lerray s3ib n5dmou bih objectId njmou njbdou facile donc  loperateur
+    //$unwind ye5ou l array iroudou string mes kan linfo rahouu haka aleh tala3heli heke 
+    {
+      "$unwind": "$info"
+    },
+    /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
+     * Which 0 means, do not put and 1 means put.
+      */
+    {
+      "$project": {
+          //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
+          _id : 1,
+          date: 1,
+        heure: 1,
+        motif: 1,
+        info: 1
+      }
+    }
+  ],function(err,result){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{res.json(result) }
+  });
+
 }
 
-
-//lors de test faut tout dabbord verifier si
-/**Aggregation is more difficult to understand than simpler find queries and will generally run slower. However, they are powerful and an invaluable option for complex search operations */
 }

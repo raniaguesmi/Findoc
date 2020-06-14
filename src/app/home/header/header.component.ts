@@ -55,7 +55,17 @@ supprimerRdv(id){
   })
    
   }
-
+accepterRdv(id){
+    console.log(id)
+this.rdvService.accepterRdv(id).subscribe(res=>{
+      console.log(res)
+      Swal.fire(
+        'Bien',
+        'Rendez-vous  accepté!',
+        'success'
+      )     })
+      
+  }
 
 
 

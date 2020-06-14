@@ -26,4 +26,13 @@ export class RdvService {
     return this.http.delete(this.baseUrl+'/rdv/supprimer/'+id)
 
   }
+  afficheRdvConfirmer(id){
+    return this.http.get(this.baseUrl+'/rdv/afficheRDVconfirme/'+id)
+  }
+  reporterRdv(id,rdv){
+    return this.http.put(this.baseUrl+'/rdv/reporterRdv/'+id,rdv)
+  }
+  accepterRdv(id){
+    return this.http.get(this.baseUrl+'/rdv/accepterRdv/'+id)
+  }
 }

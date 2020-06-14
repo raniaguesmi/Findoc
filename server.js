@@ -12,11 +12,13 @@ const cors = require('cors')
 //
 // const sendMail=require('./models/mail')
 const db=require('./db')
+
 const medecin=require('./routers/medecinRouter')
 const patient=require('./routers/patientRouter')
 const secretaire=require('./routers/secretaireRouter')
 const utilisateur=require('./routers/utilisateurRouter')
 const specialite=require('./routers/specialiteRouter')
+const reclamation=require('./routers/reclamationRouter')
 const rdv=require('./routers/rdvRouter')
 const app=express(); // app est une instance d'express
  app.use(bodyParser.urlencoded({extended:false}))
@@ -34,6 +36,7 @@ app.use('/secretaire',secretaire)
 app.use('/utilisateur',utilisateur)
 app.use('/specialite',specialite)
 app.use('/rdv',rdv)
+app.use('/reclamation',reclamation)
 //****************************************************************** */
  app.post('/sendEmail',(req,res,cb)=>{
  // create reusable transporter object using the default SMTP transport

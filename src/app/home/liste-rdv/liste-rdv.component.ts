@@ -17,6 +17,8 @@ rdvs;
 idPatient;
 patient;
 rdvForm:FormGroup
+reportForm:FormGroup
+_id
   constructor(private rdvService:RdvService,private formBuilder:FormBuilder) {
   
 
@@ -25,7 +27,7 @@ rdvForm:FormGroup
     this.data=localStorage.getItem('user')
     this.utilisateur=JSON.parse(this.data)
    this.idmedec=this.utilisateur.idmed;
-   this.listeRdvParMed(this.idmedec);
+   this.listeRdvConfirmé(this.idmedec);
     this.rdvForm = this.formBuilder.group({
       date: ['',Validators.required],
       heure: ['',Validators.required],
@@ -34,11 +36,22 @@ rdvForm:FormGroup
       motif: ['',Validators.required],
 
   });
+  this.reportForm=this.formBuilder.group({
+    date:['',Validators.required],
+    heure:['',Validators.required]
+  })
   }
   get f() { return this.rdvForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
-
-listeRdvParMed(id){
-  this.rdvService.rdvParMedComplet(id).subscribe(res=>{
+  recupere(_id,date,heure,motif){ 
+    // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
+    this._id=_id;
+    this.reportForm.get('date').setValue(date);
+    this.reportForm.get('heure').setValue(heure);
+    // this.reportForm.get('motif').setValue(motif);
+    
+  }
+listeRdvConfirmé(id){
+  this.rdvService.afficheRdvConfirmer(id).subscribe(res=>{
    this.rdvs=res;
   })
 }
@@ -51,13 +64,13 @@ ajouterRdv(){
   this.rdvService.ajouterRdv(this.rdvForm.value).subscribe(res=>{
     Swal.fire(
       'Bien',
-      'Specialité ajoutée avec succée!',
+      'rdv ajoutée avec succée!',
       'success'
     )  
     // this.rdvForm.hide();
 
      this.submitted = false ;
-             this.listeRdvParMed(this.idmedec);
+             this.listeRdvConfirmé(this.idmedec);
 
      })
   
@@ -78,11 +91,24 @@ supprimerRdv(id){
     return this.rdvService.supprimerRdv(id)
       .subscribe(res => {
         console.log(res);
-        this.listeRdvParMed(this.idmedec)
+        this.listeRdvConfirmé(this.idmedec)
       })
   }
 })
  
 }
+reporterRdv(){
+  console.log(this._id)
+  this.rdvService.reporterRdv(this._id,this.reportForm.value).subscribe(res=>{
+    console.log(res)
+    Swal.fire(
+      'Bien',
+      'rdv ajoutée avec succée!',
+      'success'
+    )  
+   })
+   this.listeRdvConfirmé(this.idmedec)
+}
+
 
 }
