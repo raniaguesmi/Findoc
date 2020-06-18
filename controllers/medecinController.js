@@ -75,12 +75,15 @@ listeMedecin:function(req,res){
 /**********************************modification***************************************************************/
 //fonctionne mais que les files ne veulent pas se modifie
 modifier:function(req,res){
+
+  var password = req.body.password
+      
+        req.body.password = bcrypt.hashSync(password,10)
   //{$set:req.body} cette ligne nous permet de garder les information qui nont pas ete modifier 
   medecinModel.updateOne({_id:req.params.id},{$set:req.body},{
     nom: req.body.nom,
     prenom: req.body.prenom,
     login:req.body.login,
-    password: req.body.password,
     dateNaissance:req.body.dateNaissance,
     adresse:req.body.adresse,
     telephone:req.body.telephone,
@@ -96,12 +99,7 @@ modifier:function(req,res){
     else {res.json({state:'yes',message:'la modification terminé avec succées'})}
 
   }
-  // .pre("save",function (next) {
-  //   this.password=bcrypt.hashSync(this.password,10);//hashSync : Store hash in password attrebute 
-  //   next();
 
-  // }) 
-  // le hash de passwprd veut pas fonctionner ici en disant .pre n'est pas une fonction
 )},
 /**********************************affichage by id ***************************************************************/
 //fonctionne
@@ -121,10 +119,6 @@ affichePhoto: function (req, res) {
   // l'utilisation de cette fonctionnalité est d'afficher la photo de medecin dans la partie front 
 },
 
-
-
-
-
 /* affiche medecin par adress =e cabinet */
 MedcinParAdress:function(req,res){
   var adresse=req.params.adresse
@@ -132,13 +126,22 @@ medecinModel.find({adresseCabinet:new RegExp(req.params.adresseCabinet) },functi
   if(err){res.json({state:'no',message:'erreur ***'+err})}
 else{res.json(liste)}
 })
+},
+
+/*comparer password */
+ comparerPassword:function(req,res){
+  // var password = req.body.password
+  // pass = bcrypt.hashSync(password,10)
+  medecinModel.findOne({_id:req.params.id},function(err,info){
+if(err){res.json(err)}
+else{
+   if (bcrypt.compareSync(req.body,info.password))
+   { res.json({state:'ok'})  }  
+    else { res.json({state:'no'}) } 
+   }
+  }
+  )
 }
-
-
-
-
-
-
 }
 
 

@@ -5,7 +5,7 @@ const multer = require('multer');
 
 router.post('/ajouter', patientController.ajouter);
 router.get('/afficher',patientController.afficher)
-router.put('/modifier/:id',patientController.modifier)
+router.put('/modifier',patientController.modifier)
 router.delete('/supprimer/:id',patientController.supprimer)
 router.get('/afficheParId/:id',patientController.afficheParId)
 

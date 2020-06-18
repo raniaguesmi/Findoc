@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { SecretaireService } from 'src/app/service/secretaire.service';
 
 export function ValidateFirstName(control: AbstractControl) {
@@ -47,3 +47,7 @@ export function ValidateFirstName(control: AbstractControl) {
         
     }
   }
+ export function passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('passwordConfirm').value
+       ? null : {'mismatch': true};
+ }

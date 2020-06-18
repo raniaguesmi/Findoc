@@ -12,6 +12,7 @@ import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
 import { CalendarComponent } from './home/calendar/calendar.component';
 import { EmailComponent } from './home/email/email.component';
 import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.component';
+import { PatientComponent } from './home/patient/patient.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
            {path:'rendez-vous',component:ListeRdvComponent},
            {path:'calendar',component: CalendarComponent},
            {path:'email',component: EmailComponent},
-           {path:'consulterRdv',component: ConsulterRdvComponent},
+           {path:'consulterRdv',component: ConsulterRdvComponent },
+           {path:'consulterRdv/patient/:id',component: PatientComponent},
 
 
 

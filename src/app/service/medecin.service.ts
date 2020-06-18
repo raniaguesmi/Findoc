@@ -47,4 +47,7 @@ export class MedecinService {
   envoieEmail(email){
     return this.http.post(this.baseUrl+ '/sendEmail',email)
   }
+  comparerPassword(id,oldpassword){
+    return this.http.get(this.baseUrl+'/medecin/comparePassword/'+id,oldpassword)
+  }
 }

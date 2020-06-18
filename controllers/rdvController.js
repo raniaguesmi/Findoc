@@ -35,7 +35,6 @@ rdvParMed:function(req,res){
     })
 } ,
 
-
 afficheComplet:function(req,res){
     //  var _id=_id.$oid
     rdvModel.aggregate([
@@ -125,7 +124,7 @@ afficheCompletParMed:function(req,res){
        });
    },
 
-afficheRDVAttente:function(req,res){
+afficheRDVAttenteParMed:function(req,res){
        var id=req.params.id
        //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
        rdvModel.aggregate([
@@ -240,6 +239,7 @@ rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},funct
 
 })  
 },
+
 reporterRdv:function(req,res){
   rdvModel.updateOne({_id:req.params.id},{$set:req.body},function(err,liste){
     if(err){res.json({state:'no',message:'il ya un erreur'+err})}
@@ -249,7 +249,7 @@ reporterRdv:function(req,res){
   },
 
 rdvConfirmerParPatient:function(req,res){
-  var id=req.params.id
+  var id=req.body.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
   rdvModel.aggregate([
       //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
@@ -286,7 +286,7 @@ rdvConfirmerParPatient:function(req,res){
     {
       "$project": {
           //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
-          _id : 1,
+          _id : 0,
           date: 1,
         heure: 1,
         motif: 1,
@@ -300,7 +300,7 @@ rdvConfirmerParPatient:function(req,res){
 
 },
 rdvAttenteParPatient:function(req,res){
-  var id=req.params.id
+  var id=req.body.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
   rdvModel.aggregate([
       //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
@@ -337,7 +337,7 @@ rdvAttenteParPatient:function(req,res){
     {
       "$project": {
           //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
-          _id : 1,
+          _id : 0,
           date: 1,
         heure: 1,
         motif: 1,
@@ -349,6 +349,8 @@ rdvAttenteParPatient:function(req,res){
       else{res.json(result) }
   });
 
-}
+},
+
+
 
 }

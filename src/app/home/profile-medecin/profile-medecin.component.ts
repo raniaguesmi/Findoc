@@ -21,7 +21,8 @@ image;
 
   afficheParId(id){
     console.log(this.id)
-  this.medecinService.afficheParId(id).subscribe(res=>{this.medecin=res;
+  this.medecinService.afficheParId(id).subscribe(res=>{
+    this.medecin=res;
     this.image=this.medecin.image;
   })
  

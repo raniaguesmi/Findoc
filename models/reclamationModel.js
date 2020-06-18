@@ -5,7 +5,7 @@ const reclamationSchema=mongoose.model('reclamation',new mongoose.Schema({
     titre:{type:String, required:true, trim:true},
     contenu:{type:String, required:true, trim:true},
     idpatient:{type:String, required:true, trim:true},
-
+    idmedecin:{type:String, required:true, trim:true}
 
 }))
 

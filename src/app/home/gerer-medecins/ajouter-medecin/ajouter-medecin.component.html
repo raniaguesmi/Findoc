@@ -99,6 +99,7 @@
                         <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
                            <div *ngIf="f.telephone.errors.required">le champ est obligatoire</div>
                           <div *ngIf="f.telephone.errors.pattern">Le numéro doit étre de 8 chiffre</div> 
+                          <!-- <div *ngIf="f.telephone.errors.maxlength">Le mot de passe doit contenir au moins 6 lettres</div> -->
 
                          </div>
                      </div>

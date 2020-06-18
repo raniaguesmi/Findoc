@@ -1,13 +1,6 @@
 <div class="iq-top-navbar header-top-sticky">
     <div class="iq-navbar-custom">
-        <!-- <div class="iq-sidebar-logo">
-           <div class="top-logo">
-              <a href="index.html" class="logo">
-              <img src="assets/images/logo.JPG" class="img-fluid" alt="">
-              <span>FinDoc</span>
-              </a>
-           </div>
-        </div> -->
+    
         <nav class="navbar navbar-expand-lg navbar-light p-0">
          
                        <!--barre de recherche -->
@@ -23,12 +16,6 @@
            <i class="ri-menu-3-line"></i>
            </button>
 
-           <!-- <div class="iq-menu-bt align-self-center">
-              <div class="wrapper-menu">
-                 <div class="main-circle"><i class="ri-more-fill"></i></div>
-                    <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
-              </div>
-           </div> -->
           
            <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto navbar-list">
@@ -48,13 +35,13 @@
 
                     <div class="iq-sub-dropdown">
                        <div class="iq-card shadow-none m-0">
-                          <div class="iq-card-body p-0 " *ngFor="let i of rdvs">
+                          <div class="iq-card-body p-0 " >
                              <div class="bg-primary p-3">
                                 <h5 class="mb-0 text-white"> Demandes Rendez-vous<small class="badge  badge-light float-right pt-1"></small></h5>
                              </div>
                          <a class="iq-sub-card" >
                             
-                                <div class="media align-items-center">
+                                <div class="media align-items-center" *ngFor="let i of rdvs">
                                    <div class="">
                                       <img class="avatar-40 rounded" src="assets/images/user/01.jpg" alt="">
                                    </div>
@@ -155,7 +142,7 @@
                   <img *ngIf="this.type=='secrétaire'" src="assets/images/user/11.png">
                   <img *ngIf="this.type=='admin'" src="assets/images/user/16.jpg">
 
-                  <img *ngIf="this.type=='medecin'" src="http://localhost:3000/medecin/affichePhoto/{{utilisateur.image}}" class="img-fluid rounded mr-3" alt="user">
+                  <img *ngIf="this.type=='medecin'" src="http://localhost:3000/medecin/affichePhoto/{{image}}" class="img-fluid rounded mr-3" alt="user">
                                    <!--  esm el acteur connecté-->
 
                   <div class="caption">

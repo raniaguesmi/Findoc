@@ -36,7 +36,7 @@ emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lema
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      nom: ['',[Validators.required,ValidateFirstName] ],
+      nom: ['',[Validators.required] ],
       prenom: ['', Validators.required],
       login: ['',[ Validators.required,espace() ]],
       password: ['',[Validators.required,Validators.minLength(6)]],

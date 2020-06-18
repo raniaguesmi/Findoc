@@ -1,11 +1,12 @@
 const patientModel=require('../models/patientModel')
 const multer=require('multer')
 var fs=require("fs")
+var bcrypt = require ('bcrypt')
+
 const upload = multer({dest: __dirname + '/uploads/images'});
 module.exports={
 //fonctionne
     ajouter : function (req,res) {
-     
                 const patient=new patientModel({
                   nom: req.body.nom,
                   prenom: req.body.prenom,
@@ -16,8 +17,6 @@ module.exports={
                   telephone:req.body.telephone,
                   cin:req.body.cin,
                  })
-                                 console.log("Nom: -----------> "+req.body.nom);
-
               patient.save(function (err) {
                 if (err) {
                   res.json({state: 'no', msg: 'vous avez un erreur ' + err})
@@ -41,19 +40,22 @@ module.exports={
           })
 
         },
-    //ne fonctionne pas a cause de original name undefine
     modifier:function(req,res){
-        patientModel.updateOne({_id:req.params.id},{$set:req.body},{
+      var password = req.body.password
+      
+        req.body.password = bcrypt.hashSync(password,10)
+         patientModel.updateOne({_id:req.body.id},{$set:req.body},
+          {
           nom: req.body.nom,
           prenom: req.body.prenom,
           login:req.body.login,
-          password: req.body.password,
           dateNaissance:req.body.dateNaissance,
           adresse:req.body.adresse,
           telephone:req.body.telephone,
           cin:req.body.cin,
           email: req.body.email,
-        },function(err)
+        }
+        ,function(err)
         {if(err)
           {res.json({state:'no',message:'il ya un erreur : '+err})
           }
@@ -61,6 +63,9 @@ module.exports={
               res.json({state:'yes',message:'la modification terminé avec succées'})
                }
     })
+    
+      // });     
+     
 },
 //fonctionne
   supprimer:function (req,res) {

@@ -20,7 +20,8 @@ import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
 import { CalendarComponent } from './home/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EmailComponent } from './home/email/email.component';
-import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.component'; // for FullCalendar!
+import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.component';
+import { PatientComponent } from './home/patient/patient.component'; // for FullCalendar!
 
 
 
@@ -41,7 +42,8 @@ import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.compon
     ListeRdvComponent,
     CalendarComponent,
     EmailComponent,
-    ConsulterRdvComponent
+    ConsulterRdvComponent,
+    PatientComponent
 
   ],
   imports: [

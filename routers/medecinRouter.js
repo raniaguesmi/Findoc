@@ -16,5 +16,5 @@ router.get('/listeMedecins',medecinController.listeMedecin)
 router.get('/afficheParId/:id',medecinController.afficheParId)
 router.get('/affichePhoto/:image',medecinController.affichePhoto)
 router.get('/medecinParAdresse/:adresseCabinet',medecinController.MedcinParAdress)
-
+router.get('/comparePassword/:id',medecinController.comparerPassword)
 module.exports = router;

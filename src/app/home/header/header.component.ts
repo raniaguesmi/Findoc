@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
   data;
   type;
   idmedec;
-  rdvs
+  rdvs;
+  image;
   constructor(private rdvService:RdvService) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
 // console.log('utli',JSON.parse(this.data))
 this.utilisateur=JSON.parse(this.data)
 this.type=this.utilisateur.type
+this.image=this.utilisateur.image
 this.idmedec=this.utilisateur.idmed;
 this.rdvEnattente(this.idmedec)
   }

@@ -34,7 +34,7 @@ submitted = false;
       password: ['', [Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
-      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}")),,Validators.maxLength(8)]],
       cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))] ],
       email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],

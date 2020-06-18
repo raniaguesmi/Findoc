@@ -74,7 +74,7 @@ supprimer:function(req,res){
     })
 },
 MedecinParSpecialite:function(req,res){
-    var nom=req.params.nom
+    var nom=req.body.nom
     specialiteModel.aggregate([
         {$match:{"nom": nom}},
         {
@@ -91,8 +91,8 @@ MedecinParSpecialite:function(req,res){
           {
             "$project": {
                 //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
-    
-                nom: 1,
+    _id:0,
+                // nom: 1,
                 MedecinInfo: 1
             }
           }

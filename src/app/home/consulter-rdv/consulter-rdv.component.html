@@ -5,7 +5,7 @@
           <div class="iq-card">
              <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                   <h4 class="card-title">Bootstrap Datatables</h4>
+                   <h4 class="card-title">Les rendez-vous </h4>
                 </div>
                 <div>
                     <input type="text" [(ngModel)]="Date" (input)="search()"/>
@@ -27,7 +27,7 @@
                       </thead>
                       <tbody>
                          <tr *ngFor="let i of rdvs">
-                            <td>{{i.info.nom}} {{i.info.prenom}}</td>
+                            <td><a routerLink="patient/{{i.info._id}}"> {{i.info.nom}} {{i.info.prenom}}</a></td>
                             <td>{{i.info.telephone}}</td>
                             <td>{{i.info.cin}}</td>
                             <td>{{i.date}}</td>
