@@ -21,7 +21,9 @@ import { CalendarComponent } from './home/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EmailComponent } from './home/email/email.component';
 import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.component';
-import { PatientComponent } from './home/patient/patient.component'; // for FullCalendar!
+import { PatientComponent } from './home/patient/patient.component';
+import { ListePatientsComponent } from './home/liste-patients/liste-patients.component';
+import { ReclamationsComponent } from './home/reclamations/reclamations.component'; // for FullCalendar!
 
 
 
@@ -43,7 +45,9 @@ import { PatientComponent } from './home/patient/patient.component'; // for Full
     CalendarComponent,
     EmailComponent,
     ConsulterRdvComponent,
-    PatientComponent
+    PatientComponent,
+    ListePatientsComponent,
+    ReclamationsComponent
 
   ],
   imports: [

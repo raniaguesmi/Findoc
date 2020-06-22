@@ -1,7 +1,6 @@
 const secretairetModel=require('../models/secretaireModel')
-const multer=require('multer')
-var fs=require("fs")
-const upload = multer({dest: __dirname + '/uploads/images'});
+var bcrypt = require ('bcrypt')
+
 module.exports={
 //fonctionne
     ajouter : function (req,res) {
@@ -48,6 +47,11 @@ module.exports={
           })
         },
     modifier:function(req,res){
+      if(req.body.password!=null){ 
+        var password = req.body.password
+        req.body.password = bcrypt.hashSync(password,10)
+            }
+       
         secretairetModel.updateOne({_id:req.params.id},{$set:req.body},{
           nom: req.body.nom,
           prenom: req.body.prenom,
@@ -87,7 +91,7 @@ module.exports={
     else{res.json(liste)}
   })
  },
-
+// pour verifie r si le nom dutilisteur existe deja 
  checkUsername:function(req,res){
    secretairetModel.find({},function(err,reslt){
      if(err){res.json({state:'no',message:'erreur:'+err})}

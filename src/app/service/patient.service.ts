@@ -13,4 +13,7 @@ export class PatientService {
   {
   return this.http.get(this.baseUrl+'/patient/afficheParId/'+id) 
   }
+  listPatient(id){
+    return this.http.get(this.baseUrl+'/rdv/listpatient/'+id)
+  }
 }

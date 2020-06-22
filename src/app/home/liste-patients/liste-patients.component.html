@@ -1,0 +1,34 @@
+<div class="container-fluid">       
+          <div class="iq-card">
+            
+             <div class="iq-card-body">
+               <div class="iq-header-title">
+                  <h4 class="card-title">Liste de patients</h4>
+               </div>                <table class="table table-hover">
+                   <thead>
+                      <tr>
+                         <th scope="col">Nom et Prenom</th>
+                         <th scope="col">cin</th>
+                         <th scope="col">Téléphone</th>
+                         <th scope="col">Date de Naissaince</th>
+                         <th scope="col">Adresse</th>
+
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr  *ngFor="let i of patients">
+                         <th scope="row">{{i.info.nom}} {{i.info.prenom}}</th>
+                         <td>{{i.info.cin}}</td>
+                         <td>{{i.info.telephone}}</td>
+                         <td>{{i.info.dateNaissance}}</td>
+                         <td>{{i.info.adresse}}</td>
+
+                      </tr>
+                     
+                     
+                   </tbody>
+                </table>
+               
+             </div>
+          </div>
+ </div>

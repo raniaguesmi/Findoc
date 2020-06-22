@@ -13,5 +13,5 @@ const medecinSchema=utlisateurs.discriminator('medecin', new mongoose.Schema ({
     specialite:{type: String, required:true , trim:true},
 }
 ))
-
+//trim pour lespace , required si le champs est obligatoir ou pas 
 module.exports=medecinSchema;

@@ -71,56 +71,51 @@ afficheComplet:function(req,res){
     });
 },
 
-afficheCompletParMed:function(req,res){
-       /* le principe lene ne5ou l id medcin connecté wnmchi nfeltri lrdv mte3 l medcin haka bethet 
-       be3ed mana5ouhom bch na3ml jointure meben l rendez vous wlpatient li3aml l rendez vous bech yatl3ouli fard resultat heke  */
-       var id=req.params.id
-       // console.log(  )
-       //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
-       rdvModel.aggregate([
-           //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
-         {$match:{"medecin": id}},
-         //lene amlt filed e5er bech njm nestoki fih patient mahou houwe ken string mnjmch n5dm bih 5tr bch n9arnou bl object id
-         //donc mchet bedltlou type mte3ou objectId
-         {
-           "$addFields": {
-             "patient": {
-               "$toObjectId": "$patient"
+listpatient:function(req,res){  
+       var id=req.params.id   
+       rdvModel.aggregate([       
+         {$match:{"medecin": id}},      
+  {
+          "$group": {
+
+           _id:{"patient":"$patient" } 
+          }
+        },
+        {
+          "$group": {
+
+           _id:"$_id.patient" 
+          }
+        },
+
+  { "$addFields": {
+             "_id": {
+               "$toObjectId": "$_id"
              }
            }
          },
-         //lookup 3ibara ala jointure : lene 9otlou bara lel collection utilisateurs lewjli 3ala valeur mte3 l patient li houwe mte3i fl collection mte3i 
-         //fel chapm esmou _id eli houwa foreignkey fl collection lo5ra utilisateurs hekke ymchi yjbedhomm 
-         {
-           "$lookup": {
+         
+         { "$lookup": {
              "from": "utilisateurs",
-             "localField": "patient",
+             "localField": "_id",
              "foreignField": "_id",
              "as": "info"
            }
          },
-         //lene bech ijibli l info sous form dun array wahna lerray s3ib n5dmou bih objectId njmou njbdou facile donc  loperateur
-         //$unwind ye5ou l array iroudou string mes kan linfo rahouu haka aleh tala3heli heke 
-         {
-           "$unwind": "$info"
-         },
-         /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
-          * Which 0 means, do not put and 1 means put.
-           */
-         {
-           "$project": {
-               //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
-               _id : 1,
-   
-               date: 1,
-             heure: 1,
-             motif: 1,
-             info: 1
+
+        { "$unwind": "$info"   },
+
+         { "$project": {
+            _id:0,
+               info: 1
            }
          }
        ],function(err,result){
            if(err){res.json({state:'no',message:'errc!!!'+err})}
-           else{res.json(result) }
+           else{
+            console.log(result)  ,
+           res.json(result) 
+            }
        });
    },
 
@@ -241,9 +236,15 @@ rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},funct
 },
 
 reporterRdv:function(req,res){
-  rdvModel.updateOne({_id:req.params.id},{$set:req.body},function(err,liste){
-    if(err){res.json({state:'no',message:'il ya un erreur'+err})}
-    else{res.json(liste)}
+  rdvModel.updateOne({_id:req.body.id},{$set:req.body}
+    ,{date:req.body.date,
+      heure:req.body.heure,
+      motif:req.body.motif,
+    }
+    
+    ,function(err,rslt){
+    if(err){res.send("NO")}
+    else{res.send("OK")}
   
   })  
   },
@@ -337,10 +338,11 @@ rdvAttenteParPatient:function(req,res){
     {
       "$project": {
           //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
-          _id : 0,
+          _id : 1,
           date: 1,
         heure: 1,
         motif: 1,
+        state:1,
         info: 1
       }
     }
@@ -352,5 +354,11 @@ rdvAttenteParPatient:function(req,res){
 },
 
 
+afficherParId:function(req,res){
+  rdvModel.findOne({_id:req.params.id},function(err,liste){
+      if(err){res.json({state:'no', message:'ya un erreur:'+err})}
+      else{res.json(liste)}
+  })
+},
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RdvService } from 'src/app/service/rdv.service';
 import Swal from 'sweetalert2';
+import { ReclamationService } from 'src/app/service/reclamation.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,9 @@ export class HeaderComponent implements OnInit {
   idmedec;
   rdvs;
   image;
-  constructor(private rdvService:RdvService) { }
+  id;
+  messages
+  constructor(private rdvService:RdvService, private reclamationService:ReclamationService) { }
 
   ngOnInit() {
    this.data=localStorage.getItem('user')
@@ -23,7 +26,9 @@ this.utilisateur=JSON.parse(this.data)
 this.type=this.utilisateur.type
 this.image=this.utilisateur.image
 this.idmedec=this.utilisateur.idmed;
-this.rdvEnattente(this.idmedec)
+this.id=this.utilisateur._id;
+this.rdvEnattente(this.idmedec);
+this.reclamation(this.id)
   }
   logOut(){
     localStorage.removeItem('user');
@@ -69,7 +74,12 @@ this.rdvService.accepterRdv(id).subscribe(res=>{
       
   }
 
-
+  reclamation(id){
+    this.reclamationService.reclamation(id).subscribe(res=>{
+     this.messages=res;
+     console.log('from header',this.messages)
+    })
+  }
 
 
 }

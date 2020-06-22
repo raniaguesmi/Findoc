@@ -13,6 +13,8 @@ import { CalendarComponent } from './home/calendar/calendar.component';
 import { EmailComponent } from './home/email/email.component';
 import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.component';
 import { PatientComponent } from './home/patient/patient.component';
+import { ListePatientsComponent } from './home/liste-patients/liste-patients.component';
+import { ReclamationsComponent } from './home/reclamations/reclamations.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,10 @@ const routes: Routes = [
            {path:'email',component: EmailComponent},
            {path:'consulterRdv',component: ConsulterRdvComponent },
            {path:'consulterRdv/patient/:id',component: PatientComponent},
+           {path:'listePatient',component: ListePatientsComponent},
+           {path:'messages/:id',component: ReclamationsComponent},
+
+
 
 
 

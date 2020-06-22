@@ -53,6 +53,7 @@ _id
 listeRdvConfirmé(id){
   this.rdvService.afficheRdvConfirmer(id).subscribe(res=>{
    this.rdvs=res;
+   console.log('rdv confirmé',this.rdvs)
   })
 }
 ajouterRdv(){

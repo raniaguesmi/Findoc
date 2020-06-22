@@ -149,42 +149,11 @@ this.editForm=this.formBuilder.group({
           )  
           this.editForm.reset() 
            this.submitted = false ;
-          //  this.secretaireParMedecin(this.idmedec)
 
           })}
       // }
 
     
-
-    //   public  validateUsername(control: AbstractControl){
-      
-    //       this.secretaireService.checkUsername(control) .subscribe(
-    //           res => {
-    //             console.log(res)
-               
-               
-    //             if ( res!==null) 
-    //              { return {alreadyExist: true}} 
-
-    //             else {  return null}
-    //           },
-    //           (error) => {
-    //             console.log(error)
-    //           }
-    //         )
-        
-    // }
   }
     
-  //    class UsernameValidator {
-  //     static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
-  //         if((control.value as string).indexOf(' ') >= 0){
-  //             return {cannotContainSpace: true}
-  //         }
-    
-  //         return null;
-  //     }
-  // }
-
-
-
+ 

@@ -49,6 +49,12 @@
 
                </ul>
             </li>
+
+
+            <li class="active" *ngIf="this.type=='medecin'">           
+               <a routerLink="messages" class="iq-waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span>Messages</span></a>
+
+         </li> 
             <!-- ********************************rdv************************************************ !-->                
             
             <li  class="active" *ngIf="this.type=='medecin'">
@@ -72,6 +78,7 @@
                </ul>
             </li>
            
+            
             <!-- ********************************Espace Admin************************************************ !-->                 
         
               <!-- ********************************gerer medecins************************************************ !-->  
@@ -101,6 +108,7 @@
                <ul class="iq-submenu">
                   <li><a routerLink="rendez-vous"><i class="ri-file-edit-fill"></i> Consulter Liste RDV</a></li>
                   <li><a routerLink="calendar"><i class="ri-calendar-fill"></i> Calendrier</a></li>
+                  <li><a routerLink="listePatient"><i class="ri-calendar-fill"></i> Liste de patients</a></li>
 
                </ul>
             </li>

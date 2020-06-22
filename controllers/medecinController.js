@@ -1,11 +1,17 @@
 const medecinModel=require('../models/medecinModel')
 const multer = require('multer');// multer y5alini n'uplowdi taswira fl formulaire
 var fs = require("fs") // y5alini naml controle de saisie 3al les champs mte3 el formulaire
-var bcrypt = require ('bcrypt') //
-
+var bcrypt = require ('bcrypt') //permet de hacher le password
+/*Multer est un middleware node.js pour gérer les données
+ en plusieurs parties / formulaires,qui est principalement utilisé pour télécharger des fichiers.*/
 
 /* fs cest un module dans node pas besoin de l'installé
 fs : file sysyem ! cest un module qui permet le controle de saisie dans les champs de formulaire */
+/*Le module fs fournit une API pour interagir avec le système de fichiers d'une manière 
+étroitement modélisée autour des fonctions POSIX standard*/
+//The Node.js file system module allows you to work with the file system on your computer
+
+// dest: __dirname  : pour dire le fichier va etre stocker ou : eli houwe dossier courant
 
 
 module.exports={
@@ -14,7 +20,7 @@ module.exports={
 //fonctionne
 ajouter:function(req,res){
  
-  var file = __dirname + '/uploads/' + req.file.originalname;
+  var file = __dirname + '/uploads/' + req.file.originalname; //path keml mte3 l file 
     fs.readFile(req.file.path, function (err, data) {
       fs.writeFile(file, data, function (err) {
           if (err) {
@@ -75,15 +81,19 @@ listeMedecin:function(req,res){
 /**********************************modification***************************************************************/
 //fonctionne mais que les files ne veulent pas se modifie
 modifier:function(req,res){
-
+  //ken bech i3ebili l password lzm ihachih ken mech bech i3ebih bch y5ou l valeur ancienne 
+if(req.body.password!=null){ 
   var password = req.body.password
-      
-        req.body.password = bcrypt.hashSync(password,10)
+  req.body.password = bcrypt.hashSync(password,10)
+      }
+ 
   //{$set:req.body} cette ligne nous permet de garder les information qui nont pas ete modifier 
   medecinModel.updateOne({_id:req.params.id},{$set:req.body},{
     nom: req.body.nom,
     prenom: req.body.prenom,
     login:req.body.login,
+    password:req.body.password,
+
     dateNaissance:req.body.dateNaissance,
     adresse:req.body.adresse,
     telephone:req.body.telephone,

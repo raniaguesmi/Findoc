@@ -8,5 +8,7 @@ router.get('/afficher',patientController.afficher)
 router.put('/modifier',patientController.modifier)
 router.delete('/supprimer/:id',patientController.supprimer)
 router.get('/afficheParId/:id',patientController.afficheParId)
+router.post('/veriftel',patientController.verifTel)
+router.get('/patientsDeMedcin/:id',patientController.PatientsDeMedcin)
 
 module.exports = router;

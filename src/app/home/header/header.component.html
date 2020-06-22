@@ -17,13 +17,16 @@
            </button>
 
           
-           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <div class="collapse navbar-collapse" id="navbarSupportedContent" >
               <ul class="navbar-nav ml-auto navbar-list">
-                 
-                 <li class="nav-item iq-full-screen">
-                    <a href="#" class="iq-waves-effect" id="btnFullscreen"><i class="ri-fullscreen-line"></i></a>
+
+                                  <!--icon mte3 messages-->
+                 <li class="nav-item iq-full-screen" >
+                    <a class="iq-waves-effect" id="btnFullscreen"><i class="ri-fullscreen-line"></i></a>
                  </li>
-                 <li class="nav-item">
+
+                 <!--icon mte3 notif-->
+                 <li class="nav-item" *ngIf="this.type=='secrétaire'">
                     <a href="#" class="search-toggle iq-waves-effect">
                           <i class="ri-notification-3-fill"></i>
                           <span class="bg-danger dots"></span>
@@ -33,13 +36,13 @@
 
 <!-- debut notification-->
 
-                    <div class="iq-sub-dropdown">
+                    <div class="iq-sub-dropdown" >
                        <div class="iq-card shadow-none m-0">
                           <div class="iq-card-body p-0 " >
                              <div class="bg-primary p-3">
                                 <h5 class="mb-0 text-white"> Demandes Rendez-vous<small class="badge  badge-light float-right pt-1"></small></h5>
                              </div>
-                         <a class="iq-sub-card" >
+                         <a  class="iq-sub-card" >
                             
                                 <div class="media align-items-center" *ngFor="let i of rdvs">
                                    <div class="">
@@ -70,65 +73,22 @@
                     </a>
                     <div class="iq-sub-dropdown">
                        <div class="iq-card shadow-none m-0">
-                          <div class="iq-card-body p-0 ">
+                          <div class="iq-card-body p-0 "  >
                              <div class="bg-primary p-3">
                                 <h5 class="mb-0 text-white">All Messages<small class="badge  badge-light float-right pt-1">5</small></h5>
                              </div>
-                             <a href="#" class="iq-sub-card" >
-                                <div class="media align-items-center">
+                             <a routerLink="messages" class="iq-sub-card" *ngFor="let i of messages"   >
+                                <div class="media align-items-center" >
                                    <div class="">
                                       <img class="avatar-40 rounded" src="assets/images/user/01.jpg" alt="">
                                    </div>
-                                   <div class="media-body ml-3">
-                                      <h6 class="mb-0 ">Bini Emma Watson</h6>
-                                      <small class="float-left font-size-12">13 Jun</small>
+                                   <div class="media-body ml-3" routerLink="messages/{{i._id}}" >
+                                      <h6 class="mb-0 ">{{i.infoPatient.nom}} {{i.infoPatient.prenom}}</h6>
+                                      <small class="float-left font-size-12">{{i.date}}</small>
                                    </div>
                                 </div>
                              </a>
-                             <a href="#" class="iq-sub-card" >
-                                <div class="media align-items-center">
-                                   <div class="">
-                                      <img class="avatar-40 rounded" src="assets/images/user/02.jpg" alt="">
-                                   </div>
-                                   <div class="media-body ml-3">
-                                      <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
-                                      <small class="float-left font-size-12">20 Apr</small>
-                                   </div>
-                                </div>
-                             </a>
-                             <a href="#" class="iq-sub-card" >
-                                <div class="media align-items-center">
-                                   <div class="">
-                                      <img class="avatar-40 rounded" src="assets/images/user/03.jpg" alt="">
-                                   </div>
-                                   <div class="media-body ml-3">
-                                      <h6 class="mb-0 ">Why do we use it?</h6>
-                                      <small class="float-left font-size-12">30 Jun</small>
-                                   </div>
-                                </div>
-                             </a>
-                             <a href="#" class="iq-sub-card" >
-                                <div class="media align-items-center">
-                                   <div class="">
-                                      <img class="avatar-40 rounded" src="assets/images/user/04.jpg" alt="">
-                                   </div>
-                                   <div class="media-body ml-3">
-                                      <h6 class="mb-0 ">Variations Passages</h6>
-                                      <small class="float-left font-size-12">12 Sep</small>
-                                   </div>
-                                </div>
-                             </a>
-                             <a href="#" class="iq-sub-card" >
-                                <div class="media align-items-center">
-                                   <div class="">
-                                      <img class="avatar-40 rounded" src="assets/images/user/05.jpg" alt="">
-                                   </div>
-                                   <div class="media-body ml-3">
-                                      <h6 class="mb-0 ">Lorem Ipsum generators</h6>
-                                      <small class="float-left font-size-12">5 Dec</small>
-                                   </div>
-                                </div>
-                             </a>
+                           
                           </div>
                        </div>
                     </div>

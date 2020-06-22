@@ -41,14 +41,16 @@ module.exports={
 
         },
     modifier:function(req,res){
-      var password = req.body.password
-      
-        req.body.password = bcrypt.hashSync(password,10)
-         patientModel.updateOne({_id:req.body.id},{$set:req.body},
+      if(req.body.password!=null){
+        var password = req.body.password     
+       req.body.password = bcrypt.hashSync(password,10)
+     } 
+     else{ patientModel.updateOne({_id:req.body.id},{$set:req.body},
           {
           nom: req.body.nom,
           prenom: req.body.prenom,
           login:req.body.login,
+          password:req.body.password,
           dateNaissance:req.body.dateNaissance,
           adresse:req.body.adresse,
           telephone:req.body.telephone,
@@ -57,12 +59,13 @@ module.exports={
         }
         ,function(err)
         {if(err)
-          {res.json({state:'no',message:'il ya un erreur : '+err})
+          {res.send("NO")
           }
          else {
-              res.json({state:'yes',message:'la modification terminé avec succées'})
-               }
-    })
+          res.send("OK")
+        }
+    })}
+        
     
       // });     
      
@@ -84,8 +87,56 @@ module.exports={
 },
 afficheParId:function(req,res){
   patientModel.findOne({_id:req.params.id},function(err,patient){
-    if(err){res.json({state:'no',message:'il ya un erreur'+err})}
+    if(err){res.send("null")}
     else{res.json(patient)}
   })
-}
+},
+
+verifTel:function(req,res){
+  patientModel.findOne({telephone:req.body.tel},function(err,patient){
+    if(err){res.send("NO")}
+    else{res.send(patient)}
+  })
+},
+
+
+
+
+//mech shiha
+PatientsDeMedcin:function(req,res){
+   var id=req.params.id
+  patientModel.aggregate([
+    // {$match:{"medecin": id}},
+    {
+      "$addFields": {
+        "_id": {
+          "$toString": "$_id"
+        }
+      }
+    },
+    {
+      "$lookup": {
+        "from": "rdvs",
+        "localField": "_id",
+        "foreignField": "patient",
+        "as": "info"
+      }
+    },
+    
+    {
+      "$unwind": "$info"
+    },
+   {
+      "$project": {
+       _id:1,
+         nom:1 
+      }
+    }
+  ],function(err,result){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{res.json(result) }
+  });
+},
+
+
 }
