@@ -31,7 +31,7 @@ const routes: Routes = [
            {path:'calendar',component: CalendarComponent},
            {path:'email',component: EmailComponent},
            {path:'consulterRdv',component: ConsulterRdvComponent },
-           {path:'rendez-vous/patient/:id',component: PatientComponent},
+           {path:'consulterRdv/patient/:id',component: PatientComponent},
            {path:'listePatient',component: ListePatientsComponent},
            {path:'messages/:id',component: ReclamationsComponent},
 

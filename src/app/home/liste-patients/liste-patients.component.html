@@ -2,9 +2,22 @@
           <div class="iq-card">
             
              <div class="iq-card-body">
-               <div class="iq-header-title">
-                  <h4 class="card-title">Liste de patients</h4>
-               </div>                <table class="table table-hover">
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title">Liste de patients </h4>
+                  </div>
+                  <div class="iq-search-bar">
+                    <form  class="searchbox">
+                       <input type="text" class="text search-input" placeholder="Type here to search...">
+                       <a class="search-link" ><i class="ri-search-line"></i></a>
+                    </form>
+                 </div>
+                  <!-- <div>
+                      <input type="text" [(ngModel)]="Date" (input)="search()"/>
+                      {{date}}
+                  </div> -->
+               </div> 
+                           <table class="table table-hover">
                    <thead>
                       <tr>
                          <th scope="col">Nom et Prenom</th>

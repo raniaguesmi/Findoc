@@ -16,6 +16,12 @@ module.exports={
                   adresse:req.body.adresse,
                   telephone:req.body.telephone,
                   cin:req.body.cin,
+                  taille:req.body.taille,
+                  poids:req.body.poids,
+                  groupeSanguin:req.body.groupeSanguin,
+                  allergie:req.body.allergie,
+                  tel1:req.body.tel1,
+                  tel2:req.body.tel2
                  })
               patient.save(function (err) {
                 if (err) {
@@ -45,7 +51,8 @@ module.exports={
         var password = req.body.password     
        req.body.password = bcrypt.hashSync(password,10)
      } 
-     else{ patientModel.updateOne({_id:req.body.id},{$set:req.body},
+
+        patientModel.updateOne({_id:req.body.id},{$set:req.body},
           {
           nom: req.body.nom,
           prenom: req.body.prenom,
@@ -55,7 +62,13 @@ module.exports={
           adresse:req.body.adresse,
           telephone:req.body.telephone,
           cin:req.body.cin,
-          email: req.body.email,
+          // email: req.body.email,
+          taille:req.body.taille,
+          poids:req.body.poids,
+          groupeSanguin:req.body.groupeSanguin,
+          allergie:req.body.allergie,
+          tel1:req.body.tel1,
+          tel2:req.body.tel2
         }
         ,function(err)
         {if(err)
@@ -64,7 +77,7 @@ module.exports={
          else {
           res.send("OK")
         }
-    })}
+    })
         
     
       // });     

@@ -3,13 +3,16 @@ module.exports={
 
     ajouter:function(req,res){
 
-let date_ob = new Date();
-let year = date_ob.getFullYear();
-let hours = date_ob.getHours();
-let  date=year+hours
-console.log(date)
+      let date_ob = new Date();
+      let year = date_ob.getFullYear();
+      let hours = date_ob.getHours();
+      let date = ("0" + date_ob.getDate()).slice(-2);
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      let minutes = date_ob.getMinutes();
+      
+      let  datee=date+"-"+month+"-"+year+" à "+hours+":"+minutes
            const reclamation=new reclamationModel({
-            date:date,
+            date:datee,
             titre:req.body.titre,
             contenu:req.body.contenu,
             idpatient:req.body.idpatient,

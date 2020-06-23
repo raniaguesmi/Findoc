@@ -36,7 +36,7 @@ module.exports={
               }
             else
               {
-                res.json({status: "no", message: "email incorrect", data: null})
+                res.json({status: "no", message: "nom d'utilisateur est incorrect", data: null})
               }
             }
           }
