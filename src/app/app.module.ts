@@ -25,6 +25,7 @@ import { PatientComponent } from './home/patient/patient.component';
 import { ListePatientsComponent } from './home/liste-patients/liste-patients.component';
 import { ReclamationsComponent } from './home/reclamations/reclamations.component'; // for FullCalendar!
 
+import { QRCodeModule } from 'angular2-qrcode';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ReclamationsComponent } from './home/reclamations/reclamations.componen
     HttpClientModule, // pour les requetes http vest obligatoir
     ReactiveFormsModule, // importitha ater jai utilisé formbuilder wel form groupe eli houma des fonctionalité mawjoudine fl module hethe
     FormsModule,
-    FullCalendarModule // for FullCalendar!
+    FullCalendarModule ,// for FullCalendar!
+    QRCodeModule,
 
   ],
   providers: [],

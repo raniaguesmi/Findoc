@@ -78,7 +78,7 @@
                       </thead>
                       <tbody>
                          <tr *ngFor="let i of rdvs" >
-                            <td> {{i.info.nom}} {{i.info.prenom}}
+                            <td><a routerLink="patient/{{i.info._id}}">{{i.info.nom}} {{i.info.prenom}}</a> 
                                <!-- <button  data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-link mb-3">Info Patient</button> -->
                             </td>
                             <td>{{i.date}}</td>
