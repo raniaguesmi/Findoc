@@ -65,7 +65,7 @@
                            <div class="iq-card-header-toolbar d-flex align-items-center">
                              <div class="dropdown">
                                 <span class="dropdown-toggle iq-bg-primary btn"  >
-                                <i class="ri-add-line m-0 text-primary" data-toggle="modal" data-target="#exampleModalScrollable"></i>
+                                <i class="ri-add-line m-0 text-primary" data-toggle="modal" data-target="#exampleModalScrollable"  (click)="recupereInfoPatient(patient._id,patient.taille,patient.poids,patient.groupeSanguin,patient.allergie,patient.traitementEncours,patient.maladie,patient.tel1,patient.tel2)"></i>
                                 </span>  
                              </div>
                           </div>
@@ -75,21 +75,44 @@
    <div class="row">
         <div class="col-sm-12 ">
            <div class="alert alert-primary" role="alert">
-              <div class="iq-alert-text">
-                 <p>Taille : ---------------------------------
-                    Poids : ---------------------------------
-                    Groupe Sanguin : -----------------------------
-                 </p>
-                 <hr>
-                 <p class="mb-0">Allergies : -----------------------------
-                    Traitement en cours : -----------------------------
-                    Maladies  : -----------------------------
+              <div class="iq-alert-text"> 
+               <dl class="row">
+                  <dt class="col-sm-4">Taille</dt>
+                  <dd class="col-sm-8">{{patient.taille}}cm</dd>
+                  <dt class="col-sm-4">Poids</dt>
+                  <dd class="col-sm-8">  {{patient.poids}}Kg </dd>
 
-                 </p>
+                <dt class="col-sm-4">Groupe Sanguin</dt>
+                  <dd class="col-sm-8">{{patient.groupeSanguin}}</dd>
+                  <dt class="col-sm-4 text-truncate">Allergies</dt>
+                  <dd class="col-sm-8">{{patient.allergie}}</dd>
+                  <dt class="col-sm-4">Traitement en cours</dt>
+                  <dd class="col-sm-8">{{patient.traitementEncours}} </dd>
+                  <dt class="col-sm-4">Maladies</dt>
+                  <dd class="col-sm-8">{{patient.maladie}} </dd>
+                  <dt class="col-sm-4">Numéro du proches</dt>
+                  <dd class="col-sm-8">{{patient.tel1}}      *&*      {{patient.tel2}}</dd>
+                  <!-- <dt class="col-sm-4">Numéro du proche 2</dt>
+                  <dd class="col-sm-8"> </dd> -->
+               </dl>
+                 <!-- <div class="row col-lg-12">
+                  <div class="col-lg-6 ">Taille : -------{{patient.taille}}cm-------   </div> 
+                <div class="col-lg-6"> Poids : -------{{patient.poids}}Kg-------  </div></div>
+             
+                    <div>  Groupe Sanguin : -------{{patient.groupeSanguin}}-------  </div>
+               
+                 
                  <hr>
-                 <p class="mb-0">Numéro du proche 1  : ------------------------
-                    Numéro du proche 2  : -----------------------------
-                 </p>
+                 <div>Allergies : -------{{patient.allergie}}-------</div> 
+                   <div>Traitement en cours : -{{patient.traitementEncours}}-</div> 
+                 <div>Maladies  : --{{patient.maladie}}--</div>   
+
+                
+                 <hr>
+                 <div class="row col-lg-12"></div>
+                 <div class="col-lg-6"> Numéro du proche 1  : ---{{patient.tel1}}--</div>
+                 <div class="col-lg-6">  Numéro du proche 2  : --{{patient.tel2}}---</div>  -->
+                
 
               </div>
            </div>
@@ -104,21 +127,21 @@
                      </button>
                   </div>
                   <div class="modal-body">
-                     <form>
+                     <form [formGroup]="patientForm">
                         <div class="row col-lg-12">
                             <div class="form-group col-lg-6">
                            <label >Taille</label>
-                           <input type="number" class="form-control" placeholder="exemple :170" >
+                           <input type="number" class="form-control" formControlName="taille" placeholder="exemple :170" >
                         </div>
                         <div class="form-group col-lg-6">
                            <label >Poids</label>
-                           <input type="number" class="form-control" placeholder=" exemple :67"  >
+                           <input type="number" class="form-control"formControlName="poids" placeholder=" exemple :67"  >
                         </div>
                         </div>
                        
                         <div class="form-group">
                            <label >Groupe sanguin</label>
-                           <select class="form-control" >
+                           <select class="form-control" formControlName="groupeSanguin" >
                               <option selected="" disabled="">ajouter le groupe sanguin du patient </option>
                               <option>A+</option>
                               <option>A-</option>
@@ -133,32 +156,32 @@
                         </div>
                         <div class="form-group">
                            <label >Allergies(s)</label>
-                           <input type="text" class="form-control"  placeholder="veuillez mentionné ici les Allergies du patient s'il en a">
+                           <input type="text" class="form-control" formControlName="allergie" placeholder="veuillez mentionné ici les Allergies du patient s'il en a">
                         </div>
                         <div class="form-group">
                            <label>Maladie(s)</label>
-                           <input type="text" class="form-control"   placeholder="veuillez mentionné ici les maladies du patient s'il en a">
+                           <input type="text" class="form-control" formControlName="maladie"  placeholder="veuillez mentionné ici les maladies du patient s'il en a">
                         </div>
                         <div class="form-group">
                            <label >Traitement(s) en cours</label>
-                           <textarea class="form-control"  rows="1" placeholder="veuillez mentionné ici les maladie(s) du patient s'il en a"></textarea>
+                           <textarea class="form-control" formControlName="traitementEncours" rows="1" placeholder="veuillez mentionné ici les maladie(s) du patient s'il en a"></textarea>
                         </div>
                         <div class="row col-lg-12">
                            <div class="form-group col-lg-6">
                            <label >Téléphone 1 </label>
-                           <input type="tel" class="form-control"  value="(+216)-56353995">
+                           <input type="tel" class="form-control" formControlName="tel1" value="(+216)-56353995">
                         </div>
                         <div class="form-group col-lg-6">
                            <label >Téléphone 2</label>
-                           <input type="tel" class="form-control"  value="(+216)-56353995">
+                           <input type="tel" class="form-control" formControlName="tel2" value="(+216)-56353995">
                         </div></div>
                         
                       
                      </form>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                     <button type="button" class="btn btn-primary">Enregistrer</button>
+                     <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                     <button type="submit" class="btn btn-primary" (click)="ajoutInformationGeneral()">Enregistrer</button>
                   </div>
                </div>
             </div>

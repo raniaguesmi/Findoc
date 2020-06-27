@@ -19,4 +19,7 @@ export class PatientService {
   nbrPatients() {
     return this.http.get(this.baseUrl + '/patient/nbrPatients')
   }
+  modifierPatient(patient){
+    return this.http.put(this.baseUrl + '/patient/modifier',patient)
+  }
 }

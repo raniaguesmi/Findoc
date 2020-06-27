@@ -19,6 +19,7 @@ export class PatientComponent implements OnInit {
   data;
   consultations;
   consultationForm:FormGroup;
+  patientForm:FormGroup
   submitted=false;
   _id;
   constructor( private patientService:PatientService,private activroute:ActivatedRoute, private consultationService:ConsulataionService,private formBuilder:FormBuilder) { 
@@ -39,8 +40,21 @@ export class PatientComponent implements OnInit {
       diagnostique: ['',Validators.required],
       traitement: ['',Validators.required],
 });
+this.patientForm = this.formBuilder.group({
+  id: [this.id],
+  taille: [''],
+  poids: [''],
+  groupeSanguin: [''],
+  allergie: [''],
+  tel1: [''],
+  tel2: [''],
+  traitementEncours: [''],
+  maladie: [''],
+
+});
   }
   get f() { return this.consultationForm.controls; }
+
 
   afficheParId(id){
     console.log(this.id)
@@ -149,6 +163,34 @@ modiferConsultation(){
     this.submitted = false ;
     this.afficheConsultation(this.idmed,this.id);
    })
+}
+
+ajoutInformationGeneral(){
+ Swal.fire(
+      'Bien',
+      'les informations générals du patient a été mise a jour !',
+      'success'
+    )  
+  this.patientService.modifierPatient(this.patientForm.value).subscribe(res=>{
+   
+    console.log("d5al ll fonction")
+
+    console.log(res)
+  })
+}
+recupereInfoPatient(_id,taille,poids,groupeSanguin,allergie,traitementEncours,maladie,tel1,tel2){ 
+  // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
+  // this._id=_id;
+  this.patientForm.get('taille').setValue(taille);
+  this.patientForm.get('poids').setValue(poids);
+  this.patientForm.get('groupeSanguin').setValue(groupeSanguin);
+  this.patientForm.get('allergie').setValue(allergie);
+  this.patientForm.get('traitementEncours').setValue(traitementEncours);
+  this.patientForm.get('maladie').setValue(maladie);
+  this.patientForm.get('tel1').setValue(tel1);
+  this.patientForm.get('tel2').setValue(tel2);
+
+  
 }
 }
 
