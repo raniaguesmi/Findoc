@@ -1,15 +1,16 @@
 
- <div class="row">
-   <div class="col-lg-12">
+ <div class="row" >
+   <div class="col-lg-12"*ngIf="this.type=='admin'">
       <div class="row">
          <div class="col-md-6 col-lg-3">
+            <!-- *ngFor="let i of listeMedecins " -->
             <div class="iq-card">
                <div class="iq-card-body iq-bg-primary rounded">
                   <div class="d-flex align-items-center justify-content-between">
                      <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-user-fill"></i></div>
-                     <div class="text-right">                                 
-                        <h2 class="mb-0"><span class="counter">5600</span></h2>
-                        <h5 class="">Doctors</h5>
+                     <div class="text-right" >                                 
+                        <h2 class="mb-0"><span >{{nbrMed}}</span></h2>
+                        <h5 class="">Medecins </h5>
                      </div>
                   </div>
                </div>
@@ -21,8 +22,8 @@
                   <div class="d-flex align-items-center justify-content-between">
                      <div class="rounded-circle iq-card-icon bg-warning"><i class="ri-women-fill"></i></div>
                      <div class="text-right">                                 
-                        <h2 class="mb-0"><span class="counter">3450</span></h2>
-                        <h5 class="">Nurses</h5>
+                        <h2 class="mb-0"><span >{{nbrSec}}</span></h2>
+                        <h5 class="">Sécretaires</h5>
                      </div>
                   </div>
                </div>
@@ -34,7 +35,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                      <div class="rounded-circle iq-card-icon bg-danger"><i class="ri-group-fill"></i></div>
                      <div class="text-right">                                 
-                        <h2 class="mb-0"><span class="counter">3500</span></h2>
+                        <h2 class="mb-0"><span >{{nbrpatient}}</span></h2>
                         <h5 class="">Patients</h5>
                      </div>
                   </div>
@@ -47,8 +48,8 @@
                   <div class="d-flex align-items-center justify-content-between">
                      <div class="rounded-circle iq-card-icon bg-info"><i class="ri-hospital-line"></i></div>
                      <div class="text-right">                                 
-                        <h2 class="mb-0"><span class="counter">4500</span></h2>
-                        <h5 class="">Pharmacists</h5>
+                        <h2 class="mb-0"><span >{{nbrRdvs}}</span></h2>
+                        <h5 class="">Rendez-vous</h5>
                      </div>
                   </div>
                </div>
@@ -58,9 +59,9 @@
    </div>
 
 
-   <div class="col-lg-12">
+   <div class="col-lg-12" *ngIf="this.type=='medecin'">
       <div class="row">
-         <div class="col-md-6 col-lg-3">
+         <div class="col-md-6 col-lg-4">
             <div class="iq-card">
                <div class="iq-card-body">
                   <div class="iq-info-box d-flex align-items-center p-3">
@@ -69,13 +70,13 @@
                      </div>
                      <div class="info-text">
                         <h3>120</h3>
-                        <span>Total Appointments</span>
+                        <span> Rendez-vous</span>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         <div class="col-md-6 col-lg-3">
+         <div class="col-md-6 col-lg-4">
            
             <div class="iq-card">
                <div class="iq-card-body">
@@ -85,7 +86,7 @@
                      </div>
                      <div class="info-text">
                         <h3>5000</h3>
-                        <span>Completed Appointments</span>
+                        <span>Patients</span>
                      </div>
                   </div>
                </div>
@@ -94,45 +95,46 @@
 
 
          </div>
-         <div class="col-md-6 col-lg-3">
-           
+
+         <div class="col-lg-4">
             <div class="iq-card">
-               <div class="iq-card-body">
-                  <div class="iq-info-box d-flex align-items-center p-3">
-                     <div class="info-image mr-3">
-                        <img src="assets/images/page-img/32.png" class="img-fluid" alt="image-box">
-                     </div>
-                     <div class="info-text">
-                        <h3>1500</h3>
-                        <span>Cancelled Appointments</span>
-                     </div>
-                  </div>
+              
+               <div class="iq-card-body smaill-calender-home">
+                  <input type="text" class="flatpicker d-none">
                </div>
             </div>
-
-
          </div>
-         <div class="col-md-6 col-lg-3">
-            <div class="iq-card">
-               <div class="iq-card-body">
-                  <div class="iq-info-box d-flex align-items-center p-3">
-                     <div class="info-image mr-3">
-                        <img src="assets/images/page-img/33.png" class="img-fluid" alt="image-box">
-                     </div>
-                     <div class="info-text">
-                        <h3>500</h3>
-                        <span>Followup Appointments</span>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-
-
-         </div>
+        
       </div>
    </div>
 
-
+   <div class="col-lg-4" *ngIf="this.type=='admin'">
+      <div class="iq-card">
+        
+         <div class="iq-card-body smaill-calender-home">
+            <input type="text" class="flatpicker d-none">
+         </div>
+      </div>
+   </div>
   
+<div class="row col-sm-12"  *ngIf="this.type=='secrétaire'"> 
+    <div class="col-lg-6">
+      <div class="iq-card">
+        
+         <div class="iq-card-body smaill-calender-home">
+            <input type="text" class="flatpicker d-none">
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-6">
+      <div class="iq-card">
+         <div class="iq-card-body p-0 rounded ">
+            <img src="assets/images/page-img/08.jpg" class="img-fluid rounded" >
+         </div>
+      </div>
+   </div> 
+</div>
+
+ 
+
 </div>

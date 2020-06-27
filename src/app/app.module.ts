@@ -17,8 +17,6 @@ import { GererSecretaireComponent } from './home/gerer-secretaire/gerer-secretai
 import { ProfileMedecinComponent } from './home/profile-medecin/profile-medecin.component';
 import { ModifierMedecinComponent } from './home/modifier-medecin/modifier-medecin.component';
 import { ListeRdvComponent } from './home/liste-rdv/liste-rdv.component';
-import { CalendarComponent } from './home/calendar/calendar.component';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import { EmailComponent } from './home/email/email.component';
 import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.component';
 import { PatientComponent } from './home/patient/patient.component';
@@ -43,7 +41,6 @@ import { QRCodeModule } from 'angular2-qrcode';
     ProfileMedecinComponent,
     ModifierMedecinComponent,
     ListeRdvComponent,
-    CalendarComponent,
     EmailComponent,
     ConsulterRdvComponent,
     PatientComponent,
@@ -57,7 +54,6 @@ import { QRCodeModule } from 'angular2-qrcode';
     HttpClientModule, // pour les requetes http vest obligatoir
     ReactiveFormsModule, // importitha ater jai utilisé formbuilder wel form groupe eli houma des fonctionalité mawjoudine fl module hethe
     FormsModule,
-    FullCalendarModule ,// for FullCalendar!
     QRCodeModule,
 
   ],

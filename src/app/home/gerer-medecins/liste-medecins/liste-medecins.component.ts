@@ -16,7 +16,7 @@ listeSpecialite;
 submitted=false;
 _id;
 emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
-
+nbMedcins=0;
   constructor(private medecinService:MedecinService,private formBuilder:FormBuilder,private specialiteService : SpecialiteService) {
     this.afficherSpecialite();
     this.listeMedecin();
@@ -36,13 +36,19 @@ emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lema
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required]
     })
-    
+    this.nbMedcins=this.listeMedecin.length
+    console.log('nb de medecins',this.nbMedcins)
+
   }
   get f() { return this.editForm.controls; } 
   // cette fonction me permet de faire le cocntrole de saisie via html code
 
 listeMedecin(){
-  this.medecinService.listeMedecins().subscribe(res=>{this.listeMedecins=res;})
+  this.medecinService.listeMedecins().subscribe(res=>{
+    // console.log(res)
+    this.listeMedecins=res;
+    
+  })
 }
 supprimerMedecin(id){
   Swal.fire({
@@ -83,14 +89,12 @@ recupere(_id,nom,prenom,login,password,dateNaissance,adresse,telephone,cin,email
 }
   afficherSpecialite(){
     this.specialiteService.listeSpecialite().subscribe(res=>{
-      console.log(res);
       this.listeSpecialite=res; // resultat li tal3etli naffectehe l  listeSpecialité bech nbouclie aliha fl component
     })
   }
   modiferMedecin(){
     this.submitted = true
-    // if(this.submitted = true && this.editForm.valid){
-      console.log('rg,crg,v;cotglc,bv')
+    
        this.medecinService.modifierMedecin(this._id,this.editForm.value).subscribe(res=>{
          console.log(res);
          Swal.fire(

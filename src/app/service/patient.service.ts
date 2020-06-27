@@ -16,4 +16,7 @@ export class PatientService {
   listPatient(id){
     return this.http.get(this.baseUrl+'/rdv/listpatient/'+id)
   }
+  nbrPatients() {
+    return this.http.get(this.baseUrl + '/patient/nbrPatients')
+  }
 }

@@ -24,7 +24,7 @@ submitted = false;
 _id;
 user: string
 emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
-
+cinRegex=/^0\d{7,8}$/;
   constructor(private secretaireService:SecretaireService ,private formBuilder:FormBuilder) { 
     this.data=localStorage.getItem('user')
     console.log('utli',JSON.parse(this.data))
@@ -43,10 +43,10 @@ emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lema
       dateNaissance: ['', Validators.required],
       adresse: ['', [Validators.required]],
       telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+      cin: ['', [Validators.required,Validators.pattern(this.cinRegex),Validators.maxLength(8)]],
       email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
       idmed:[this.idmedec]
-
+//new RegExp("[0-9 ]{7}")
   });
 this.editForm=this.formBuilder.group({
   nom: ['', [Validators.required]],
@@ -64,7 +64,7 @@ this.editForm=this.formBuilder.group({
     console.log(this.idmedec)
   }
   get f() { return this.registerForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
-
+  get g() { return this.editForm.controls; }
   listeSecretaire()
   {
     this.secretaireService.listeSecretaire().subscribe(res=>
@@ -139,7 +139,9 @@ this.editForm=this.formBuilder.group({
 
       modifierSecretaire(){
        this.submitted = true
-    //  if(       this.submitted = true && this.editForm.valid){
+       if (this.editForm.invalid) {
+        return;
+      }
         this.secretaireService.modifierSecretaire(this._id,this.editForm.value).subscribe(res=>{
           console.log(res);
           Swal.fire(
@@ -149,11 +151,10 @@ this.editForm=this.formBuilder.group({
           )  
           this.editForm.reset() 
            this.submitted = false ;
-
           })}
-      // }
+      }
 
     
-  }
+  
     
  

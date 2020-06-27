@@ -27,4 +27,7 @@ export class SecretaireService {
   checkUsername(login){
     return this.http.get(this.baseUrl+'/secretaire/checkUsername',login)
   }
+  nbrSecretaire() {
+    return this.http.get(this.baseUrl + '/secretaire/nombreSecretaires')
+  }
 }

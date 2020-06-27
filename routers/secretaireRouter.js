@@ -9,4 +9,6 @@ router.put('/modifier/:id',upload.single('image'),secretaireController.modifier)
 router.delete('/supprimer/:id',secretaireController.supprimer)
 router.get('/afficherParMedecin/:id',secretaireController.afficherParMedecin)
 router.get('/checkUsername',secretaireController.checkUsername)
+router.get('/nombreSecretaires',secretaireController.nombreSecretaire)
+
 module.exports = router;

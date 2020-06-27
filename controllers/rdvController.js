@@ -1,6 +1,17 @@
 const rdvModel=require('../models/rdvModel')
 // var ObjectID = require("mongodb").ObjectID;
+let date_ob = new Date();
+let year = date_ob.getFullYear();
+let hours = date_ob.getHours();
+let date = ("0" + date_ob.getDate()).slice(-2);
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+let minutes = date_ob.getMinutes();
+//+" à "+hours+":"+minutes
+let  datee=date+"-"+month+"-"+year
 
+var rdvPassé=0;
+var rdvAvenir=0;
+var rdvDay=0;
 module.exports={
 ajouter:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure},function(err,reslt){
@@ -360,5 +371,39 @@ afficherParId:function(req,res){
       else{res.json(liste)}
   })
 },
+
+
+nombreRdvs:function(req,res){
+  rdvModel.count({},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{res.json(nb)}
+  })
+},
+
+rdvAvenir:function(req,res){
+  rdvModel.find({},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{
+
+      for(var i = 0; i < nb.length;i++){
+                     if(i.date<this.datee){   rdvPassé++   }
+                    //  if(i.date>this.datee){rdvAvenir++}
+                    // if(i.date==this.datee){rdvDay++} 
+
+  }
+    }
+  })
+  res.json(rdvPassé)
+
+},
+
+nombreRdvs:function(req,res){
+  rdvModel.count({},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{res.json(nb)}
+  })
+}
+
+
 
 }

@@ -108,5 +108,11 @@ module.exports={
      
    })
 
- }
+ },
+ nombreSecretaire:function(req,res){
+  secretairetModel.count({},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{res.json(nb)}
+  })
+}
 }

@@ -13,7 +13,8 @@ const patientSchema=utlisateurs.discriminator('patient', new mongoose.Schema ({
     allergie:{type:String,required:false},
     tel1:{type:Number,required:false},
     tel2:{type:Number,required:false},
-
+    traitementEncours:{type:String,required:false},
+    maladie:{type:String,required:false}
 
 
     }))

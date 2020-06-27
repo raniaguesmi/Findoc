@@ -151,7 +151,15 @@ else{
    }
   }
   )
+},
+
+nombreMedecin:function(req,res){
+  medecinModel.count({},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{res.json(nb)}
+  })
 }
+
 }
 
 

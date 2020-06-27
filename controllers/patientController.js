@@ -21,7 +21,9 @@ module.exports={
                   groupeSanguin:req.body.groupeSanguin,
                   allergie:req.body.allergie,
                   tel1:req.body.tel1,
-                  tel2:req.body.tel2
+                  tel2:req.body.tel2,
+                  traitementEncours:req.body.traitementEncours,
+                  maladie:req.body.maladie
                  })
               patient.save(function (err) {
                 if (err) {
@@ -62,13 +64,14 @@ module.exports={
           adresse:req.body.adresse,
           telephone:req.body.telephone,
           cin:req.body.cin,
-          // email: req.body.email,
           taille:req.body.taille,
           poids:req.body.poids,
           groupeSanguin:req.body.groupeSanguin,
           allergie:req.body.allergie,
           tel1:req.body.tel1,
-          tel2:req.body.tel2
+          tel2:req.body.tel2,
+          traitementEncours:req.body.traitementEncours,
+          maladie:req.body.maladie
         }
         ,function(err)
         {if(err)
@@ -111,7 +114,12 @@ verifTel:function(req,res){
     else{res.send(patient)}
   })
 },
-
+nombrePatients:function(req,res){
+  patientModel.count({},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{res.json(nb)}
+  })
+},
 
 
 

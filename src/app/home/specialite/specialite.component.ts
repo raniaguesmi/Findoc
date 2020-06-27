@@ -66,12 +66,15 @@ data;
 
   modifierSpecialite(){
     this.submitted = true
-
+    if (this.registerForm.invalid) {
+      return;
+    }
     this.specialiteService.modifierSpecialite(this._id,this.registerForm.value).subscribe(res=>{
       this.data=res;
       console.log(this.data.state)
       if(this.data.state=="no"){
        return Swal.fire('Cette spécialité existe déjà')
+       this.afficherSpecialite();
 
       }
       // this.afficherSpecialite();
@@ -84,7 +87,6 @@ data;
 this.registerForm.reset();
        this.submitted = false ;
     })   
-this.afficherSpecialite();
   
 }
   

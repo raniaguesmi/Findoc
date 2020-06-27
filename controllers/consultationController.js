@@ -29,5 +29,29 @@ console.log(date)
       
     },
 
+afficherParMedetPat:function(req,res){
+  consultationModel.find({medecin:req.params.idmed,patient:req.params.idpat},function(err,liste){
+    if(err){res.json({state:'no', message:'ya un erreur:'+err})}
+    else{res.json(liste)}
+})
+},
+supprimer:function(req,res){
+  consultationModel.deleteOne({_id:req.params.id},function(err,rslt){
+    if(err){res.json(err)}
+    else{res.json({state:"ok",message:"consultation est supprimer avec succées"})}
+  })
+},
+modifier:function(req,res){
+consultationModel.updateOne({_id:req.params.id},{$set:req.body},{
+  patient:req.body.patient,
+            medecin:req.body.medecin,
+  diagnostique:req.body.diagnostique,
+traitement:req.body.traitement,
 
+},function(err,result){
+ if(err){res.json(err)}
+ else{res.json({state:"ok",message:"la consultation a été modifié avec succées"})}
+})
+
+}
 }

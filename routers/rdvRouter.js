@@ -15,5 +15,7 @@ router.put('/reporterRdv',rdvController.reporterRdv)
 router.post('/rdvConfirmerParPatient',rdvController.rdvConfirmerParPatient)
 router.post('/rdvAttenteParPatient',rdvController.rdvAttenteParPatient)
 router.get('/afficherParId/:id',rdvController.afficherParId)
+router.get('/rdvAvenir',rdvController.rdvAvenir)
+router.get('/nombreRdvs',rdvController.nombreRdvs)
 
 module.exports=router;

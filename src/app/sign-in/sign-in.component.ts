@@ -37,7 +37,7 @@ export class SignInComponent implements OnInit {
       if (JSON.parse(JSON.stringify(res)).status === "sucess") {
         Swal.fire(
           'GOOD',
-          'Authentification avec success',
+          'Authentification avec succès',
           'success'
         ).then(()=>{        
            localStorage.setItem('user', JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(res)).data)).user));
@@ -55,7 +55,7 @@ export class SignInComponent implements OnInit {
       else {
    Swal.fire(
           'OPPS',
-          'Verifier votre Email et password',
+          'Vérifier votre nom utilisateur et votre mot de passe',
           'error'
         )
       }

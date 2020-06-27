@@ -10,5 +10,6 @@ router.delete('/supprimer/:id',patientController.supprimer)
 router.get('/afficheParId/:id',patientController.afficheParId)
 router.post('/veriftel',patientController.verifTel)
 router.get('/patientsDeMedcin/:id',patientController.PatientsDeMedcin)
+router.get('/nbrPatients',patientController.nombrePatients)
 
 module.exports = router;

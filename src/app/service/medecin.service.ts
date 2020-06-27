@@ -13,6 +13,9 @@ export class MedecinService {
   listeMedecins() {
     return this.http.get(this.baseUrl + '/medecin/listeMedecins')
   }
+  nbrMedecins() {
+    return this.http.get(this.baseUrl + '/medecin/nombreMedecins')
+  }
   // medecin=new Medecin()
   
   ajouterMedecin(medecin,image){

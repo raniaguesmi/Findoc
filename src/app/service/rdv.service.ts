@@ -35,4 +35,8 @@ export class RdvService {
   accepterRdv(id){
     return this.http.get(this.baseUrl+'/rdv/accepterRdv/'+id)
   }
+
+  nombreRdvs() {
+    return this.http.get(this.baseUrl + '/rdv/nombreRdvs')
+  }
 }
