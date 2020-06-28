@@ -17,6 +17,7 @@ submitted=false;
 _id;
 emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
 nbMedcins=0;
+data;
   constructor(private medecinService:MedecinService,private formBuilder:FormBuilder,private specialiteService : SpecialiteService) {
     this.afficherSpecialite();
     this.listeMedecin();
@@ -94,9 +95,15 @@ recupere(_id,nom,prenom,login,password,dateNaissance,adresse,telephone,cin,email
   }
   modiferMedecin(){
     this.submitted = true
-    
+    if (this.editForm.invalid) {
+      return;
+    }
        this.medecinService.modifierMedecin(this._id,this.editForm.value).subscribe(res=>{
          console.log(res);
+         this.data=res
+         if(this.data.state=="no"){
+           return Swal.fire('Ce nom dutilisateur  existe déjà')   
+          }
          Swal.fire(
            'Bien!',
            'la modification a été effectué avec succès',

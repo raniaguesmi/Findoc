@@ -109,10 +109,10 @@ Swal.fire(
 // this.rdvForm.hide();
 
  this.submitted = false ;
-this.consultationForm.reset()
 this.afficheConsultation(this.idmed,this.id);
 
  })
+ this.consultationForm.reset()
 
   }
 
@@ -172,11 +172,10 @@ ajoutInformationGeneral(){
       'success'
     )  
   this.patientService.modifierPatient(this.patientForm.value).subscribe(res=>{
-   
-    console.log("d5al ll fonction")
-
-    console.log(res)
   })
+this.patientForm.reset()
+location.reload();
+
 }
 recupereInfoPatient(_id,taille,poids,groupeSanguin,allergie,traitementEncours,maladie,tel1,tel2){ 
   // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 

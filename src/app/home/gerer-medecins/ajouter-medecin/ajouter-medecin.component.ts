@@ -23,7 +23,7 @@ submitted = false;
    image;
    fileToApload: Array<File> ; // ici je veux stocker l'image a télécharger'
    emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
-
+   data;
   ngOnInit() {
     // amalna formulaire esmha this.registerForm
 
@@ -50,39 +50,37 @@ submitted = false;
   ajouterMedecin() {
   // 
      this.submitted = true;
-     console.log(this.image)
-    console.log(this.fileToApload[0])
-    console.log(this.registerForm.value)
+   
     const email=this.registerForm.controls['email'].value;
     const login=this.registerForm.controls['login'].value;
     const password=this.registerForm.controls['password'].value;
 
-
-    console.log(email);
 if (this.registerForm.invalid) {
       return ;
    }
     this.medecinService.ajouterMedecin(this.registerForm.value, this.fileToApload[0]).subscribe(res => {
-        console.log(res);
+        this.data=res
+        if(this.data.state=="no"){
+          return Swal.fire('Ce nom dutilisateur  existe déjà')   
+         }
         Swal.fire(
           'Good job!',
           'Le medecin est ajouté avec succès!',
           'success')
-        this.submitted = false;
-        this.registerForm.reset()
-      }
-      );
-
-      this.emailForm=this.formBuilder.group({
+          this.emailForm=this.formBuilder.group({
         to:[email],
         subject:['Demande Accepté '],
         text:['vous pouvez ouvrir votre compte par ses deux informations confidentiels . votre login est ***'+login+'*** et votre mot de passe est ***'+password+'***'],
       
       })
-      console.log(this.emailForm.value)
     this.medecinService.envoieEmail(this.emailForm.value).subscribe((res)=>{
-      console.log('email res',res)
     })
+        this.submitted = false;
+        this.registerForm.reset() 
+      }
+      );
+
+      
     
   }
 

@@ -43,23 +43,21 @@
             
              <!-- ********************************gerer secretaire************************************************ !-->                  
              <li  class="active" *ngIf="this.type=='medecin'">
-               <a  class="iq-waves-effect"><i class="ri-user-3-fill"></i><span> Secrétaire</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-               <ul class="iq-submenu">
-                  <li><a routerLink="secretaire"><i class="ri-profile-fill "></i> Liste des Secrétaires</a></li>
-
-               </ul>
+               <a  class="iq-waves-effect"routerLink="secretaire"><i class="ri-user-3-fill"></i><span> Liste des Secrétaires</span></a>
+               
             </li>
 
             <!-- ********************************rdv************************************************ !-->                
             
             <li  class="active" *ngIf="this.type=='medecin'">
-               <a  class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-               <ul class="active" class="iq-submenu">
-                  <li><a routerLink="consulterRdv"><i class="ri-profile-fill"></i> Consulter Rendez-vous</a></li>
-            
+               <a  class="iq-waves-effect"routerLink="consulterRdv"><i class="fa fa-id-card"></i><span>Consulter Rendez-vous</span></a>
+              
+          </li>
 
-               </ul>
-            </li>
+          <li  class="active" *ngIf="this.type=='medecin'">
+           
+            <a  class="iq-waves-effect"routerLink="listePatient"><i class="ri-user-3-fill"></i><span>Liste des patients</span></a>
+       </li>
             <!-- ********************************Dossier Medical************************************************                   
 
             <li class="active" *ngIf="this.type=='medecin'">
@@ -99,12 +97,8 @@
     <!-- ********************************Espace secretaire************************************************ !-->                 
   
             <li class="active" *ngIf="this.type=='secrétaire'">
-               <a   class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Gérer Rendez-vous</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-               <ul class="iq-submenu">
-                  <li><a routerLink="rendez-vous"><i class="ri-file-edit-fill"></i> Consulter Liste RDV</a></li>
-                  <li><a routerLink="listePatient"><i class="ri-calendar-fill"></i> Liste des patients</a></li>
-
-               </ul>
+               <a   class="iq-waves-effect"routerLink="rendez-vous"><i class="ri-file-edit-fill"></i><span> Consulter Liste RDV</span></a>
+               
             </li>
           </ul>
        </nav>

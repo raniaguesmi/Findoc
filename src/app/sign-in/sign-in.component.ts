@@ -30,7 +30,9 @@ export class SignInComponent implements OnInit {
 
   login(){
     this.submitted = true;
- 
+    if (this.LoginForm.invalid) {
+      return;
+    }
     this.loginService.login(this.LoginForm.value).subscribe(res=>{
 
       // console.log(res)

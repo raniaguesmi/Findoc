@@ -43,7 +43,7 @@ cinRegex=/^0\d{7,8}$/;
       dateNaissance: ['', Validators.required],
       adresse: ['', [Validators.required]],
       telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
-      cin: ['', [Validators.required,Validators.pattern(this.cinRegex),Validators.maxLength(8)]],
+      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}")),Validators.maxLength(8)]],
       email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
       idmed:[this.idmedec]
 //new RegExp("[0-9 ]{7}")
@@ -84,7 +84,12 @@ this.editForm=this.formBuilder.group({
       this.submitted = true;
        if(this.registerForm.valid){
        this.secretaireService.ajouterSecretaire(this.registerForm.value).subscribe(res=>{
-        console.log(res);
+        this.data=res
+        
+        if(this.data.state=="no"){
+          return Swal.fire('Ce nom dutilisateur  existe déjà')   
+         }
+
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -94,10 +99,12 @@ this.editForm=this.formBuilder.group({
         })  
          this.submitted = false ;
             this.registerForm.reset() 
-           this.secretaireParMedecin(this.idmedec)
          }
          )
+         this.secretaireParMedecin(this.idmedec)
+
        }
+
        }
 
 
@@ -143,7 +150,12 @@ this.editForm=this.formBuilder.group({
         return;
       }
         this.secretaireService.modifierSecretaire(this._id,this.editForm.value).subscribe(res=>{
+          this.data=res
           console.log(res);
+
+          if(this.data.state=="no"){
+            return Swal.fire('Ce nom dutilisateur  existe déjà')   
+           }
           Swal.fire(
             'Bien!',
             'la modification a été effectué avec succès',
@@ -151,7 +163,10 @@ this.editForm=this.formBuilder.group({
           )  
           this.editForm.reset() 
            this.submitted = false ;
-          })}
+          })
+        // this.secretaireParMedecin(this.idmedec)
+        
+      }
       }
 
     

@@ -31,6 +31,11 @@ ajouter:function(req,res){
             }
           }
           else {
+            medecinModel.findOne({login:req.body.login},function(err,reslt){
+              if(err){res.json({state: 'non', msg: 'vous avez un erreur ' + err})}
+              else{
+                  if(reslt==null)
+                 {
             const medecin = new medecinModel({
               nom: req.body.nom,
               prenom: req.body.prenom,
@@ -54,9 +59,13 @@ ajouter:function(req,res){
                 res.json({state: 'ok', msg: 'medecin ajouté'})
               }
 
-            })
+            }
+            )}
+            else{ res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
           }
+        })
         }
+      }
       )
     })
 }, 
@@ -88,6 +97,9 @@ if(req.body.password!=null){
       }
  
   //{$set:req.body} cette ligne nous permet de garder les information qui nont pas ete modifier 
+  medecinModel.findOne({login:req.body.login},function(err,rslt){
+ if(rslt!=null) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+ else{
   medecinModel.updateOne({_id:req.params.id},{$set:req.body},{
     nom: req.body.nom,
     prenom: req.body.prenom,
@@ -110,7 +122,7 @@ if(req.body.password!=null){
 
   }
 
-)},
+)}})},
 /**********************************affichage by id ***************************************************************/
 //fonctionne
 afficheParId:function (req,res) {

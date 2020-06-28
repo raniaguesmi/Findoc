@@ -51,23 +51,26 @@ module.exports={
         var password = req.body.password
         req.body.password = bcrypt.hashSync(password,10)
             }
-       
-        secretairetModel.updateOne({_id:req.params.id},{$set:req.body},{
-          nom: req.body.nom,
-          prenom: req.body.prenom,
-          login:req.body.login,
-          password: req.body.password,
-          dateNaissance:req.body.dateNaissance,
-          adresse:req.body.adresse,
-          telephone:req.body.telephone,
-          cin:req.body.cin,
-          email: req.body.email,
-          idmed:req.body.idmed
-        },function(err)
-        {
-        if(err)  {res.json({state:'no',message:'il ya un erreur : '+err})}
-         else {res.json({state:'yes',message:'la modification terminé avec succées'}) }
-         })
+       console.log(req.body.login)
+ secretairetModel.findOne({login:req.body.login},function(err,rslt){
+ if(rslt!=null) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+ else{secretairetModel.updateOne({_id:req.params.id},{$set:req.body},{
+  nom: req.body.nom,
+  prenom: req.body.prenom,
+  login:req.body.login,
+  password: req.body.password,
+  dateNaissance:req.body.dateNaissance,
+  adresse:req.body.adresse,
+  telephone:req.body.telephone,
+  cin:req.body.cin,
+  email: req.body.email,
+  idmed:req.body.idmed
+},function(err)
+{
+if(err)  {res.json({state:'non',message:'il ya un erreur : '+err})}
+ else {res.json({state:'yes',message:'la modification terminé avec succées'}) }
+ })}
+ })
 },
 //fonctionne
   supprimer:function (req,res) {

@@ -22,6 +22,7 @@ export class AcceuilComponent implements OnInit {
     ,private patientService:PatientService,private secretaireService:SecretaireService) { }
 
   ngOnInit() {
+
         this.nombreMedecin();
         this.nombreRdvs();
         this.nombrePatients();
@@ -34,6 +35,7 @@ export class AcceuilComponent implements OnInit {
     this.medecinService.nbrMedecins().subscribe(res=>{
       this.nbrMed=res;
       console.log("nombre de medecins",this.nbrMed)
+      // location.reload();
 
    })
   }
@@ -55,3 +57,4 @@ export class AcceuilComponent implements OnInit {
    })
   }
 }
+//    location.reload();
