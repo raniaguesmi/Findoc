@@ -98,7 +98,8 @@ if(req.body.password!=null){
  
   //{$set:req.body} cette ligne nous permet de garder les information qui nont pas ete modifier 
   medecinModel.findOne({login:req.body.login},function(err,rslt){
- if(rslt!=null) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+ if(rslt!=null &&(rslt._id!=req.params.id)) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})
+console.log(rslt.cin)}
  else{
   medecinModel.updateOne({_id:req.params.id},{$set:req.body},{
     nom: req.body.nom,
@@ -170,7 +171,27 @@ nombreMedecin:function(req,res){
     if(err){res.json({state:'no', message:'there is an error'})}
     else{res.json(nb)}
   })
+},
+
+trouverParLogin:function(req,res){
+  medecinModel.findOne({login:req.params.login},function(err,medecin){
+    if(err){res.json(err)}
+    else {var med=medecin
+      res.json(med._id)}
+  })
+},
+
+modifierPassword:function(req,res){
+  var password = req.body.password
+  req.body.password = bcrypt.hashSync(password,10)
+  medecinModel.updateOne({_id:req.params.id},{$set:req.body},
+    {password:req.body.password},function(err,reslt){
+      if (err){res.json(err)}
+      else{res.json({state:"ok",message:"password modifié avec succée"})}
+    })
 }
+
+
 
 }
 

@@ -16,7 +16,7 @@ export class ListePatientsComponent implements OnInit {
   ngOnInit() {
     this.data=localStorage.getItem('user')
     this.utilisateur=JSON.parse(this.data)
-   this.idmedec=this.utilisateur.idmed;
+   this.idmedec=this.utilisateur._id;
     this.listpatient(this.idmedec)
   }
   listpatient(id){

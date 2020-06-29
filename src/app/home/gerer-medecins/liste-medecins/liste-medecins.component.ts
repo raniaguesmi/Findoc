@@ -28,7 +28,7 @@ data;
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       login: ['', Validators.required],
-      password: ['', [Validators.required,Validators.minLength(6)]],
+      // password: ['', [Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
       telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
@@ -73,13 +73,13 @@ supprimerMedecin(id){
   this.listeMedecins();
 
 }
-recupere(_id,nom,prenom,login,password,dateNaissance,adresse,telephone,cin,email,adresseCabinet,specialite){ 
+recupere(_id,nom,prenom,login,dateNaissance,adresse,telephone,cin,email,adresseCabinet,specialite){ 
   // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
   this._id=_id;
   this.editForm.get('nom').setValue(nom);
   this.editForm.get('prenom').setValue(prenom);
   this.editForm.get('login').setValue(login);
-  this.editForm.get('password').setValue(password);
+  // this.editForm.get('password').setValue('');
   this.editForm.get('dateNaissance').setValue(dateNaissance);
   this.editForm.get('adresse').setValue(adresse);
   this.editForm.get('telephone').setValue(telephone);

@@ -14,11 +14,12 @@ import { ConsulterRdvComponent } from './home/consulter-rdv/consulter-rdv.compon
 import { PatientComponent } from './home/patient/patient.component';
 import { ListePatientsComponent } from './home/liste-patients/liste-patients.component';
 import { ReclamationsComponent } from './home/reclamations/reclamations.component';
+import { ForgePasswordComponent } from './forge-password/forge-password.component';
 
 
 const routes: Routes = [
  {path:'',component:SignInComponent},
-
+ {path:'motDePasse',component:ForgePasswordComponent},
 {path:'acceuil',component:HomeComponent, canActivate:[AuthgradService],children : [
            {path:'',component:AcceuilComponent},
            {path : '',loadChildren : './home/gerer-medecins/gerer-medecins.module#GererMedecinsModule'},

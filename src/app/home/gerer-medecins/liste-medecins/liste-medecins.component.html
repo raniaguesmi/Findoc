@@ -36,154 +36,17 @@
                     </div>
                     <button type="button" class="btn btn-outline-primary rounded-pill mb-3">Modifier</button> -->
                     <div class="row"> <div class="col-md-4">
-                     <button type="button" class="btn btn-outline-primary rounded-pill mb-3" data-toggle="modal" data-target="#exampleModalCenteredScrollable" (click)="recupere(i._id,i.nom,i.prenom,i.login,i.password,i.dateNaissance,i.adresse,i.telephone,i.cin,i.email,i.adresseCabinet,i.specialite)">Modifier</button></div>
+                     <button type="button" class="btn btn-outline-primary rounded-pill mb-3" data-toggle="modal" data-target="#modifMedecin" (click)="recupere(i._id,i.nom,i.prenom,i.login,i.dateNaissance,i.adresse,i.telephone,i.cin,i.email,i.adresseCabinet,i.specialite)">Modifier</button></div>
                     <div class="col-md-8"><button type="button" class="btn btn-outline-dark rounded-pill mb-3"(click)="supprimerMedecin(i._id)">Supprimer</button>
                     </div></div>
                 </div>
              </div>
           </div>
          
-          <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"   aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <h5 class="modal-title">Modal title</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                     <form [formGroup]="editForm">
-
-                     <div class="row">
-                           <div class="col-lg-4">
-                           <div class="card text-white bg-primary iq-mb-3" >
-                              <div class="card-body">
-                                 <h4 class="card-title text-white">Primary card title</h4>
-                              <div class="row">
-                                 <div class="tab-pane fade active show" >
-                                    <div class="iq-card">
-                                    
-                                       <div class="iq-card-body">
-                                            
-                                             <div class=" row align-items-center">
-                                                <div  class="form-group col-sm-6">
-                                                   <label for="fname">Nom d'utilisateur:</label>
-                                                   <input type="text" class="form-control"  formControlName="login">
-                                                </div>
-                                                <div  class="form-group col-sm-6">
-                                                   <label for="fname">CIN:</label>
-                                                   <input type="text" class="form-control"  formControlName="cin">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="fname">Nom:</label>
-                                                   <input type="text" class="form-control"  formControlName="nom">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="lname">Prenom:</label>
-                                                   <input type="text" class="form-control"  formControlName="prenom">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="dob">Date De naissance:</label>
-                                                   <input  class="form-control"  formControlName="dateNaissance">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="uname">Adresse:</label>
-                                                   <input type="text" class="form-control"  formControlName="adresse">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="dob">Date De naissance:</label>
-                                                   <input  class="form-control"  formControlName="dateNaissance">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="uname">Adresse:</label>
-                                                   <input type="text" class="form-control"  formControlName="adresse">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="dob">Date De naissance:</label>
-                                                   <input  class="form-control"  formControlName="dateNaissance">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="uname">Adresse:</label>
-                                                   <input type="text" class="form-control"  formControlName="adresse">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="dob">Date De naissance:</label>
-                                                   <input  class="form-control"  formControlName="dateNaissance">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                   <label for="uname">Adresse:</label>
-                                                   <input type="text" class="form-control"  formControlName="adresse">
-                                                </div>
-                                             </div>
-                                            
-                                       </div>
-                                    </div>
-                                 </div>
-
-                                 
-                              </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-lg-4">
-                           <div class="card iq-mb-3 text-white bg-secondary" >
-                              <div class="card-body">
-                                 <h4 class="card-title text-white">Secondary card title</h4>
-                                 <div class="row">
-
-                                    <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                                       <div class="iq-card">
-                                          <div class="iq-card-header d-flex justify-content-between">
-                                             <div class="iq-header-title">
-                                                <h4 class="card-title">Changer Mot de passe</h4>
-                                             </div>
-                                          </div>
-                                          <div class="iq-card-body">
-                                                <div class="form-group">
-                                                   <label for="cpass">Mot de passe actuel:</label>
-                                                   <a  class="float-right">Forgot Password</a>
-                                                   <input type="Password" class="form-control"  formControlName="password">
-                                                </div>
-                                                <div class="form-group">
-                                                   <label for="npass">Nouveau Mot de passe:</label>
-                                                   <input type="Password" class="form-control" >
-                                                </div>
-                                                <div class="form-group">
-                                                   <label for="vpass">Verifier Mot de passe:</label>
-                                                   <input type="Password" class="form-control" >
-                                                </div>
-                                               
-                                          </div>
-                                       </div>
-                                    </div>
-
-
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-lg-4">
-                           <div class="card iq-mb-3 text-white bg-danger" >
-                              <div class="card-body">
-                                 <h4 class="card-title text-white">Danger card title</h4>
-                              
-                              </div>
-                           </div>
-                        </div>
-                     </div>   </form>                   <!--fin de modal body-->
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                     <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-          
-       </div>
+       
 
 <!--edit modal-->
-       <div id="exampleModalCenteredScrollable" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+       <div id="modifMedecin" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
 
@@ -282,15 +145,7 @@
                                                        </div> 
                                                      </select>       
            </div>
-           <!--password-->
-           <div class="form-group col-sm-6">
-                           <label class="text-primary">Mot de passe:</label>
-                           <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-           </div>
-           <!-- <div class="form-group col-sm-6">
-           <label for="uname"class="text-primary">Confirmer mot de passe:</label>
-           <input type="password" class="form-control"  >
-           </div> -->
+        
            </div>
              <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
              <button type="submit" class="btn btn-primary" >Enregistrer les modifications</button>

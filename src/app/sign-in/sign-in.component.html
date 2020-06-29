@@ -1,8 +1,3 @@
- <!-- loader Start -->
- <!-- <div id="loading">
-    <div id="loading-center">
-    </div>
- </div> -->
 
    <section class="sign-in-page">
        <div class="container sign-in-page-bg mt-5 p-0 animate__bounce">
@@ -36,7 +31,7 @@
                             </div>
                            <div class="form-group">
                                <label for="exampleInputPassword1">Mot de passe :</label>
-                               <a href="#" class="float-right">Mot de passe oublié?</a>
+                               <a routerLink="motDePasse">Mot de passe oublié?</a>
                                <input type="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Entrez votre mot de passe" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                          
                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">

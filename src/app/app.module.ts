@@ -24,6 +24,7 @@ import { ListePatientsComponent } from './home/liste-patients/liste-patients.com
 import { ReclamationsComponent } from './home/reclamations/reclamations.component'; // for FullCalendar!
 
 import { QRCodeModule } from 'angular2-qrcode';
+import { ForgePasswordComponent } from './forge-password/forge-password.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { QRCodeModule } from 'angular2-qrcode';
     ConsulterRdvComponent,
     PatientComponent,
     ListePatientsComponent,
-    ReclamationsComponent
+    ReclamationsComponent,
+    ForgePasswordComponent
 
   ],
   imports: [
