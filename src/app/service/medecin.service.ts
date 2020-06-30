@@ -51,7 +51,7 @@ export class MedecinService {
     return this.http.post(this.baseUrl+ '/sendEmail',email)
   }
   comparerPassword(id,oldpassword){
-    return this.http.get(this.baseUrl+'/medecin/comparePassword/'+id,oldpassword)
+    return this.http.get(this.baseUrl+'/medecin/comparePassword/'+id+'/'+oldpassword)
   }
   trouverParLogin(login){
     return this.http.get(this.baseUrl+'/medecin/trouverParLogin/'+login)

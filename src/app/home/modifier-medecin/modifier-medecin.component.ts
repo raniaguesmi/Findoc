@@ -80,17 +80,17 @@ editPassForm;
   get f() { return this.EditForm.controls; }
 modifier(){
   this.submitted = true
-//   console.log(this.EditForm.get('oldpassword').value)
+  console.log(this.EditForm.get('oldpassword'))
 //   console.log(this.medecin._id)
 
-// this.medecinService.comparerPassword(this.medecin._id,this.EditForm.get('oldpassword').value).subscribe(res=>{
-//   this.data=res;
-//       console.log(this.data.state)
-//       if(this.data.state=="no"){
-//        return Swal.fire('le mot de passe est incorrect')
+this.medecinService.comparerPassword(this.medecin._id,this.EditForm.get('oldpassword').value).subscribe(res=>{
+  this.data=res;
+      console.log(this.data.state)
+      if(this.data.state=="no"){
+       return Swal.fire('le mot de passe est incorrect')
 
-//       }
-// })
+      }
+})
 
 
   this.medecinService.modifierMedecin(this.id,this.EditForm.value).subscribe(res=>{

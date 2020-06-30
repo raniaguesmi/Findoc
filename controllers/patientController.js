@@ -7,6 +7,11 @@ const upload = multer({dest: __dirname + '/uploads/images'});
 module.exports={
 //fonctionne
     ajouter : function (req,res) {
+      patientModel.findOne({login:req.body.login},function(err,reslt){
+        if(err){res.json({state: 'non', msg: 'vous avez un erreur ' + err})}
+        else{
+            if(reslt==null)
+           {
                 const patient=new patientModel({
                   nom: req.body.nom,
                   prenom: req.body.prenom,
@@ -35,11 +40,12 @@ module.exports={
                   //res.json([{state: 'ok', msg: 'patient ajouté avec succées'}])
                 }
     
-              })
-            
+              })}
+              else{ res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+
           
         
-      },
+      }})},
     //fonctionne
     afficher:function(req,res){
         patientModel.find({},function(err,liste){
@@ -53,7 +59,9 @@ module.exports={
         var password = req.body.password     
        req.body.password = bcrypt.hashSync(password,10)
      } 
-
+     patientModel.findOne({login:req.body.login},function(err,rslt){
+      if(rslt!=null) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+      else{
         patientModel.updateOne({_id:req.body.id},{$set:req.body},
           {
           nom: req.body.nom,
@@ -80,11 +88,7 @@ module.exports={
          else {
           res.send("OK")
         }
-    })
-        
-    
-      // });     
-     
+    })}})
 },
 //fonctionne
   supprimer:function (req,res) {

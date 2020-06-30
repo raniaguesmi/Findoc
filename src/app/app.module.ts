@@ -25,6 +25,7 @@ import { ReclamationsComponent } from './home/reclamations/reclamations.componen
 
 import { QRCodeModule } from 'angular2-qrcode';
 import { ForgePasswordComponent } from './forge-password/forge-password.component';
+import { ChangerMotdpasseComponent } from './home/changer-motdpasse/changer-motdpasse.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ForgePasswordComponent } from './forge-password/forge-password.componen
     PatientComponent,
     ListePatientsComponent,
     ReclamationsComponent,
-    ForgePasswordComponent
+    ForgePasswordComponent,
+    ChangerMotdpasseComponent
 
   ],
   imports: [

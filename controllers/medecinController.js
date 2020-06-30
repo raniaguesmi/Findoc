@@ -153,12 +153,11 @@ else{res.json(liste)}
 
 /*comparer password */
  comparerPassword:function(req,res){
-  // var password = req.body.password
-  // pass = bcrypt.hashSync(password,10)
+  var password = req.params.password
   medecinModel.findOne({_id:req.params.id},function(err,info){
 if(err){res.json(err)}
-else{
-   if (bcrypt.compareSync(req.body,info.password))
+else{console.log(info)
+   if (bcrypt.compareSync(password,info.password))
    { res.json({state:'ok'})  }  
     else { res.json({state:'no'}) } 
    }
@@ -190,91 +189,4 @@ modifierPassword:function(req,res){
       else{res.json({state:"ok",message:"password modifié avec succée"})}
     })
 }
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//db.users.find({"name": /.*m.*/})
-// medecinModel.find({"adresse":{ $regex: /adresse$/ }},function(err,liste){
-//   if(err){res.json({state:'no',message:'erreur ***'+err})}
-// else{res.json(liste)}
-
-// })
-// medecinModel.aggregate([
-
-//   {$match:{"adresse":req.params.adresse}},
-//   //  { "$project": {
-//   //       _id : 0,
-//   //       nom: 1,
-//   //   }
-//   // }
-
-// medecinModel.find({adresse:req.body.adresse},function(err,liste){
-//   if(err){res.json({state:'no',message:'there is an error'+err})}
-//   else{res.json(liste)}
-// })
-// medecinModel.aggregate([
-
-//     {$match:{"adresse":req.params.adresse}},
-//     {$project:{
-//       _id:1,
-//       nom:1,
-//       prenom:1,
-
-//     }}
-// //   ],function(err,liste){
-//       if(err){res.json({state:'no',message:'erreur ***'+err})}
-//       else{res.json(liste)}
-//     })},
-
-// ])

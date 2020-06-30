@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MedecinService } from '../service/medecin.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 // import randomString from 'randomstring';
 
 @Component({
@@ -65,6 +66,10 @@ console.log('tbcrgf',this.result)
         })
         this.medecinService.envoieEmail(this.emailForm.value).subscribe((res)=>{
           console.log(res)
+          Swal.fire(
+            'Good job!',
+            'un nouveau mot de passe vous a été envoyé sur email!',
+            'success')
           this.router.navigate([''])
 
         })

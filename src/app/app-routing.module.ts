@@ -15,6 +15,7 @@ import { PatientComponent } from './home/patient/patient.component';
 import { ListePatientsComponent } from './home/liste-patients/liste-patients.component';
 import { ReclamationsComponent } from './home/reclamations/reclamations.component';
 import { ForgePasswordComponent } from './forge-password/forge-password.component';
+import { ChangerMotdpasseComponent } from './home/changer-motdpasse/changer-motdpasse.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,8 @@ const routes: Routes = [
            {path:'consulterRdv/patient/:id',component: PatientComponent},
            {path:'listePatient',component: ListePatientsComponent},
            {path:'messages/:id',component: ReclamationsComponent},
+           {path:'changerMotdpasse/:id',component: ChangerMotdpasseComponent},
+
 
 
 
