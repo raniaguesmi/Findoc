@@ -7,11 +7,12 @@ let date = ("0" + date_ob.getDate()).slice(-2);
 let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 let minutes = date_ob.getMinutes();
 //+" à "+hours+":"+minutes
-let  datee=date+"-"+month+"-"+year
+let  datee=year+"-"+month+"-"+date
 
 var rdvPassé=0;
 var rdvAvenir=0;
 var rdvDay=0;
+ var liste=[];
 module.exports={
 ajouter:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure},function(err,reslt){
@@ -381,19 +382,19 @@ nombreRdvs:function(req,res){
 },
 
 rdvAvenir:function(req,res){
-  rdvModel.find({},function(err,nb){
+  rdvModel.find({patient:req.params.id},function(err,lst){
     if(err){res.json({state:'no', message:'there is an error'})}
-    else{
-
-      for(var i = 0; i < nb.length;i++){
-                     if(i.date<this.datee){   rdvPassé++   }
-                    //  if(i.date>this.datee){rdvAvenir++}
-                    // if(i.date==this.datee){rdvDay++} 
-
-  }
-    }
+    else{ 
+      for(var i = 0; i < lst.length;i++){
+        console.log(datee)
+      if(lst[i].date > datee && lst[i].state=="confirmé"){ liste.push(lst[i])
+          console.log(liste)
+  
+    }}
+  
+        res.json(liste)}
+  liste=[]
   })
-  res.json(rdvPassé)
 
 },
 
@@ -401,6 +402,37 @@ nombreRdvs:function(req,res){
   rdvModel.count({},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
     else{res.json(nb)}
+  })
+},
+//rdv confirmé et par patient 
+rdvFortoday:function(req,res){
+rdvModel.find({patient:req.params.id},function(err,lst){
+  if(err){res.json({state:'no', message:'there is an error'})}
+  else{ 
+    for(var i = 0; i < lst.length;i++){
+      console.log(datee)
+    if(lst[i].date==datee && lst[i].state=="confirmé"){ liste.push(lst[i])
+        console.log(liste)
+
+  }}
+
+      res.json(liste)}
+liste=[]
+})
+},
+rdvPasseParPatient:function(req,res){
+  rdvModel.find({patient:req.params.id},function(err,lst){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{ 
+      for(var i = 0; i < lst.length;i++){
+        console.log(datee)
+      if(lst[i].date < datee && lst[i].state=="confirmé"){ liste.push(lst[i])
+          console.log(liste)
+  
+    }}
+  
+        res.json(liste)}
+  liste=[]
   })
 }
 
