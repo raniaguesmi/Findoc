@@ -8,11 +8,11 @@ let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 let minutes = date_ob.getMinutes();
 //+" à "+hours+":"+minutes
 let  datee=year+"-"+month+"-"+date
+let nbAvnir=0;
 
-var rdvPassé=0;
-var rdvAvenir=0;
-var rdvDay=0;
  var liste=[];
+ var liste2=[];
+
 module.exports={
 ajouter:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure},function(err,reslt){
@@ -246,7 +246,6 @@ rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},funct
 
 })  
 },
-
 reporterRdv:function(req,res){
   rdvModel.updateOne({_id:req.body.id},{$set:req.body}
     ,{date:req.body.date,
@@ -260,7 +259,6 @@ reporterRdv:function(req,res){
   
   })  
   },
-
 rdvConfirmerParPatient:function(req,res){
   var id=req.body.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
@@ -319,9 +317,6 @@ rdvAttenteParPatient:function(req,res){
       //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
     {$match:{"patient": id}},
     {$match:{"state": "en attente"}},
-
-    //lene amlt filed e5er bech njm nestoki fih patient mahou houwe ken string mnjmch n5dm bih 5tr bch n9arnou bl object id
-    //donc mchet bedltlou type mte3ou objectId
     {
       "$addFields": {
         "medecin": {
@@ -329,8 +324,7 @@ rdvAttenteParPatient:function(req,res){
         }
       }
     },
-    //lookup 3ibara ala jointure : lene 9otlou bara lel collection utilisateurs lewjli 3ala valeur mte3 l patient li houwe mte3i fl collection mte3i 
-    //fel chapm esmou _id eli houwa foreignkey fl collection lo5ra utilisateurs hekke ymchi yjbedhomm 
+
     {
       "$lookup": {
         "from": "utilisateurs",
@@ -339,17 +333,13 @@ rdvAttenteParPatient:function(req,res){
         "as": "info"
       }
     },
-    //lene bech ijibli l info sous form dun array wahna lerray s3ib n5dmou bih objectId njmou njbdou facile donc  loperateur
-    //$unwind ye5ou l array iroudou string mes kan linfo rahouu haka aleh tala3heli heke 
+
     {
       "$unwind": "$info"
     },
-    /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
-     * Which 0 means, do not put and 1 means put.
-      */
+
     {
       "$project": {
-          //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
           _id : 1,
           date: 1,
         heure: 1,
@@ -364,16 +354,12 @@ rdvAttenteParPatient:function(req,res){
   });
 
 },
-
-
 afficherParId:function(req,res){
   rdvModel.findOne({_id:req.params.id},function(err,liste){
       if(err){res.json({state:'no', message:'ya un erreur:'+err})}
       else{res.json(liste)}
   })
 },
-
-
 nombreRdvs:function(req,res){
   rdvModel.count({},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
@@ -389,10 +375,8 @@ rdvAvenir:function(req,res){
         console.log(datee)
       if(lst[i].date > datee && lst[i].state=="confirmé"){ liste.push(lst[i])
           console.log(liste)
-  
     }}
-  
-        res.json(liste)}
+   res.json(liste)}
   liste=[]
   })
 
@@ -413,29 +397,186 @@ rdvModel.find({patient:req.params.id},function(err,lst){
       console.log(datee)
     if(lst[i].date==datee && lst[i].state=="confirmé"){ liste.push(lst[i])
         console.log(liste)
-
   }}
 
       res.json(liste)}
 liste=[]
 })
 },
-rdvPasseParPatient:function(req,res){
-  rdvModel.find({patient:req.params.id},function(err,lst){
+rdvPasse:function(req,res){
+  var id=req.body.id
+  rdvModel.aggregate([
+      //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+    {$match:{"patient": id}},
+    {$match:{"state": "confirmé"}},
+
+    {
+      "$addFields": {
+        "medecin": {
+          "$toObjectId": "$medecin"
+        }
+      }
+    },
+   
+    {
+      "$lookup": {
+        "from": "utilisateurs",
+        "localField": "medecin",
+        "foreignField": "_id",
+        "as": "info"
+      }
+    },
+   
+    {
+      "$unwind": "$info"
+    },
+   
+    // {
+    //   "$project": {
+    //       //lene 9otlha afichili datew motif wlinfo haka aleh hatene 9odemha 1 ataw njarbou n7otou 9odem wa7de menha 0 wnchoufou chtatine
+    //       _id : 0,
+    //       date: 1,
+    //     heure: 1,
+    //     motif: 1,
+    //     info: 1
+    //   }
+    // }
+  ],function(err,lst){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{ 
+        for(var i = 0; i < lst.length;i++){
+                console.log(datee)
+              if(lst[i].date < datee && lst[i].state=="confirmé")
+              { liste.push(lst[i])
+                  console.log(liste) }
+          
+           
+         }
+         res.json(liste)
+          liste=[]
+
+  }});
+},
+
+prochainRDV:function(req,res){
+  var id=req.body.id
+  rdvModel.aggregate([
+      //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+    {$match:{"patient": id}},
+    {$match:{"state": "confirmé"}},
+
+    {
+      "$addFields": {
+        "medecin": {
+          "$toObjectId": "$medecin"
+        }
+      }
+    },
+   
+    {
+      "$lookup": {
+        "from": "utilisateurs",
+        "localField": "medecin",
+        "foreignField": "_id",
+        "as": "info"
+      }
+    },
+   
+    {
+      "$unwind": "$info"
+    },
+ 
+  ],function(err,lst){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{ 
+        for(var i = 0; i < lst.length;i++){
+                console.log(datee)
+              if(lst[i].date >= datee && lst[i].state=="confirmé")
+              { liste.push(lst[i])
+                  console.log(liste) }
+          
+           
+         }
+         res.json(liste)
+          liste=[]
+
+  }});
+},
+
+rdvFortodayParMed:function(req,res){
+  var id=req.params.id
+  rdvModel.aggregate([
+      //awel heje filtret 3la 7seb l medcin mte3i bech ijbdli kan mte3 rania par exemple
+    {$match:{"medecin": id}},
+    {$match:{"state": "confirmé"}},
+
+    {
+      "$addFields": {
+        "patient": {
+          "$toObjectId": "$patient"
+        }
+      }
+    },
+   
+    {
+      "$lookup": {
+        "from": "utilisateurs",
+        "localField": "patient",
+        "foreignField": "_id",
+        "as": "info"
+      }
+    },
+   
+    {
+      "$unwind": "$info"
+    },
+    { "$sort": { "heure" : 1 } }
+  ],function(err,lst){
+      if(err){res.json({state:'no',message:'errc!!!'+err})}
+      else{ 
+        for(var i = 0; i < lst.length;i++){
+                console.log(datee)
+              if(lst[i].date == datee && lst[i].state=="confirmé")
+              { liste.push(lst[i])
+                  console.log(liste) }
+          
+           
+         }
+         res.json(liste)
+          liste=[]
+
+  }});
+
+
+},
+
+nombreRdvsaAvenirParMed:function(req,res){
+  rdvModel.find({medecin:req.params.id},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
-    else{ 
-      for(var i = 0; i < lst.length;i++){
-        console.log(datee)
-      if(lst[i].date < datee && lst[i].state=="confirmé"){ liste.push(lst[i])
-          console.log(liste)
-  
-    }}
-  
-        res.json(liste)}
-  liste=[]
+    else{
+      for(var i = 0; i < nb.length;i++){
+      if(nb[i].date > datee && nb[i].state=="confirmé")
+      { liste2.push(nb[i])
+        }
+ }
+      res.json(liste2.length)
+      liste2=[]
+    }
   })
-}
-
-
+},
+nombreRdvsPasserParMed:function(req,res){
+  rdvModel.find({medecin:req.params.id},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{
+      for(var i = 0; i < nb.length;i++){
+      if(nb[i].date <datee && nb[i].state=="confirmé")
+      { liste2.push(nb[i])
+        }
+ }
+      res.json(liste2.length)
+      liste2=[]
+    }
+  })
+},
 
 }

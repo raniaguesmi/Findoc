@@ -26,17 +26,14 @@ editPassForm;
     nom: ['', Validators.required],
     prenom: ['', Validators.required],
     login: ['', [Validators.required]],
-    password: ['', [Validators.required]],
     dateNaissance: ['', [Validators.required]],
     adresse: ['', [Validators.required]],
     telephone: ['', [Validators.required ]],
     cin: ['', [Validators.required ]],
     email: ['', [Validators.required]],
     adresseCabinet: ['', [Validators.required]],
-    specialite: ['', [Validators.required]],
-    passwordConfirm:['',[Validators.required]],
-    oldpassword:['',[Validators.required]]
-  },passwordMatchValidator);
+    specialite: ['', [Validators.required]], 
+  });
   }
 
   ngOnInit() {
@@ -62,7 +59,6 @@ editPassForm;
     this.EditForm.get('nom').setValue(nom);
     this.EditForm.get('prenom').setValue(prenom);
     this.EditForm.get('login').setValue(login);
-    this.EditForm.get('password').setValue("");
     this.EditForm.get('dateNaissance').setValue(dateNaissance);
     this.EditForm.get('adresse').setValue(adresse);
     this.EditForm.get('telephone').setValue(telephone);
@@ -79,21 +75,12 @@ editPassForm;
    
   get f() { return this.EditForm.controls; }
 modifier(){
+
   this.submitted = true
-  console.log(this.EditForm.get('oldpassword'))
-//   console.log(this.medecin._id)
-
-this.medecinService.comparerPassword(this.medecin._id,this.EditForm.get('oldpassword').value).subscribe(res=>{
-  this.data=res;
-      console.log(this.data.state)
-      if(this.data.state=="no"){
-       return Swal.fire('le mot de passe est incorrect')
-
-      }
-})
-
-
-  this.medecinService.modifierMedecin(this.id,this.EditForm.value).subscribe(res=>{
+  if (this.EditForm.invalid) {
+    return;
+  }
+ this.medecinService.modifierMedecin(this.id,this.EditForm.value).subscribe(res=>{
     console.log(res);
     Swal.fire(
       'Good job!',

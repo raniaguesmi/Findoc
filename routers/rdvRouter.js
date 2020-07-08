@@ -1,7 +1,5 @@
 const rdvController=require('../controllers/rdvController')
 const router=require('express').Router()
-
-
 router.post('/ajouter',rdvController.ajouter)
 router.get('/afficher',rdvController.afficher)
 router.get('/rdvParMed/:id',rdvController.rdvParMed)
@@ -18,6 +16,9 @@ router.get('/afficherParId/:id',rdvController.afficherParId)
 router.get('/nombreRdvs',rdvController.nombreRdvs)
 router.get('/rdvAvenir/:id',rdvController.rdvAvenir)
 router.get('/rdvtoday/:id',rdvController.rdvFortoday)
-router.get('/rdvPasser/:id',rdvController.rdvPasseParPatient)
-
+router.post('/rdvPasser',rdvController.rdvPasse)
+router.post('/prochainRDV',rdvController.prochainRDV)
+router.get('/rdvtodayParMed/:id',rdvController.rdvFortodayParMed)
+router.get('/rdvAvenirParMed/:id',rdvController.nombreRdvsaAvenirParMed)
+router.get('/rdvPasserParMed/:id',rdvController.nombreRdvsPasserParMed)
 module.exports=router;

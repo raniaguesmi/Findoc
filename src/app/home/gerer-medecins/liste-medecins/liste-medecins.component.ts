@@ -31,14 +31,15 @@ data;
       // password: ['', [Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
-      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))] ],
+      telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$"))]],
+      cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))] ],
       email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required]
     })
     this.nbMedcins=this.listeMedecin.length
     console.log('nb de medecins',this.nbMedcins)
+    this.listeMedecins();
 
   }
   get f() { return this.editForm.controls; } 
@@ -66,11 +67,11 @@ supprimerMedecin(id){
     if (result.value) {
     return  this.medecinService.supprimerMedecin(id)
       .subscribe(res => {
-
+        this.listeMedecins();
       })
+
     }
   })
-  this.listeMedecins();
 
 }
 recupere(_id,nom,prenom,login,dateNaissance,adresse,telephone,cin,email,adresseCabinet,specialite){ 

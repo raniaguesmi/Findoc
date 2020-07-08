@@ -35,10 +35,7 @@ const routes: Routes = [
            {path:'listePatient',component: ListePatientsComponent},
            {path:'messages/:id',component: ReclamationsComponent},
            {path:'changerMotdpasse/:id',component: ChangerMotdpasseComponent},
-
-
-
-
+           {path:'patient/:id',component: PatientComponent},
 
 
     ]

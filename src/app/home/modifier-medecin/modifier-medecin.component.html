@@ -48,30 +48,45 @@
                               <div class=" row col-md-6">
                                  <div class="form-group ">
                                     <label for="fname">Nom d'utilisateur:</label>
-                                    <input disabled type="text" class="form-control"  formControlName="login" >
+                                    <input disabled type="text" class="form-control"  formControlName="login" [ngClass]="{ 'is-invalid': submitted && f.login.errors }"  >
                                  </div>
                                  <div class="form-group ">
                                     <label for="fname">CIN:</label>
-                                    <input disabled type="text" class="form-control"  formControlName="cin" >
+                                    <input disabled type="text" class="form-control"  formControlName="cin" [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" >
+                                    <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                                       <div *ngIf="f.cin.errors.required">le champ est obligatoire</div>
+                                     </div>
                                  </div>
                               </div>
                            </div>
                            <div class=" row align-items-center">
                               <div class="form-group col-sm-6">
                                  <label for="fname">Nom:</label>
-                                 <input type="text" class="form-control"  formControlName="nom" >
+                                 <input type="text" class="form-control"  formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" >
+                                 <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                                    <div *ngIf="f.nom.errors.required">le champ est obligatoire</div>
+                                  </div>
                               </div>
                               <div class="form-group col-sm-6">
                                  <label for="lname">Prenom:</label>
-                                 <input type="text" class="form-control"  formControlName="prenom" >
+                                 <input type="text" class="form-control"  formControlName="prenom" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" >
+                                 <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                                    <div *ngIf="f.prenom.errors.required">le champ est obligatoire</div>
+                                  </div>
                               </div>
                               <div class="form-group col-sm-6">
                                  <label for="dob">Date De naissance:</label>
-                                 <input disabled class="form-control"  formControlName="dateNaissance" >
+                                 <input disabled class="form-control"  formControlName="dateNaissance" [ngClass]="{ 'is-invalid': submitted && f.dateNaissance.errors }" >
+                                 <div *ngIf="submitted && f.dateNaissance.errors" class="invalid-feedback">
+                                    <div *ngIf="f.dateNaissance.errors.required">le champ est obligatoire</div>
+                                  </div>
                               </div>
                               <div class="form-group col-sm-6">
                                  <label for="uname">Adresse:</label>
-                                 <input type="text" class="form-control"  formControlName="adresse" >
+                                 <input type="text" class="form-control"  formControlName="adresse" [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }" >
+                                 <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+                                    <div *ngIf="f.adresse.errors.required">le champ est obligatoire</div>
+                                  </div>
                               </div>
                               <div >
                                  <button type="submit" class="btn btn-primary mr-2" (click)="modifier()">Enregistrer les modifications</button>
@@ -82,42 +97,7 @@
                      </div>
                   </div>
                </div>
-<!--changer mot de passe-->
-              <div class="tab-pane fade" id="chang-pwd" role="tabpanel    ">
-               <div class="iq-card">
-                  <div class="iq-card-header d-flex justify-content-between">
-                     <div class="iq-header-title">
-                        <h4 class="card-title">Changer Mot de passe</h4>
-                     </div>
-                  </div>
-                  <div class="iq-card-body">
-                      
-                        <div class=" row align-items-center">
-                           <div class="form-group col-sm-6">
-                              <label for="fname">Mot de passe actuel:</label>
-                              <input type="text" class="form-control"  formControlName="oldpassword" >
-                           </div>
-                           <div class="form-group col-sm-6">
-                              <label for="lname">Nouveau Mot de passe:</label>
-                              <input type="password" class="form-control"  formControlName="password" >
-                           </div>
-                           <div class="form-group col-sm-6">
-                              <label for="dob">Verifier Mot de passe:</label>
-                              <input type="password" class="form-control"  formControlName="passwordConfirm" >
-                              <!-- <div *ngIf="passwordConfirm.hasError('mismatch')">fdjfij</div> -->
-                           </div>
-                           <div class="form-group col-sm-6">
-                              <a>vous avez oublié le mot de passe ? </a>
-                           </div>
-                           <div >
-                              <button type="submit" class="btn btn-primary mr-2" (click)="modifier()">Enregistrer les modifications</button>
-                              <button type="reset" class="btn iq-bg-danger">Annuler</button></div>
-                  
-                        </div>
-                       
-                  </div>
-               </div>
-               </div>
+
 
                <!--changer email et telephone-->
 

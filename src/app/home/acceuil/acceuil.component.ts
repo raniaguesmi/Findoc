@@ -18,6 +18,9 @@ export class AcceuilComponent implements OnInit {
   nbrRdvs;
   nbrSec;
   nbrpatient;
+  rdvPasse;rdvAvenir;Rdvtoday;
+  idmed;
+  rdvs;idmed2;rdvs2;
   constructor(private medecinService:MedecinService,private rdvService:RdvService
     ,private patientService:PatientService,private secretaireService:SecretaireService) { }
 
@@ -29,7 +32,19 @@ export class AcceuilComponent implements OnInit {
         this.nombreSecretaire();
         this.data=localStorage.getItem('user')
         this.utilisateur=JSON.parse(this.data)
+        this.idmed=this.utilisateur._id
+      this.idmed2=this.utilisateur.idmed
        this.type=this.utilisateur.type
+       console.log(this.idmed)
+       this.nombreRdvsAvenirParMed(this.idmed)
+       this.nombreRdvsPasserParMed(this.idmed)
+       this.nombreRdvstodayParMed(this.idmed)
+       this.nombreRdvstodayParMed(this.idmed)
+
+this.listeRdvtoday(this.idmed)
+this.listeRdvtoday2(this.idmed2)
+
+
   }
   nombreMedecin(){
     this.medecinService.nbrMedecins().subscribe(res=>{
@@ -39,10 +54,25 @@ export class AcceuilComponent implements OnInit {
 
    })
   }
-
   nombreRdvs(){
     this.rdvService.nombreRdvs().subscribe(res=>{
       this.nbrRdvs=res;
+   })
+  }
+  nombreRdvsAvenirParMed(id){
+    this.rdvService.nombreRdvsAvenir(id).subscribe(res=>{
+      this.rdvAvenir=res;
+      console.log(this.rdvAvenir)
+   })
+  }
+  nombreRdvsPasserParMed(id){
+    this.rdvService.nombreRdvsPasser(id).subscribe(res=>{
+      this.rdvPasse=res;
+   })
+  }
+  nombreRdvstodayParMed(id){
+    this.rdvService.nombreRdvsAvenir(id).subscribe(res=>{
+      this.Rdvtoday=res;
    })
   }
 
@@ -55,6 +85,22 @@ export class AcceuilComponent implements OnInit {
     this.secretaireService.nbrSecretaire().subscribe(res=>{
       this.nbrSec=res;
    })
+  }
+  listRdvParJour(id){
+    this.rdvService.RdvsAujourdhuit(id).subscribe(res=>{
+this.rdvs=res
+console.log(this.rdvs)
+    })
+  }
+  listeRdvtoday(id){
+    this.rdvService.RdvsAujourdhuit(id).subscribe(res=>{
+     this.rdvs=res;
+    })
+  }
+  listeRdvtoday2(id){
+    this.rdvService.RdvsAujourdhuit(id).subscribe(res=>{
+     this.rdvs2=res;
+    })
   }
 }
 //    location.reload();

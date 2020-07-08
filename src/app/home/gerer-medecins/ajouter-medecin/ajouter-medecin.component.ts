@@ -3,6 +3,8 @@ import { SpecialiteService } from 'src/app/service/specialite.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MedecinService } from 'src/app/service/medecin.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { validateLogin } from '../../customvalidator.validator';
 
 @Component({
   selector: 'app-ajouter-medecin',
@@ -17,7 +19,7 @@ export class AjouterMedecinComponent implements OnInit {
 submitted = false;
 
   constructor(private specialiteService : SpecialiteService , private formBuilder: FormBuilder,
-     private medecinService: MedecinService) {
+     private medecinService: MedecinService  ,private  router:Router) {
     this.afficherSpecialite();
    }
    image;
@@ -34,8 +36,8 @@ submitted = false;
       password: ['', [Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
-      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}")),,Validators.maxLength(8)]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))] ],
+      telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$")),Validators.maxLength(8)]],
+      cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))] ],
       email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required],
@@ -77,6 +79,8 @@ if (this.registerForm.invalid) {
     })
         this.submitted = false;
         this.registerForm.reset() 
+        this.router.navigate(['/acceuil/listeMedecins'])
+
       }
       );
 
