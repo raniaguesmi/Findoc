@@ -18,6 +18,7 @@ export class ListePatientsComponent implements OnInit {
     this.utilisateur=JSON.parse(this.data)
    this.idmedec=this.utilisateur._id;
     this.listpatient(this.idmedec)
+    console.log(this.patients)
   }
   listpatient(id){
     this.patientService.listPatient(id).subscribe(res=>{

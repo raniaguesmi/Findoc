@@ -151,7 +151,7 @@ else{res.json(liste)}
 })
 },
 
-/*comparer password */
+/*comparer password  pour verifié si le mot de passe introduit est vrai ou pas dans la modification de mot de passe*/
  comparerPassword:function(req,res){
   var password = req.params.password
   medecinModel.findOne({_id:req.params.id},function(err,info){
@@ -164,14 +164,14 @@ else{console.log(info)
   }
   )
 },
-
+/* pour le statistique */
 nombreMedecin:function(req,res){
   medecinModel.count({},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
     else{res.json(nb)}
   })
 },
-
+/* pour veriffié si le nom dutilisateur existe deja ou pas  */
 trouverParLogin:function(req,res){
   medecinModel.findOne({login:req.params.login},function(err,medecin){
     if(err){res.json(err)}

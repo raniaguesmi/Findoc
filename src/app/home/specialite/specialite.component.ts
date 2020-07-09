@@ -48,7 +48,7 @@ data;
       console.log(this.data.state)
       if(this.data.state=="no"){
        return Swal.fire('Cette spécialité existe déjà')
-
+       location.reload();
       }
 
      Swal.fire(
@@ -60,7 +60,7 @@ data;
 
       this.submitted = false ;
               this.afficherSpecialite();
-
+              location.reload();
       })
   }
 
@@ -75,9 +75,8 @@ data;
       if(this.data.state=="no"){
        return Swal.fire('Cette spécialité existe déjà')
        this.afficherSpecialite();
-
       }
-      // this.afficherSpecialite();
+    
 
       Swal.fire(
         'Bien!',
@@ -86,6 +85,8 @@ data;
       )  
 this.registerForm.reset();
        this.submitted = false ;
+       location.reload();
+
     })   
   
 }

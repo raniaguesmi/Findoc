@@ -26,6 +26,7 @@ import { ReclamationsComponent } from './home/reclamations/reclamations.componen
 import { QRCodeModule } from 'angular2-qrcode';
 import { ForgePasswordComponent } from './forge-password/forge-password.component';
 import { ChangerMotdpasseComponent } from './home/changer-motdpasse/changer-motdpasse.component';
+// import { Pipe, PipeTransform } from '@angular/core';
 
 
 @NgModule({

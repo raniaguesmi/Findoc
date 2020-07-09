@@ -14,7 +14,6 @@ import { validateLogin } from '../../customvalidator.validator';
 export class AjouterMedecinComponent implements OnInit {
   listeSpecialite;
   emailForm:FormGroup;
-
   registerForm:FormGroup;
 submitted = false;
 

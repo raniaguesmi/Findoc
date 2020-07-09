@@ -3,6 +3,7 @@ import { MedecinService } from 'src/app/service/medecin.service';
 import { RdvService } from 'src/app/service/rdv.service';
 import { PatientService } from 'src/app/service/patient.service';
 import { SecretaireService } from 'src/app/service/secretaire.service';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-acceuil',

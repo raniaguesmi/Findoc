@@ -220,6 +220,7 @@ afficheRDVconfirme:function(req,res){
     {
       "$unwind": "$info"
     },
+    { "$sort": { "date":1,"heure" : 1 } },
     /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
      * Which 0 means, do not put and 1 means put.
       */

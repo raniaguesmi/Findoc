@@ -13,10 +13,13 @@
                     <a class="search-link" ><i class="ri-search-line"></i></a>
                 {{nomPatient}}   </form>
                </div> -->
-                <div>
+                <!-- <div>
                     <input type="text" [(ngModel)]="nom" />
                     {{nom}}
-                </div>
+                </div> -->
+                <form class="uk-form">
+                  <input ng-model="searchText" placeholder="chercher un livre">
+                </form>
              </div>
              <div class="iq-card-body">
                 <div class="table-responsive">
