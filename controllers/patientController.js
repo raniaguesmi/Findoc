@@ -127,6 +127,21 @@ nombrePatients:function(req,res){
 
 
 
+
+/*comparer password  pour verifié si le mot de passe introduit est vrai ou pas dans la modification de mot de passe*/
+comparerPassword:function(req,res){
+  var password = req.params.password
+  patientModel.findOne({_id:req.params.id},function(err,info){
+if(err){res.json(err)}
+else{console.log(info)
+   if (bcrypt.compareSync(password,info.password))
+   { res.send("OK")  }  
+    else { res.send("NO") } 
+   }
+  }
+  )
+},
+
 //mech shiha
 PatientsDeMedcin:function(req,res){
    var id=req.params.id
