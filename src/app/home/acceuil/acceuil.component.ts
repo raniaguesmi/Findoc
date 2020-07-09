@@ -40,7 +40,6 @@ export class AcceuilComponent implements OnInit {
        this.nombreRdvsAvenirParMed(this.idmed)
        this.nombreRdvsPasserParMed(this.idmed)
        this.nombreRdvstodayParMed(this.idmed)
-       this.nombreRdvstodayParMed(this.idmed)
 
 this.listeRdvtoday(this.idmed)
 this.listeRdvtoday2(this.idmed2)
@@ -72,7 +71,7 @@ this.listeRdvtoday2(this.idmed2)
    })
   }
   nombreRdvstodayParMed(id){
-    this.rdvService.nombreRdvsAvenir(id).subscribe(res=>{
+    this.rdvService.nombreRdvsAujourdhuit(id).subscribe(res=>{
       this.Rdvtoday=res;
    })
   }

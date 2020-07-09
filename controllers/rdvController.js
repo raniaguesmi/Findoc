@@ -12,7 +12,7 @@ let nbAvnir=0;
 
  var liste=[];
  var liste2=[];
-
+ var liste3=[];
 module.exports={
 ajouter:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure},function(err,reslt){
@@ -587,5 +587,19 @@ nombreRdvsPasserParMed:function(req,res){
     }
   })
 },
-
+nombreRdvstodayParMed:function(req,res){
+  rdvModel.find({medecin:req.params.id},function(err,nb){
+    if(err){res.json({state:'no', message:'there is an error'})}
+    else{
+      for(var i = 0; i < nb.length;i++){
+      if(nb[i].date == datee && nb[i].state=="confirmé")
+      { liste3.push(nb[i])
+        }
+ }
+ console.log(liste3)
+      res.json(liste3.length)
+      liste3=[]
+    }
+  })
+},
 }

@@ -48,7 +48,7 @@ export class RdvService {
     return this.http.get(this.baseUrl + '/rdv/rdvPasserParMed/'+id)
   }
   nombreRdvsAujourdhuit(id) {
-    return this.http.get(this.baseUrl + '/rdv/rdvtodayParMed/'+id)
+    return this.http.get(this.baseUrl + '/rdv/nombreRdvTodayParMed/'+id)
   }
   RdvsAujourdhuit(id) {
     return this.http.get(this.baseUrl + '/rdv/rdvtodayParMed/'+id)

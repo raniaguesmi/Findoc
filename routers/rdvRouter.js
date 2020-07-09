@@ -23,4 +23,6 @@ router.post('/prochainRDV',rdvController.prochainRDV)
 router.get('/rdvtodayParMed/:id',rdvController.rdvFortodayParMed)
 router.get('/rdvAvenirParMed/:id',rdvController.nombreRdvsaAvenirParMed)
 router.get('/rdvPasserParMed/:id',rdvController.nombreRdvsPasserParMed)
+router.get('/nombreRdvTodayParMed/:id',rdvController.nombreRdvstodayParMed)
+
 module.exports=router;
