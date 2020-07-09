@@ -6,7 +6,6 @@
                 <div class="iq-header-title">
                    <h4 class="card-title">Liste de Rendez-vous</h4>
                 </div>
-
              </div>
              <div class="iq-card-body">
                 <div class="table-responsive">
@@ -25,24 +24,24 @@
                       </thead>
                       <tbody>
                          <tr *ngFor="let i of rdvs" >
-                            <td><a routerLink="patient/{{i.info._id}}">{{i.info.nom}} {{i.info.prenom}}</a> 
-                               <!-- <button  data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-link mb-3">Info Patient</button> -->
-                            </td>
+                            <td>{{i.info.nom}} {{i.info.prenom}}</td>
                             <td>{{i.date}}</td>
                             <td>{{i.heure}}h</td>
                             <td>{{i.motif}}</td>
                             <td>{{i.info.telephone}}</td>
                             <td>{{i.info.cin}}</td>
-
-                            <td><div class="row"> <div class="col-md-4">
-                               <button data-toggle="modal" data-target="#ReporterModal" class="btn mb-1 btn-outline-success" (click)="recupere(i._id,i.date,i.heure,i.motif)" ><span class="badge badge-success ml-2"></span>
+                            <td>
+                               <div class="row"> 
+                              <div class="col-sm-5">
+                               <button data-toggle="modal" data-target="#ReporterModal" class="btn btn-outline-primary rounded-pill mb-3" (click)="recupere(i._id,i.date,i.heure,i.motif)" ><span class="badge badge-success ml-2"></span>
                               Reporter
                               </button>  </div>
-                              <div class="col-md-4"> <button type="button" class="btn mb-1 btn-outline-danger" (click)="supprimerRdv(i._id)"  >
+                              <div class="col-sm-5"> <button type="button" class="btn btn-outline-danger rounded-pill mb-3" (click)="supprimerRdv(i._id)"  >
                                Annuler
                               </button></div></div>
                            </td>
                          </tr>
+                         <!--ReporterModal-->
                          <div class="modal fade" id="ReporterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                            <div class="modal-dialog" role="document">
                               <form [formGroup]="reportForm">
@@ -82,16 +81,6 @@
                      
 
                       </tbody>
-                      <!-- <tfoot>
-                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                         </tr>
-                      </tfoot> -->
                    </table>
                 </div>
              </div>
