@@ -36,7 +36,7 @@ const routes: Routes = [
            {path:'messages/:id',component: ReclamationsComponent},
            {path:'changerMotdpasse/:id',component: ChangerMotdpasseComponent},
            {path:'patient/:id',component: PatientComponent},
-
+            
 
     ]
    }

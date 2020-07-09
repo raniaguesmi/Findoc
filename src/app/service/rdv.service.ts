@@ -30,7 +30,7 @@ export class RdvService {
     return this.http.get(this.baseUrl+'/rdv/afficheRDVconfirme/'+id)
   }
   reporterRdv(id,rdv){
-    return this.http.put(this.baseUrl+'/rdv/reporterRdv/'+id,rdv)
+    return this.http.put(this.baseUrl+'/rdv/reporterRdvSec/'+id,rdv)
   }
   accepterRdv(id){
     return this.http.get(this.baseUrl+'/rdv/accepterRdv/'+id)

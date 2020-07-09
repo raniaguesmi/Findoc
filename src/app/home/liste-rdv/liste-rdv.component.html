@@ -6,59 +6,6 @@
                 <div class="iq-header-title">
                    <h4 class="card-title">Liste de Rendez-vous</h4>
                 </div>
-                <button type="button" class="btn mb-1 btn-outline-primary" data-toggle="modal" data-target="#exampleModal"> <span>+</span> Ajouter un rendez-vous  </button>
-                 
-                  <!--Ajouter Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Ajouter un rendez-vous </h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                              </button>
-                           </div>
-                           <div class="modal-body">
-                                 <form [formGroup]="rdvForm">    
-                                    <div class="form-group">
-                                       <label >Identifiant d patient</label>
-                                       <input type="text" class="form-control" formControlName="patient" [ngClass]="{ 'is-invalid': submitted && f.patient.errors }" >
-                                       <div *ngIf="submitted && f.patient.errors" class="invalid-feedback">
-                                          <div *ngIf="f.patient.errors.required">le champ est obligatoire</div>
-                                        </div>
-                                    </div>                            
-                                    <div class="form-group">
-                                       <label >Date Consultation</label>
-                                       <input type="date" class="form-control"formControlName="date"  value="2020-05-28" [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
-                                       <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
-                                          <div *ngIf="f.date.errors.required">le champ est obligatoire</div>
-                                        </div>
-                                    </div>                 
-                                    <div class="form-group">
-                                       <label>Heure de Consultation</label>
-                                       <input type="time" class="form-control"formControlName="heure"  value="08:00" [ngClass]="{ 'is-invalid': submitted && f.heure.errors }">
-                                       <div *ngIf="submitted && f.heure.errors" class="invalid-feedback">
-                                          <div *ngIf="f.heure.errors.required">le champ est obligatoire</div>
-                                        </div>
-                                    </div>                                 
-                                    <div class="form-group">
-                                       <label> Motif de consultation </label>
-                                       <textarea class="form-control" formControlName="motif" rows="1" [ngClass]="{ 'is-invalid': submitted && f.motif.errors }"></textarea>
-                                       <div *ngIf="submitted && f.motif.errors" class="invalid-feedback">
-                                          <div *ngIf="f.motif.errors.required">le champ est obligatoire</div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                       <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                       <button type="submit" class="btn btn-primary" (click)="ajouterRdv()">Ajouter</button>
-                                    </div>
-                                 </form>
-                           </div>
-                           
-                        </div>
-                     </div>
-                  </div>
-                <!-- <button type="button" class="btn btn-link rounded-pill mb-3">Ajouter un rendez-vous</button> -->
 
              </div>
              <div class="iq-card-body">

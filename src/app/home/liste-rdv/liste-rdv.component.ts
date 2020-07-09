@@ -18,7 +18,8 @@ idPatient;
 patient;
 rdvForm:FormGroup
 reportForm:FormGroup
-_id
+_id;
+dataa
   constructor(private rdvService:RdvService,private formBuilder:FormBuilder) {
   
 
@@ -38,7 +39,8 @@ _id
   });
   this.reportForm=this.formBuilder.group({
     date:['',Validators.required],
-    heure:['',Validators.required]
+    heure:['',Validators.required],
+    medecin:[this.idmedec]
   })
   }
   get f() { return this.rdvForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
@@ -47,7 +49,6 @@ _id
     this._id=_id;
     this.reportForm.get('date').setValue(date);
     this.reportForm.get('heure').setValue(heure);
-    // this.reportForm.get('motif').setValue(motif);
     
   }
 listeRdvConfirmé(id){
@@ -101,14 +102,21 @@ supprimerRdv(id){
 reporterRdv(){
   console.log(this._id)
   this.rdvService.reporterRdv(this._id,this.reportForm.value).subscribe(res=>{
-    console.log(res)
-    Swal.fire(
+    this.dataa=res;
+    console.log(this.dataa)
+    if(this.dataa.state=="noo"){
+      return Swal.fire('Date de rendez-vous est déjà prise !')
+     }
+      else{ Swal.fire(
       'Bien',
-      'rdv ajoutée avec succée!',
+      'Rendez-vous reporté avec succée !',
       'success'
-    )  
+      
+    ) 
+     } location.reload();
    })
    this.listeRdvConfirmé(this.idmedec)
+   
 }
 
 

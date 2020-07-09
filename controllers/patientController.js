@@ -60,7 +60,7 @@ module.exports={
        req.body.password = bcrypt.hashSync(password,10)
      } 
      patientModel.findOne({login:req.body.login},function(err,rslt){
-      if(rslt!=null) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+      if(rslt!=null &&(rslt._id!=req.body.id)) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
       else{
         patientModel.updateOne({_id:req.body.id},{$set:req.body},
           {

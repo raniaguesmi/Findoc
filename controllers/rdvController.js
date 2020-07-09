@@ -26,11 +26,11 @@ ajouter:function(req,res){
                 state:'en attente'
             })
             rdv.save(function(err){
-                if(err){res.json({state:'no',message:'ya un erreur :'+err})}
-                else{res.json({state:'ok',message:'rendez-vous ajouté avec succées'})}
+                if(err){res.send("NO")}
+                else{res.send("OK")}//rendez-vous ajouté avec succées
             })
         }
-        else{res.json({state:'no',message:'date est deja prise'})}
+        else{res.send("NOO")}//date est deja prise'
     })
   
 },
@@ -163,6 +163,7 @@ afficheRDVAttenteParMed:function(req,res){
          {
            "$unwind": "$info"
          },
+         { "$sort": { "date":1,"heure" : 1 } },
          /** be3ed mejebli li hachty bih lkol tba9a kan bch nprojectiw li n7bou alih 0 ma3nehe matale3helich w 1 ma3nehe afichiheli
           * Which 0 means, do not put and 1 means put.
            */
@@ -247,19 +248,28 @@ rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},funct
 
 })  
 },
-reporterRdv:function(req,res){
-  rdvModel.updateOne({_id:req.body.id},{$set:req.body}
-    ,{date:req.body.date,
-      heure:req.body.heure,
-      motif:req.body.motif,
-    }
-    
-    ,function(err,rslt){
-    if(err){res.send("NO")}
-    else{res.send("OK")}
+reporterRdvPourPatient:function(req,res){
+  rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
+    if(reslt==null){
+    rdvModel.updateOne({_id:req.body.id},{$set:req.body},{date:req.body.date,heure:req.body.heure,motif:req.body.motif,}
+                          ,function(err,rslt){
+                               if(err){res.send("NO")}
+                               else{res.send("OK")}})}                 
+    else{res.send("NOO")}
   
   })  
   },
+  reporterRdvPourSecretiare:function(req,res){
+    rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
+      if(reslt==null){
+      rdvModel.updateOne({_id:req.params.id},{$set:req.body},{date:req.body.date,heure:req.body.heure,motif:req.body.motif,}
+                            ,function(err,rslt){
+                                 if(err){res.json({state:'no',message:'il y a un erreur'})}
+                                 else{res.json({state:'ok',message:'le rendez vous est reporter avec succées'})}} )}              
+      else{res.json({state:'noo',message:'date est deja prise '})}
+    
+    })  
+    },
 rdvConfirmerParPatient:function(req,res){
   var id=req.body.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
@@ -367,7 +377,6 @@ nombreRdvs:function(req,res){
     else{res.json(nb)}
   })
 },
-
 rdvAvenir:function(req,res){
   rdvModel.find({patient:req.params.id},function(err,lst){
     if(err){res.json({state:'no', message:'there is an error'})}
@@ -382,7 +391,6 @@ rdvAvenir:function(req,res){
   })
 
 },
-
 nombreRdvs:function(req,res){
   rdvModel.count({},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
@@ -486,7 +494,7 @@ prochainRDV:function(req,res){
     {
       "$unwind": "$info"
     },
- 
+    { "$sort": { "date":1,"heure" : 1 } },
   ],function(err,lst){
       if(err){res.json({state:'no',message:'errc!!!'+err})}
       else{ 
