@@ -67,8 +67,9 @@ supprimerMedecin(id){
     if (result.value) {
     return  this.medecinService.supprimerMedecin(id)
       .subscribe(res => {
-        this.listeMedecins();
+        location.reload();
       })
+      
 
     }
   })

@@ -54,7 +54,7 @@ export class ChangerMotdpasseComponent implements OnInit {
           // this.EditForm.reset()
         })
   }
-  else{ return Swal.fire('le nouveau mot de passe est incorrect')}
+  else{ return Swal.fire('Les mots de passe ne sont pas identiques')}
 
 
         }

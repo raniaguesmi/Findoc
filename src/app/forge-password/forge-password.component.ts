@@ -21,8 +21,7 @@ export class ForgePasswordComponent implements OnInit {
  }
 
   ngOnInit() {
-   this. result = this.makeString();
-console.log('tbcrgf',this.result)
+   this. result = this.makeString();// result cest un string genere aleatoirement
     this.passwordForm = this.formBuilder.group({
       login: ['', [Validators.required]],
       password: [this. result],
@@ -46,8 +45,6 @@ console.log('tbcrgf',this.result)
   }
 
   modifierPassword(){
-    console.log(this.passwordForm.get('login').value)
-
     this.submitted = true;
     if (this.passwordForm.invalid) {
       return;
@@ -70,10 +67,10 @@ console.log('tbcrgf',this.result)
             'Good job!',
             'un nouveau mot de passe vous a été envoyé sur email!',
             'success')
-          this.router.navigate([''])
+          
 
         })
-
+this.router.navigate([''])
       })
     })
 

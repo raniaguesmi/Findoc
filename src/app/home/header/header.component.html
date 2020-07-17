@@ -70,7 +70,7 @@
                        <div class="iq-card shadow-none m-0">
                           <div class="iq-card-body p-0 "  >
                              <div class="bg-primary p-3">
-                                <h5 class="mb-0 text-white">All Messages<small class="badge  badge-light float-right pt-1">5</small></h5>
+                                <h5 class="mb-0 text-white">Tout les Messages<small class="badge  badge-light float-right pt-1">5</small></h5>
                              </div>
                              <a routerLink="messages" class="iq-sub-card" *ngFor="let i of messages"   >
                                 <div class="media align-items-center" >
@@ -115,10 +115,10 @@
                           <div class="bg-primary p-3">
                            <h5 *ngIf="this.type=='secrétaire'"  class="mb-0 text-white line-height">Bonjour {{utilisateur.nom }} !</h5>
 
-                           <h5 *ngIf="this.type=='medecin'"  class="mb-0 text-white line-height">Bonjour {{utilisateur.nom }} !</h5>
+                           <h5 *ngIf="this.type=='medecin'"  class="mb-0 text-white line-height">Bonjour !</h5>
                              <h5 *ngIf="this.type=='admin'"  class="mb-0 text-white line-height">Bonjour Admin !</h5>
 
-                             <span class="text-white font-size-12">Connecté</span>
+                             <!-- <span class="text-white font-size-12">Connecté</span> -->
                           </div>
                           <a *ngIf="this.type=='medecin'" routerLink="profile/{{utilisateur._id}}" class="iq-sub-card iq-bg-primary-hover">
                              <div class="media align-items-center">
@@ -126,7 +126,7 @@
                                    <i class="ri-file-user-line"></i>
                                 </div>
                                 <div class="media-body ml-3" >
-                                   <h6 class="mb-0 ">Mon profile</h6>
+                                   <h6 class="mb-0 ">Mon profil</h6>
                                    <p class="mb-0 font-size-12">Regarder les informations personnel</p>
                                 </div>
                              </div>
@@ -137,7 +137,7 @@
                                    <i class="ri-profile-line"></i>
                                 </div>
                                 <div *ngIf="this.type=='medecin'" class="media-body ml-3" routerLink="modifierProfile/{{utilisateur._id}}">
-                                   <h6 class="mb-0 ">Modifier Profile</h6>
+                                   <h6 class="mb-0 ">Modifier Profil</h6>
                                    <p class="mb-0 font-size-12">Modifier les détails personnel</p>
                                 </div>
                              </div>

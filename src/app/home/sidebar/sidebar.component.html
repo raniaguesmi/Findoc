@@ -85,8 +85,10 @@
              </li>
                <!-- ********************************gerer Spécialités************************************************ !-->  
                <li *ngIf="this.type=='admin'" class="active">
-                  <a routerLink="specialite" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Consulter Spécialités</span></a>
-                  
+                  <a  class="iq-waves-effect"><i class="ri-profile-fill"></i><span>Gérer spécialités</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                  <ul class="iq-submenu">
+                     <li> <a routerLink="specialite" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Consulter Spécialités</span></a></li>
+               </ul>
                </li>
                          <!-- ********************************Envoie demail************************************************ !-->  
 
@@ -97,7 +99,7 @@
     <!-- ********************************Espace secretaire************************************************ !-->                 
   
             <li class="active" *ngIf="this.type=='secrétaire'">
-               <a   class="iq-waves-effect"routerLink="rendez-vous"><i class="ri-file-edit-fill"></i><span> Consulter Liste RDV</span></a>
+               <a   class="iq-waves-effect"routerLink="rendez-vous"><i class="ri-file-edit-fill"></i><span> Consulter Rendez-vous</span></a>
                
             </li>
           </ul>

@@ -15,7 +15,7 @@
                             <th>Info Patient</th>
                             <th>Date</th>
                             <th>Heure</th>
-                            <th>Motif de Consultation</th>
+                            <th>Motif Consultation</th>
                             <th>Téléphone</th>
                             <th>CIN</th>
 
@@ -32,11 +32,11 @@
                             <td>{{i.info.cin}}</td>
                             <td>
                                <div class="row"> 
-                              <div class="col-sm-5">
+                              <div class="col-sm-4">
                                <button data-toggle="modal" data-target="#ReporterModal" class="btn btn-outline-primary rounded-pill mb-3" (click)="recupere(i._id,i.date,i.heure,i.motif)" ><span class="badge badge-success ml-2"></span>
                               Reporter
                               </button>  </div>
-                              <div class="col-sm-5"> <button type="button" class="btn btn-outline-danger rounded-pill mb-3" (click)="supprimerRdv(i._id)"  >
+                              <div class="col-sm-4"> <button type="button" class="btn btn-outline-danger rounded-pill mb-3" (click)="supprimerRdv(i._id)"  >
                                Annuler
                               </button></div></div>
                            </td>

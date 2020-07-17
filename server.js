@@ -45,7 +45,8 @@ app.use('/consultation',consultation)
  app.post('/sendEmail',(req,res,cb)=>{
  // create reusable transporter object using the default SMTP transport
  let transporter = nodemailer.createTransport({
-     service:'gmail',
+  host: 'smtp.gmail.com', 
+  //  service:'gmail',
     // remarque: maynjm yeb3eth email en utulisant el email haka lazm nactivi lien hetha https://myaccount.google.com/lesssecureapps?pli=1
     auth: {
       user: 'findoc08@gmail.com',  
