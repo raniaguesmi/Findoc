@@ -18,7 +18,7 @@ const patient=require('./routers/patientRouter')
 const secretaire=require('./routers/secretaireRouter')
 const utilisateur=require('./routers/utilisateurRouter')
 const specialite=require('./routers/specialiteRouter')
-const reclamation=require('./routers/reclamationRouter')
+const message=require('./routers/messageRouter')
 const consultation=require('./routers/consultationRouter')
 
 const rdv=require('./routers/rdvRouter')
@@ -38,7 +38,7 @@ app.use('/secretaire',secretaire)
 app.use('/utilisateur',utilisateur)
 app.use('/specialite',specialite)
 app.use('/rdv',rdv)
-app.use('/reclamation',reclamation)
+app.use('/message',message)
 app.use('/consultation',consultation)
 
 //****************************************************************** */

@@ -1,7 +1,7 @@
 const consultationModel=require('../models/consultationModel')
 module.exports={
 
-    ajouter:function(req,res){
+ajouter:function(req,res){
      
 let date_ob = new Date();
 let year = date_ob.getFullYear();
@@ -53,5 +53,14 @@ traitement:req.body.traitement,
  else{res.json({state:"ok",message:"la consultation a été modifié avec succées"})}
 })
 
+}, 
+afficheParId:function(req,res){
+  consultationModel.findOne({_id:req.params.id},function(err,consultation){
+    if(err){res.json({state:"no",message:"thers an error"+err})}
+  else{
+    res.json(consultation)
+  }
+  })
 }
+
 }

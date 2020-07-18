@@ -13,6 +13,8 @@ export class ConsulterRdvComponent implements OnInit {
   idmedec;
   Date:String;
   nom:String;
+  private _searchTerm :string;
+  filtredRdvs;
   constructor(private rdvService:RdvService) { }
 
   ngOnInit() {
@@ -27,19 +29,20 @@ export class ConsulterRdvComponent implements OnInit {
   listeRdvConfirmé(id){
     this.rdvService.afficheRdvConfirmer(id).subscribe(res=>{
      this.rdvs=res;
-    //  var info =
+     this.filtredRdvs=this.rdvs
     })
   }
-  
-  search(){
-// if(this.Date!=""){
-  this.rdvs=this.rdvs.filter(res=>{
-    
-  return res.info.nom.toLocaleLowerCase().match(this.nom.toLocaleLowerCase())
-})
-// }
-// else if(this.Date=""){ this.ngOnInit()}
+  get searchTerm():string{
+    return this._searchTerm;
+  }
+  set searchTerm(value: string){
+    this._searchTerm=value;
+    this.filtredRdvs=this.filtreRdvs(value);
+  }
 
-//   }
-}
+  filtreRdvs(searchString :string){
+    return this.rdvs.filter(res=>
+    (res.info.nom+" "+res.info.prenom).toLowerCase().indexOf(searchString.toLowerCase())!==-1);
+    }
+
 }

@@ -26,7 +26,9 @@ supprimer(id){
 modifer(id,consulatation){
   return this.http.put(this.baseUrl+'/consultation/modifier/'+id,consulatation)
 }
-
+getById(id){
+  return this.http.get(this.baseUrl+'/consultation/getById/'+id)
+}
 
 
 }

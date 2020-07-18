@@ -53,7 +53,7 @@ module.exports={
             }
        console.log(req.body.login)
  secretairetModel.findOne({login:req.body.login},function(err,rslt){
- if(rslt!=null) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
+ if(rslt!=null &&(rslt._id!=req.params.id)) {res.json({state:'no',msg:'non dutulisateur déja utulisé'})}
  else{
    secretairetModel.updateOne({_id:req.params.id},{$set:req.body},{
   nom: req.body.nom,

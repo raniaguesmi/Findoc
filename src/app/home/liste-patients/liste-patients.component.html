@@ -8,7 +8,7 @@
                   </div>
                   <div class="iq-search-bar">
                     <form  class="searchbox">
-                       <input type="text" class="text search-input" placeholder="Type here to search...">
+                       <input type="text" class="text search-input" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" placeholder="Type here to search...">
                        <a class="search-link" ><i class="ri-search-line"></i></a>
                     </form>
                  </div>
@@ -26,9 +26,9 @@
                       </tr>
                    </thead>
                    <tbody>
-                      <tr  *ngFor="let i of patients">
+                      <tr  *ngFor="let i of filtredPatients">
                          <th scope="row">{{i.info.nom}} {{i.info.prenom}}</th>
-                         <td>{{i.info.cin}}</td>
+                         <td>0{{i.info.cin}}</td>
                          <td>{{i.info.telephone}}</td>
                          <td>{{i.info.dateNaissance}}</td>
                          <td>{{i.info.adresse}}</td>

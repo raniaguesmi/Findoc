@@ -42,8 +42,8 @@ cinRegex=/^0\d{7,8}$/;
       password: ['',[Validators.required,Validators.minLength(6)]],
       dateNaissance: ['', Validators.required],
       adresse: ['', [Validators.required]],
-      telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}")),Validators.maxLength(8)]],
+      telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$"))]],
+      cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))]],
       email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
       idmed:[this.idmedec]
 //new RegExp("[0-9 ]{7}")
@@ -55,8 +55,8 @@ this.editForm=this.formBuilder.group({
   password: ['',[Validators.required,Validators.minLength(6)]],
   dateNaissance: ['', Validators.required],
   adresse: ['', Validators.required],
-  telephone: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
-  cin: ['', [Validators.required,Validators.pattern(new RegExp("[0-9 ]{8}"))]],
+  telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$"))]],
+  cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))]],
   email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
   idmed:[this.idmedec]
 })
@@ -99,9 +99,10 @@ this.editForm=this.formBuilder.group({
         })  
          this.submitted = false ;
             this.registerForm.reset() 
+            this.secretaireParMedecin(this.idmedec)
          }
          )
-         this.secretaireParMedecin(this.idmedec)
+         location.reload();
 
        }
 
@@ -139,7 +140,7 @@ this.editForm=this.formBuilder.group({
       this.editForm.get('dateNaissance').setValue(dateNaissance);
       this.editForm.get('adresse').setValue(adresse);
       this.editForm.get('telephone').setValue(telephone);
-      this.editForm.get('cin').setValue(cin);
+      this.editForm.get('cin').setValue('0'+cin);
       this.editForm.get('email').setValue(email);
 
       }
@@ -162,9 +163,11 @@ this.editForm=this.formBuilder.group({
             'success'
           )  
           this.editForm.reset() 
-           this.submitted = false ;
+           this.submitted = false ; 
+           this.secretaireParMedecin(this.idmedec)
+           location.reload();
           })
-        // this.secretaireParMedecin(this.idmedec)
+       
         
       }
       }

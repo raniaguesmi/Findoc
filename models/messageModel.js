@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-const reclamationSchema=mongoose.model('reclamation',new mongoose.Schema({
+const messageSchema=mongoose.model('messages',new mongoose.Schema({
     date:{type:String, required:true, trim:true},
     titre:{type:String, required:true, trim:true},
     contenu:{type:String, required:true, trim:true},
@@ -9,4 +9,4 @@ const reclamationSchema=mongoose.model('reclamation',new mongoose.Schema({
 
 }))
 
-module.exports=reclamationSchema;
+module.exports=messageSchema;

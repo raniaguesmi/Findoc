@@ -1,4 +1,4 @@
-const reclamationModel=require('../models/reclamationModel')
+const messageModel=require('../models/messageModel')
 module.exports={
 
     ajouter:function(req,res){
@@ -11,7 +11,7 @@ module.exports={
       let minutes = date_ob.getMinutes();
       
       let  datee=date+"-"+month+"-"+year+" à "+hours+":"+minutes
-           const reclamation=new reclamationModel({
+           const reclamation=new messageModel({
             date:datee,
             titre:req.body.titre,
             contenu:req.body.contenu,
@@ -29,7 +29,7 @@ module.exports={
         },
 
     afficher:function(req,res){
-        reclamationModel.aggregate([
+      messageModel.aggregate([
     {//awl haja n converti l idpatient mte3i ll objectId 5ater on peut pas comparer deux id un string et lautre objectId 
         "$addFields": {
             "idpatient": {
@@ -73,20 +73,20 @@ module.exports={
 
 
     reclamationParPatient(req,res){
-        reclamationModel.find({idpatient:req.params.id},function(err,list){
+      messageModel.find({idpatient:req.params.id},function(err,list){
             if(err){res.json({state:'no',message:'il ya un erreur :: '+err})}
             else{res.json(list)}
         })
     },
     reclamationParmedecin(req,res){
-      reclamationModel.find({idmedecin:req.params.id},function(err,list){
+      messageModel.find({idmedecin:req.params.id},function(err,list){
           if(err){res.json({state:'no',message:'il ya un erreur :: '+err})}
           else{res.json(list)}
       })
   },
   reclamationParId(req,res){
     var id=req.params.id
-    reclamationModel.aggregate([
+    messageModel.aggregate([
       //lene parset l _id ll string bech njm naml l comparaison 
      {"$addFields": {
         "_id": {
@@ -145,7 +145,7 @@ else{res.json(result) }
 
   afficherParMed:function(req,res){
   var id=req.params.id
-    reclamationModel.aggregate([
+  messageModel.aggregate([
       //jebt el reclamation mte3 medecin mou3eyen bl identifiant mte3ou
       {$match:{"idmedecin": id}},
 

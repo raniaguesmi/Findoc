@@ -9,9 +9,9 @@
                 </div>
                 <div class="iq-search-bar">
                   <form  class="searchbox">
-                     <input type="text" [(ngModel)]="nomPatient" (input)="search()" class="text search-input" placeholder="Type here to search...">
-                    <a class="search-link" ><i class="ri-search-line"></i></a>
-                {{nomPatient}}   </form>
+                     <input type="text" class="text search-input" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" placeholder="Type here to search...">
+                     <a class="search-link" ><i class="ri-search-line"></i></a>
+                  </form>
                </div>
                 <!-- <div>
                     <input type="text" [(ngModel)]="nom" />
@@ -35,7 +35,7 @@
                          </tr>
                       </thead>
                       <tbody>
-                         <tr *ngFor="let i of rdvs">
+                         <tr *ngFor="let i of filtredRdvs">
                             <td><a routerLink="patient/{{i.info._id}}"> {{i.info.nom}} {{i.info.prenom}}</a></td>
                             <td>{{i.info.telephone}}</td>
                             <td>{{i.info.cin}}</td>

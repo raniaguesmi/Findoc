@@ -22,6 +22,7 @@ export class PatientComponent implements OnInit {
   patientForm:FormGroup
   submitted=false;
   _id;
+  consultationParId;
   constructor( private patientService:PatientService,private activroute:ActivatedRoute, private consultationService:ConsulataionService,private formBuilder:FormBuilder) { 
     this.id=this.activroute.params['value']['id']
     this.afficheParId(this.id)
@@ -68,10 +69,6 @@ this.patientForm = this.formBuilder.group({
 
   print(): void {
     let printContents=null, popupWin;
-  //   for (var iter = 0; iter < 10; iter++) {
-  //     printContents  =printContents+ document.getElementById('print-section').innerHTML +"  ";
-  //     ;
-  // }
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     popupWin.document.open();
@@ -90,8 +87,6 @@ afficheConsultation(idmed,idpat){
   this.consultationService.affiche(idmed,idpat).subscribe(res=>{
     this.consultations=res
     console.log(this.consultations)
-
-    // console.log('gf',this.consultation._id)
   })
 }
 ajouterConsultation(){
@@ -106,13 +101,12 @@ Swal.fire(
   'rdv ajoutée avec succée!',
   'success'
 )  
-// this.rdvForm.hide();
+location.reload();
 
  this.submitted = false ;
 this.afficheConsultation(this.idmed,this.id);
 
  })
- this.consultationForm.reset()
 
   }
 
@@ -138,6 +132,11 @@ supprimerConsultation(id){
 })
 
 }
+afficheConsultationParId(id){
+  this.consultationService.getById(id).subscribe(res=>{
+    this.consultationParId=res
+  })
+}
 recupere(_id,diagnostique,traitement,medecin,patient){ 
   // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
   this._id=_id;
@@ -161,7 +160,8 @@ modiferConsultation(){
     )  
     this.consultationForm.reset()
     this.submitted = false ;
-    this.afficheConsultation(this.idmed,this.id);
+    // this.afficheConsultation(this.idmed,this.id);
+    location.reload();
    })
 }
 
