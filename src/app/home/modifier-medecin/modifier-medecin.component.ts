@@ -19,6 +19,8 @@ export class ModifierMedecinComponent implements OnInit {
   image;
   data;
 editPassForm;
+emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
+
   constructor(private medecinService:MedecinService ,private formBuilder :FormBuilder ,private actroute:ActivatedRoute) {
     this.id=this.actroute.params['value']['id']
    // this.remplissage(this.medecin);
@@ -30,7 +32,7 @@ editPassForm;
     adresse: ['', [Validators.required]],
     telephone: ['', [Validators.required ]],
     cin: ['', [Validators.required ]],
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required,Validators.pattern(this.emailRegex)]],
     adresseCabinet: ['', [Validators.required]],
     specialite: ['', [Validators.required]], 
   });
@@ -84,7 +86,7 @@ modifier(){
     console.log(res);
     Swal.fire(
       'Good job!',
-      'You clicked the button!',
+      'Modification effectué avec succès!',
       'success')
     this.submitted = false;
     // this.EditForm.reset()

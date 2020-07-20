@@ -55,7 +55,7 @@ this.editForm=this.formBuilder.group({
   password: ['',[Validators.required,Validators.minLength(6)]],
   dateNaissance: ['', Validators.required],
   adresse: ['', Validators.required],
-  telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$"))]],
+  telephone: ['', [Validators.required]],
   cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))]],
   email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
   idmed:[this.idmedec]
@@ -140,7 +140,7 @@ this.editForm=this.formBuilder.group({
       this.editForm.get('dateNaissance').setValue(dateNaissance);
       this.editForm.get('adresse').setValue(adresse);
       this.editForm.get('telephone').setValue(telephone);
-      this.editForm.get('cin').setValue('0'+cin);
+      this.editForm.get('cin').setValue(0+cin);
       this.editForm.get('email').setValue(email);
 
       }

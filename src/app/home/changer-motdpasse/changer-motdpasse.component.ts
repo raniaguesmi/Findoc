@@ -23,7 +23,7 @@ export class ChangerMotdpasseComponent implements OnInit {
   ngOnInit() {
     this.EditForm = this.formBuilder.group({
      oldpassword:['',[Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required,Validators.minLength(6)]],
       passwordConfirm:['',[Validators.required]],
      
     },passwordMatchValidator);

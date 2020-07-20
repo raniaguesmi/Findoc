@@ -110,7 +110,7 @@ console.log(rslt.cin)}
     dateNaissance:req.body.dateNaissance,
     adresse:req.body.adresse,
     telephone:req.body.telephone,
-    cin:req.body.cin,
+    cin:+req.body.cin,
     email: req.body.email,
     // image:req.file.originalname,
     adresseCabinet:req.body.adresseCabinet,

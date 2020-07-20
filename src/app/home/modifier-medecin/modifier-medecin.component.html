@@ -118,15 +118,26 @@
                               </div>
                               <div class="form-group col-sm-6">
                                  <label for="lname">Adresse Cabinet:</label>
-                                 <input type="text" class="form-control"  formControlName="adresseCabinet" >
+                                 <input type="text" class="form-control"  formControlName="adresseCabinet" [ngClass]="{ 'is-invalid': submitted && f.adresseCabinet.errors }">
+                                 <div *ngIf="submitted && f.adresseCabinet.errors" class="invalid-feedback">
+                                    <div *ngIf="f.adresseCabinet.errors.required">le champ est obligatoire</div>
+                                  </div>
                               </div>
                               <div class="form-group col-sm-6">
                                  <label for="dob">Numéro de téléphone:</label>
-                                 <input  class="form-control"  formControlName="telephone" >
+                                 <input  class="form-control"  formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" >
+                                 <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                                    <div *ngIf="f.telephone.errors.required">le champ est obligatoire</div>
+                                  </div>
                               </div>
                               <div class="form-group col-sm-6">
                                  <label for="uname">Email:</label>
-                                 <input type="text" class="form-control"  formControlName="email" >
+                                 <input type="text" class="form-control"  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">le champ est obligatoire</div>
+                                    <!-- <div *ngIf="f.email.errors.email">veuillez entrer une adresse électronique valide</div> -->
+                            <div *ngIf="f.email.errors.pattern">veuillez entrer une adresse électronique valide</div>
+                                  </div>
                               </div>
                               <div >
                                  <button type="submit" class="btn btn-primary mr-2"(click)="modifier()">Enregistrer les modifications</button>

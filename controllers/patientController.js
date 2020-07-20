@@ -130,8 +130,8 @@ nombrePatients:function(req,res){
 
 /*comparer password  pour verifié si le mot de passe introduit est vrai ou pas dans la modification de mot de passe*/
 comparerPassword:function(req,res){
-  var password = req.params.password
-  patientModel.findOne({_id:req.params.id},function(err,info){
+  var password = req.body.password
+  patientModel.findOne({_id:req.body.id},function(err,info){
 if(err){res.json(err)}
 else{console.log(info)
    if (bcrypt.compareSync(password,info.password))

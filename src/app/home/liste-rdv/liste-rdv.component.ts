@@ -29,21 +29,21 @@ dataa
     this.utilisateur=JSON.parse(this.data)
    this.idmedec=this.utilisateur.idmed;
    this.listeRdvConfirmé(this.idmedec);
-    this.rdvForm = this.formBuilder.group({
-      date: ['',Validators.required],
-      heure: ['',Validators.required],
-      medecin: [this.idmedec],
-      patient: ['',Validators.required],
-      motif: ['',Validators.required],
+  //   this.rdvForm = this.formBuilder.group({
+  //     date: ['',Validators.required],
+  //     heure: ['',Validators.required],
+  //     medecin: [this.idmedec],
+  //     patient: ['',Validators.required],
+  //     motif: ['',Validators.required],
 
-  });
+  // });
   this.reportForm=this.formBuilder.group({
     date:['',Validators.required],
     heure:['',Validators.required],
     medecin:[this.idmedec]
   })
   }
-  get f() { return this.rdvForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
+  get f() { return this.reportForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
   recupere(_id,date,heure,motif){ 
     // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
     this._id=_id;

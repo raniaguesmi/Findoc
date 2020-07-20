@@ -11,5 +11,5 @@ router.get('/afficheParId/:id',patientController.afficheParId)
 router.post('/veriftel',patientController.verifTel)
 router.get('/patientsDeMedcin/:id',patientController.PatientsDeMedcin)
 router.get('/nbrPatients',patientController.nombrePatients)
-router.get('/comparePassword/:id/:password',patientController.comparerPassword)
+router.post('/comparePassword',patientController.comparerPassword)
 module.exports = router;

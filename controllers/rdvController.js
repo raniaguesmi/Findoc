@@ -15,7 +15,7 @@ let nbAvnir=0;
  var liste3=[];
 module.exports={
 ajouter:function(req,res){
-    rdvModel.findOne({date:req.body.date,heure:req.body.heure},function(err,reslt){
+    rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
         if(reslt==null){
             const rdv=new rdvModel({
                 date:req.body.date,
@@ -242,11 +242,15 @@ afficheRDVconfirme:function(req,res){
 
 },
 accepterRdv:function(req,res){
+  rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
+    if(reslt==null){
+
 rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},function(err,liste){
   if(err){res.json({state:'no',message:'il ya un erreur'+err})}
   else{res.json({state:'ok',message:'le rdv a été confirmé'})}
 
-})  
+})  }
+else{ res.json({state:'no'})}})
 },
 reporterRdvPourPatient:function(req,res){
   rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
