@@ -30,7 +30,7 @@ emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lema
     login: ['', [Validators.required]],
     dateNaissance: ['', [Validators.required]],
     adresse: ['', [Validators.required]],
-    telephone: ['', [Validators.required ]],
+    telephone: ['', [Validators.required ,Validators.minLength(8)]],
     cin: ['', [Validators.required ]],
     email: ['', [Validators.required,Validators.pattern(this.emailRegex)]],
     adresseCabinet: ['', [Validators.required]],

@@ -32,7 +32,7 @@ data;
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
       telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$"))]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))] ],
+      cin: ['',[Validators.required,Validators.minLength(8),Validators.pattern(new RegExp("[0-9 ]{8}")),Validators.maxLength(8)] ],
       email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required]
@@ -81,11 +81,11 @@ recupere(_id,nom,prenom,login,dateNaissance,adresse,telephone,cin,email,adresseC
   this.editForm.get('nom').setValue(nom);
   this.editForm.get('prenom').setValue(prenom);
   this.editForm.get('login').setValue(login);
-  // this.editForm.get('password').setValue('');
+
   this.editForm.get('dateNaissance').setValue(dateNaissance);
   this.editForm.get('adresse').setValue(adresse);
   this.editForm.get('telephone').setValue(telephone);
-  this.editForm.get('cin').setValue(0+cin);
+  this.editForm.get('cin').setValue(cin);
   this.editForm.get('email').setValue(email);
   this.editForm.get('adresseCabinet').setValue(adresseCabinet);
   this.editForm.get('specialite').setValue(specialite);
@@ -111,9 +111,8 @@ recupere(_id,nom,prenom,login,dateNaissance,adresse,telephone,cin,email,adresseC
            'la modification a été effectué avec succès',
            'success'
          )  
-         this.editForm.reset() 
           this.submitted = false ;
-          this.listeMedecin();
+          location.reload();
          })
         }
 // }

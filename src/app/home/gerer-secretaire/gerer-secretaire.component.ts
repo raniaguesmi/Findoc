@@ -43,7 +43,7 @@ cinRegex=/^0\d{7,8}$/;
       dateNaissance: ['', Validators.required],
       adresse: ['', [Validators.required]],
       telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$"))]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))]],
+      cin: ['', [Validators.required,Validators.minLength(8),Validators.pattern(new RegExp("[0-9 ]{7}")),Validators.maxLength(8)]],
       email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
       idmed:[this.idmedec]
 //new RegExp("[0-9 ]{7}")
@@ -55,8 +55,8 @@ this.editForm=this.formBuilder.group({
   password: ['',[Validators.required,Validators.minLength(6)]],
   dateNaissance: ['', Validators.required],
   adresse: ['', Validators.required],
-  telephone: ['', [Validators.required]],
-  cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))]],
+  telephone: ['', [Validators.required,Validators.minLength(8),Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$")),Validators.maxLength(8)]],
+  cin: ['', [Validators.required,Validators.minLength(8),Validators.pattern(new RegExp("[0-9 ]{8}")),Validators.maxLength(8)]],
   email: ['',[ Validators.required ,Validators.pattern(this.emailRegex)]],
   idmed:[this.idmedec]
 })
@@ -65,6 +65,7 @@ this.editForm=this.formBuilder.group({
   }
   get f() { return this.registerForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
   get g() { return this.editForm.controls; }
+
   listeSecretaire()
   {
     this.secretaireService.listeSecretaire().subscribe(res=>
@@ -72,7 +73,8 @@ this.editForm=this.formBuilder.group({
     this.secretaire=res}
       )
      }
-     secretaireParMedecin(idmedec){
+
+  secretaireParMedecin(idmedec){
        this.secretaireService.secretaireParMed(idmedec).subscribe(res=>{
          console.log('secretaire de medecin',res)
         this.secretaireParmed=res;
@@ -80,7 +82,7 @@ this.editForm=this.formBuilder.group({
        })
      }
 
-     ajouterSecretaire(){
+  ajouterSecretaire(){
       this.submitted = true;
        if(this.registerForm.valid){
        this.secretaireService.ajouterSecretaire(this.registerForm.value).subscribe(res=>{
@@ -108,8 +110,7 @@ this.editForm=this.formBuilder.group({
 
        }
 
-
-     supprimer(id){
+  supprimer(id){
       Swal.fire({
         title: 'vous êtes sûr  ?',
         text: "Vous ne pourrez pas revenir en arriére !",
@@ -131,7 +132,7 @@ this.editForm=this.formBuilder.group({
     })
      }
 
-     recupere(_id,nom,prenom,login,password,dateNaissance,adresse,telephone,cin,email){ // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
+  recupere(_id,nom,prenom,login,password,dateNaissance,adresse,telephone,cin,email){ // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
       this._id=_id;
       this.editForm.get('nom').setValue(nom);
       this.editForm.get('prenom').setValue(prenom);
@@ -140,12 +141,12 @@ this.editForm=this.formBuilder.group({
       this.editForm.get('dateNaissance').setValue(dateNaissance);
       this.editForm.get('adresse').setValue(adresse);
       this.editForm.get('telephone').setValue(telephone);
-      this.editForm.get('cin').setValue(0+cin);
+      this.editForm.get('cin').setValue(cin);
       this.editForm.get('email').setValue(email);
 
       }
 
-      modifierSecretaire(){
+  modifierSecretaire(){
        this.submitted = true
        if (this.editForm.invalid) {
         return;

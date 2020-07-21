@@ -128,6 +128,8 @@
                                  <input  class="form-control"  formControlName="telephone" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" >
                                  <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
                                     <div *ngIf="f.telephone.errors.required">le champ est obligatoire</div>
+                                    <div *ngIf="f.telephone.errors.minlength">le numéro de téléphone doit contenir 8 chiffres</div>
+
                                   </div>
                               </div>
                               <div class="form-group col-sm-6">

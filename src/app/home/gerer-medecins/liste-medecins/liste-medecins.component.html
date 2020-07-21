@@ -29,12 +29,7 @@
                       <p class="mb-0">{{i.adresseCabinet}}</p>
                    </div>
                   
-                   <!-- <button type="button" class="btn btn-link rounded-pill mb-3" routerLink="/gestionMedecins/modifierMedecin/{{i._id}}">Modifier</button> -->
-
-                    <!-- <div>                 
-                       <button type="button" class="btn btn-outline-dark rounded-pill mb-3"(click)="supprimerMedecin(i._id)">Supprimer</button>
-                    </div>
-                    <button type="button" class="btn btn-outline-primary rounded-pill mb-3">Modifier</button> -->
+               
                     <div class="row"> <div class="col-md-4">
                      <button type="button" class="btn btn-outline-primary rounded-pill mb-3" data-toggle="modal" data-target="#modifMedecin" (click)="recupere(i._id,i.nom,i.prenom,i.login,i.dateNaissance,i.adresse,i.telephone,i.cin,i.email,i.adresseCabinet,i.specialite)">Modifier</button></div>
                     <div class="col-md-8"><button type="button" class="btn btn-outline-dark rounded-pill mb-3"(click)="supprimerMedecin(i._id)">Supprimer</button>
@@ -70,11 +65,14 @@
            <!--cin-->
            <div  class="form-group col-sm-6">
            <label class="text-primary">CIN:</label>
-           <input type="number" class="form-control"  formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
-           <div   *ngIf="submitted && f.cin.errors" class="invalid-feedback" minlength="8" maxlength="8">
-           <div *ngIf="f.cin.errors.required">le champ est obligatoire</div>
-           <div *ngIf="f.cin.errors.pattern">le numéro de carte d'identité n'est pas valide</div>
-           </div>
+           <input type="text" class="form-control"  formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+           <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+            <div *ngIf="f.cin.errors.required">le champ est obligatoire</div>
+            <div *ngIf="f.cin.errors.minlength">le numéro de carte d'identité doit contenir 8 chifres</div>
+            <div *ngIf="f.cin.errors.pattern">le numéro de carte d'identité n'est pas valide</div>
+            <div *ngIf="f.cin.errors.maxLength">le numéro de carte d'identité doit contenir 8 chifres</div>
+
+          </div>
             </div>
              <!--nom-->
            <div class="form-group col-sm-6">
