@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MedecinService } from 'src/app/service/medecin.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { validateLogin } from '../../customvalidator.validator';
 
 @Component({
   selector: 'app-ajouter-medecin',
@@ -16,15 +15,15 @@ export class AjouterMedecinComponent implements OnInit {
   emailForm:FormGroup;
   registerForm:FormGroup;
 submitted = false;
-
+image;
+fileToApload: Array<File> ; // ici je veux stocker l'image a télécharger'
+emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
+data;
   constructor(private specialiteService : SpecialiteService , private formBuilder: FormBuilder,
      private medecinService: MedecinService  ,private  router:Router) {
     this.afficherSpecialite();
    }
-   image;
-   fileToApload: Array<File> ; // ici je veux stocker l'image a télécharger'
-   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
-   data;
+ 
   ngOnInit() {
     // amalna formulaire esmha this.registerForm
 
@@ -36,7 +35,7 @@ submitted = false;
       dateNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
       telephone: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{8})$")),Validators.maxLength(8)]],
-      cin: ['', [Validators.required,Validators.pattern(new RegExp("^((?!(0))[0-9]{7})$"))] ],
+      cin: ['',  [Validators.required,Validators.minLength(8),Validators.pattern(new RegExp("[0-9 ]{7}")),Validators.maxLength(8)] ],
       email: ['', [Validators.required,Validators.pattern(this.emailRegex)] ],
       adresseCabinet: ['', Validators.required],
       specialite: ['', Validators.required],

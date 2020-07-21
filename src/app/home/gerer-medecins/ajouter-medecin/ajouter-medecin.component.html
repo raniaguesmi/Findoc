@@ -105,11 +105,14 @@
                      </div>
                      <div class="form-group col-md-6">
                         <label >cin:</label>
-                        <input  type="number" class="form-control"  placeholder="cin" formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
-                        <div   *ngIf="submitted && f.cin.errors" class="invalid-feedback" minlength="8" maxlength="8">
+                        <input  type="text" class="form-control"  placeholder="cin" formControlName="cin"[ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+                        <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
                            <div *ngIf="f.cin.errors.required">le champ est obligatoire</div>
-                            <div *ngIf="f.cin.errors.pattern">le numéro de carte d'identité n'est pas valide</div>
-                           </div>
+                           <div *ngIf="f.cin.errors.minlength">le numéro de carte d'identité doit contenir 8 chifres</div>
+                           <div *ngIf="f.cin.errors.pattern">le numéro de carte d'identité n'est pas valide</div>
+                           <div *ngIf="f.cin.errors.maxLength">le numéro de carte d'identité doit contenir 8 chifres</div>
+               
+                         </div>
                      </div>
                      <div class="form-group col-md-6">
                         <label for="add2">Email:</label>
