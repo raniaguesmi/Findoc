@@ -10,9 +10,9 @@ export class ReclamationService {
 
   constructor(private http:HttpClient) { }
   reclamation(id){
-    return this.http.get(this.baseUrl+'/reclamation/reclamationParMedecin/'+id)
+    return this.http.get(this.baseUrl+'/message/reclamationParMedecin/'+id)
   }
   reclamationParId(idmsg){
-    return this.http.get(this.baseUrl+'/reclamation/reclamationParId/'+idmsg)
+    return this.http.get(this.baseUrl+'/message/reclamationParId/'+idmsg)
   }
 }

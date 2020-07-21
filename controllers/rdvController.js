@@ -14,6 +14,7 @@ let nbAvnir=0;
  var liste2=[];
  var liste3=[];
 module.exports={
+  /*** *********************************************************************************************************/
 ajouter:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
         if(reslt==null){
@@ -34,19 +35,21 @@ ajouter:function(req,res){
     })
   
 },
+/*** *********************************************************************************************************/
 afficher:function(req,res){
     rdvModel.find({},function(err,liste){
         if(err){res.json({state:'no', message:'ya un erreur:'+err})}
         else{res.json(liste)}
     })
 },
+/*** *********************************************************************************************************/
 rdvParMed:function(req,res){
     rdvModel.find({medecin:req.params.id},function(err,liste){
         if(err){res.json({state:'no', message:'ya un erreur:'+err})}
         else{res.json(liste)}
     })
 } ,
-
+/*** *********************************************************************************************************/
 afficheComplet:function(req,res){
     //  var _id=_id.$oid
     rdvModel.aggregate([
@@ -82,7 +85,7 @@ afficheComplet:function(req,res){
         else{res.json(result) }
     });
 },
-
+/*** *********************************************************************************************************/
 listpatient:function(req,res){  
        var id=req.params.id   
        rdvModel.aggregate([       
@@ -130,7 +133,7 @@ listpatient:function(req,res){
             }
        });
    },
-
+/*** *********************************************************************************************************/
 afficheRDVAttenteParMed:function(req,res){
        var id=req.params.id
        //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
@@ -183,12 +186,14 @@ afficheRDVAttenteParMed:function(req,res){
        });
 
 },
+/*** *********************************************************************************************************/
 supprimerRdv:function(req,res){
   rdvModel.deleteOne({_id:req.params.id},function(err){
     if(err){res.json({state:'no',message:'il ya un erreur'}+err)}
     else{res.json({state:'ok',message:'le rdv a été supprimé avec succées'})}
 })
 },
+/*** *********************************************************************************************************/
 afficheRDVconfirme:function(req,res){
   var id=req.params.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
@@ -241,6 +246,7 @@ afficheRDVconfirme:function(req,res){
   });
 
 },
+/*** *********************************************************************************************************/
 accepterRdv:function(req,res){
   rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
     if(reslt==null){
@@ -252,6 +258,7 @@ rdvModel.updateOne({_id:req.params.id},{state:"confirmé"},{$set:req.body},funct
 })  }
 else{ res.json({state:'no'})}})
 },
+/*** *********************************************************************************************************/
 reporterRdvPourPatient:function(req,res){
   rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
     if(reslt==null){
@@ -263,6 +270,7 @@ reporterRdvPourPatient:function(req,res){
   
   })  
   },
+/*** *********************************************************************************************************/
   reporterRdvPourSecretiare:function(req,res){
     rdvModel.findOne({date:req.body.date,heure:req.body.heure,medecin:req.body.medecin},function(err,reslt){
       if(reslt==null){
@@ -274,7 +282,8 @@ reporterRdvPourPatient:function(req,res){
     
     })  
     },
-rdvConfirmerParPatient:function(req,res){
+/*** *********************************************************************************************************/
+    rdvConfirmerParPatient:function(req,res){
   var id=req.body.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
   rdvModel.aggregate([
@@ -325,6 +334,7 @@ rdvConfirmerParPatient:function(req,res){
   });
 
 },
+/*** *********************************************************************************************************/
 rdvAttenteParPatient:function(req,res){
   var id=req.body.id
   //aggregate me3nehe tjeme3 l data lkol w {} ytseme stage w kol stage yet3ede input le stage le5er o8zer chamlt eni 
@@ -369,18 +379,21 @@ rdvAttenteParPatient:function(req,res){
   });
 
 },
+/*** *********************************************************************************************************/
 afficherParId:function(req,res){
   rdvModel.findOne({_id:req.params.id},function(err,liste){
       if(err){res.json({state:'no', message:'ya un erreur:'+err})}
       else{res.json(liste)}
   })
 },
+/*** *********************************************************************************************************/
 nombreRdvs:function(req,res){
   rdvModel.count({},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
     else{res.json(nb)}
   })
 },
+/*** *********************************************************************************************************/
 rdvAvenir:function(req,res){
   rdvModel.find({patient:req.params.id},function(err,lst){
     if(err){res.json({state:'no', message:'there is an error'})}
@@ -395,12 +408,14 @@ rdvAvenir:function(req,res){
   })
 
 },
+/*** *********************************************************************************************************/
 nombreRdvs:function(req,res){
   rdvModel.count({},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
     else{res.json(nb)}
   })
 },
+/*** *********************************************************************************************************/
 //rdv confirmé et par patient 
 rdvFortoday:function(req,res){
 rdvModel.find({patient:req.params.id},function(err,lst){
@@ -416,6 +431,7 @@ rdvModel.find({patient:req.params.id},function(err,lst){
 liste=[]
 })
 },
+/*** *********************************************************************************************************/
 rdvPasse:function(req,res){
   var id=req.body.id
   rdvModel.aggregate([
@@ -470,7 +486,7 @@ rdvPasse:function(req,res){
 
   }});
 },
-
+/*** *********************************************************************************************************/
 prochainRDV:function(req,res){
   var id=req.body.id
   rdvModel.aggregate([
@@ -515,7 +531,7 @@ prochainRDV:function(req,res){
 
   }});
 },
-
+/*** *********************************************************************************************************/
 rdvFortodayParMed:function(req,res){
   var id=req.params.id
   rdvModel.aggregate([
@@ -562,7 +578,7 @@ rdvFortodayParMed:function(req,res){
 
 
 },
-
+/*** *********************************************************************************************************/
 nombreRdvsaAvenirParMed:function(req,res){
   rdvModel.find({medecin:req.params.id},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
@@ -577,6 +593,7 @@ nombreRdvsaAvenirParMed:function(req,res){
     }
   })
 },
+/*** *********************************************************************************************************/
 nombreRdvsPasserParMed:function(req,res){
   rdvModel.find({medecin:req.params.id},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}
@@ -591,6 +608,7 @@ nombreRdvsPasserParMed:function(req,res){
     }
   })
 },
+/*** *********************************************************************************************************/
 nombreRdvstodayParMed:function(req,res){
   rdvModel.find({medecin:req.params.id},function(err,nb){
     if(err){res.json({state:'no', message:'there is an error'})}

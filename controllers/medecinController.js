@@ -174,9 +174,11 @@ nombreMedecin:function(req,res){
 /* pour veriffié si le nom dutilisateur existe deja ou pas  */
 trouverParLogin:function(req,res){
   medecinModel.findOne({login:req.params.login},function(err,medecin){
-    if(err){res.json(err)}
-    else {var med=medecin
-      res.json(med._id)}
+    if(err){res.json({state:"NO",err})}
+    else {
+      var med=medecin
+      if(med==null){ res.json({state:"NOO"})}
+   else{res.json(med._id)}   }
   })
 },
 

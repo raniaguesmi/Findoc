@@ -11,7 +11,7 @@ module.exports={
       let minutes = date_ob.getMinutes();
       
       let  datee=date+"-"+month+"-"+year+" à "+hours+":"+minutes
-           const reclamation=new messageModel({
+           const message=new messageModel({
             date:datee,
             titre:req.body.titre,
             contenu:req.body.contenu,
@@ -19,11 +19,11 @@ module.exports={
             idmedecin:req.body.idmedecin
 
             })
-            reclamation.save(function (err) {
+            message.save(function (err) {
             if (err) {
-              res.json({state: 'no', msg: 'vous avez un erreur ' + err})
+              res.send("NO")
             }
-            else{res.json({state:'ok',msg:'reclamation ajouté avec succée'})}
+            else{res.send("OK")}
           })
            
         },

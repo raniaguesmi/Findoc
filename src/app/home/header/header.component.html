@@ -70,9 +70,9 @@
                        <div class="iq-card shadow-none m-0">
                           <div class="iq-card-body p-0 "  >
                              <div class="bg-primary p-3">
-                                <h5 class="mb-0 text-white">Tout les Messages<small class="badge  badge-light float-right pt-1">5</small></h5>
+                                <h5 class="mb-0 text-white">Tout les Messages<small class="badge  badge-light float-right pt-1"></small></h5>
                              </div>
-                             <a routerLink="messages" class="iq-sub-card" *ngFor="let i of messages"   >
+                             <a routerLink="messages/{{i._id}}" class="iq-sub-card" *ngFor="let i of messages"   >
                                 <div class="media align-items-center" >
                                    <div class="">
                                       <img class="avatar-40 rounded" src="assets/images/user/01.jpg" alt="">

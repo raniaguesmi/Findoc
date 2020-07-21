@@ -57,6 +57,7 @@ supprimerRdv(id){
         .subscribe(res => {
           console.log(res);
           this.rdvEnattente(this.idmedec)
+          location.reload();
         })
     }
   })
@@ -70,7 +71,8 @@ this.rdvService.accepterRdv(id).subscribe(res=>{
         'Bien',
         'Rendez-vous  accepté!',
         'success'
-      )     })
+      )  
+      location.reload();   })
       
   }
 

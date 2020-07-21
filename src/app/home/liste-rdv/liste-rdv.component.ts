@@ -29,14 +29,7 @@ dataa
     this.utilisateur=JSON.parse(this.data)
    this.idmedec=this.utilisateur.idmed;
    this.listeRdvConfirmé(this.idmedec);
-  //   this.rdvForm = this.formBuilder.group({
-  //     date: ['',Validators.required],
-  //     heure: ['',Validators.required],
-  //     medecin: [this.idmedec],
-  //     patient: ['',Validators.required],
-  //     motif: ['',Validators.required],
-
-  // });
+ 
   this.reportForm=this.formBuilder.group({
     date:['',Validators.required],
     heure:['',Validators.required],
@@ -44,6 +37,8 @@ dataa
   })
   }
   get f() { return this.reportForm.controls; } // cette fonction me permet de faire le cocntrole de saisie via html code
+ 
+ 
   recupere(_id,date,heure,motif){ 
     // hethi t5alini ne5ou les information lkol li7achti bihom  bech mn be3ed fl modification neste3mlhom 
     this._id=_id;
@@ -100,6 +95,10 @@ supprimerRdv(id){
  
 }
 reporterRdv(){
+  this.submitted = true
+  if (this.reportForm.invalid) {
+    return;
+  }
   console.log(this._id)
   this.rdvService.reporterRdv(this._id,this.reportForm.value).subscribe(res=>{
     this.dataa=res;

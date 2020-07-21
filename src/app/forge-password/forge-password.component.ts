@@ -16,6 +16,7 @@ export class ForgePasswordComponent implements OnInit {
   submitted = false;
   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//paterne mte3 lemail 
   result;
+  reslt;
   constructor(private formBuilder:FormBuilder, private medecinService:MedecinService ,private  router:Router) {   
     //  const result = randomString.generate(6);
  }
@@ -52,7 +53,9 @@ export class ForgePasswordComponent implements OnInit {
     this.medecinService.trouverParLogin(this.passwordForm.get('login').value).subscribe(res=>{
       console.log(res)
       console.log(this.passwordForm.value)
-      var idmed=res
+      this.reslt=res
+     if(this.reslt.state!=="NOO")
+      {var idmed=res
       this.medecinService.modifierPassword(idmed,this.passwordForm.value).subscribe(res=>{
         console.log(res)
         this.emailForm=this.formBuilder.group({
@@ -71,7 +74,10 @@ export class ForgePasswordComponent implements OnInit {
 
         })
 this.router.navigate([''])
-      })
+      })}
+      else{
+        return Swal.fire('Veuillez verifier votre nom dutilisateur introduit')
+      }
     })
 
   }
