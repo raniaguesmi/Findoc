@@ -16,8 +16,7 @@ export class MedecinService {
   nbrMedecins() {
     return this.http.get(this.baseUrl + '/medecin/nombreMedecins')
   }
-  // medecin=new Medecin()
-  
+
   ajouterMedecin(medecin,image){
     let formData = new FormData();
     formData.append('nom', '' + medecin.nom)
